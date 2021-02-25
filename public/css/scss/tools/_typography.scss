@@ -1,0 +1,13 @@
+$text: "Nunito-Regular", sans-serif;
+$text-heavy: "Nunito-Bold", sans-serif;
+$text-light: "Nunito-Light", sans-serif;
+$title: "AkayaTelivigala", sans-serif;
+$header: "AbhayaLibre", sans-serif;
+
+// Font-face
+@include font-face('AkayaTelivigala', '/fonts/AkayaTelivigala', null, null, ttf);
+
+h1 {
+  font-size: 1.625rem;
+  font-family: $title;
+}
