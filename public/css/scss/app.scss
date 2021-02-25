@@ -2,8 +2,9 @@
 @import 'tools/reset';
 @import 'tools/mixins';
 @import 'tools/typography';
+@import 'modules/navbar';
 
 :root {
-  font-size: 24px;
+  font-size: 28px;
   background: white;
 }

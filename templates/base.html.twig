@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}NingenShoppu | Accueil{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -15,6 +15,22 @@
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
+    <header>
+        <nav class="navbar">
+            <h1 class="head-title">NingenShoppu</h1>
+            <div class="menu-icon">
+                <img src="{{asset('img/menu.svg')}}" alt="Menu">
+            </div>
+            <div class="user-icons">
+                <a href="#">
+                    <img src="{{asset('img/user.svg')}}" alt="Mon compte">
+                </a>
+                <a href="#">
+                    <img src="{{asset('img/cart.svg')}}" alt="Panier">
+                </a>
+            </div>
+        </nav>
+    </header>
     <body>
         {% block body %}{% endblock %}
     </body>
