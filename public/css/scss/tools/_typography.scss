@@ -13,10 +13,15 @@ $header: "AbhayaLibre", sans-serif;
 $primary: hsl(191.8,100%,32.9%); // Hex #0087A8
 $secondary: hsl(11.8,100%,68%); // Hex #FF7C5C
 $neutral: hsl(0,0%,31%); // Hex #4F4F4F
+$background: hsl(0,0%,95.7%); // Hex #F4F4F4
 
 // Font-face
 // ===================================
 @include font-face('AkayaTelivigala', '/fonts/AkayaTelivigala', null, null, ttf);
+@include font-face('AbhayaLibre', '/fonts/AbhayaLibre', null, null, ttf);
+@include font-face('Nunito-Light', '/fonts/Nunito-Light', null, null, ttf);
+@include font-face('Nunito-Regular', '/fonts/Nunito-Regular', null, null, ttf);
+@include font-face('Nunito-Bold', '/fonts/Nunito-Bold', null, null, ttf);
 
 h1 {
   font-size: 1.625rem;

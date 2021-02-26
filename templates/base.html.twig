@@ -16,20 +16,8 @@
         {% endblock %}
     </head>
     <header>
-        <nav class="navbar">
-            <h1 class="head-title">NingenShoppu</h1>
-            <div class="menu-icon">
-                <img src="{{asset('img/menu.svg')}}" alt="Menu">
-            </div>
-            <div class="user-icons">
-                <a href="#">
-                    <img src="{{asset('img/user.svg')}}" alt="Mon compte">
-                </a>
-                <a href="#">
-                    <img src="{{asset('img/cart.svg')}}" alt="Panier">
-                </a>
-            </div>
-        </nav>
+        {% include "shared/_navbar.html.twig" %}
+        {% include "shared/_searchbar.html.twig" %}
     </header>
     <body>
         {% block body %}{% endblock %}

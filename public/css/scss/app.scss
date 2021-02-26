@@ -3,8 +3,12 @@
 @import 'tools/mixins';
 @import 'tools/typography';
 @import 'modules/navbar';
+@import 'modules/searchbar';
 
 :root {
   font-size: 28px;
-  background: white;
+}
+
+body {
+  background: $background;
 }
