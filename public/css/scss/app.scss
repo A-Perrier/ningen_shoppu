@@ -2,11 +2,14 @@
 @import 'tools/reset';
 @import 'tools/mixins';
 @import 'tools/typography';
-@import 'modules/navbar';
-@import 'modules/searchbar';
+@import 'pages/layout';
 
 :root {
   font-size: 28px;
+}
+
+html, body {
+  min-height: 100%;
 }
 
 body {
