@@ -229,16 +229,120 @@ h1 {
   background: #ff7c5c;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#section-container {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+}
+
+.advantages {
+  background-color: #00313d;
+  height: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 0.9rem;
+}
+.advantages section {
+  position: relative;
+}
+.advantages img {
+  text-align: center;
+  position: relative;
+  right: -25%;
+}
+.advantages p {
+  font-family: "Nunito-Bold", sans-serif;
+  color: white;
+  max-width: 70%;
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+#joinus-container {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+#joinus {
+  padding: 2rem 0;
+}
+#joinus h2 {
+  text-transform: uppercase;
+  font-family: "Nunito-Bold", sans-serif;
+  color: #4f4f4f;
+  font-size: 1.5rem;
+}
+#joinus ul {
+  width: 39%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#address-container {
+  padding-bottom: 4rem;
+}
+
+.spacer {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+#findus {
+  padding: 0 1rem 0 1rem;
+  background-color: #0087a8;
+  position: relative;
+}
+#findus h2, #findus p:not(.copyright) {
+  transform: translateY(100%);
+}
+#findus h2 {
+  color: white;
+  font-size: 1.9rem;
+  font-family: "Nunito-Bold", sans-serif;
+  margin-bottom: 1rem;
+}
+#findus p {
+  color: white;
+  font-family: "Nunito-Regular", sans-serif;
+  font-size: 1.2rem;
+}
+#findus p:not(.copyright) {
+  letter-spacing: 0.1rem;
+}
+#findus p.copyright {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#findus img {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-67%);
+  width: 45%;
+}
+
 :root {
   font-size: 28px;
 }
 
-html, body {
-  min-height: 100%;
+html {
+  height: 100%;
 }
 
 body {
+  min-height: 100%;
   background: #f4f4f4;
+  position: relative;
 }
 
 /*# sourceMappingURL=style.css.map */

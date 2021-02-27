@@ -1,0 +1,28 @@
+#section-container {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+}
+
+.advantages {
+  background-color: $primary-dark;
+  height: 5rem;
+  padding-top: 2rem;
+  padding-bottom: .9rem;
+
+  & section { position: relative; }
+
+  & img {
+    text-align: center;
+    position: relative;
+    right: -25%;
+  }
+
+  & p {
+    font-family: $text-heavy;
+    color: white;
+    max-width: 70%;
+    text-align: center;
+    padding-top: .5rem;
+  }
+}

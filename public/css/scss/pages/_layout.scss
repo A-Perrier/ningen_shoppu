@@ -1,3 +1,19 @@
+// Header
+// ==============================
+
 @import '../modules/navbar';
 @import '../modules/searchbar';
 @import '../modules/breadcrumb';
+
+// Footer
+// ==============================
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@import '../modules/advantages';
+@import '../modules/joinus';
+@import '../modules/findus';

@@ -1,0 +1,23 @@
+#joinus-container {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+#joinus {
+  padding: 2rem 0;
+
+  & h2 {
+    text-transform: uppercase;
+    font-family: $text-heavy;
+    color: $neutral;
+    font-size: 1.5rem;
+  }
+
+  & ul {
+    width: 39%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
