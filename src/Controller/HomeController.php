@@ -21,10 +21,10 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        //dd($this->productService->findLasts());
+        $products = $this->productService->findLasts(4);
 
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'products' => $products,
         ]);
     }
 }

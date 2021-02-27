@@ -9,6 +9,10 @@
     margin-left: 1rem;
     margin-right: 1rem;
     transform: translateY(-3px);
+
+    a {
+      color: $primary;
+    }
   }
 
   & .menu-icon {

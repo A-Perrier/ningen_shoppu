@@ -10,4 +10,19 @@
         </a>
     </div>
 </div>
+
+<main>
+    <h1>Derniers arrivages</h1>
+
+    <section class="card-container">
+        {% for product in products %}
+            <div class="card">
+                <img src="" alt="{{product.wording}}">
+                <p>{{product.wording}}</p>
+                <p>{{product.price}}</p>
+                <p>{{product.rating}}</p>
+            </div>
+        {% endfor %}
+    </section>
+</main>
 {% endblock %}

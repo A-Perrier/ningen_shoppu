@@ -44,9 +44,9 @@ class Product
     private $category;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="integer")
      */
-    private $packagings = [];
+    private $price;
 
     public function getId(): ?int
     {
@@ -113,14 +113,14 @@ class Product
         return $this;
     }
 
-    public function getPackagings(): ?array
+    public function getPrice(): ?int
     {
-        return $this->packagings;
+        return $this->price;
     }
 
-    public function setPackagings(array $packagings): self
+    public function setPrice(int $price): self
     {
-        $this->packagings = $packagings;
+        $this->price = $price;
 
         return $this;
     }

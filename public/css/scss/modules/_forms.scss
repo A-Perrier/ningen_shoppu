@@ -1,0 +1,40 @@
+form div {
+  width: 70%;
+  margin: 2rem auto 0 auto;
+  position: relative;
+}
+
+form label {
+  display: block;
+  padding-bottom: .5rem;
+  color: $neutral;
+  font-family: $text-light;
+}
+
+input, select {
+  width: 100%;
+  display: block;
+  padding-top: 3px;
+  height: 1.6rem;
+  border: 1px solid $secondary;
+  font-size: 1rem;
+  font-family: $text-heavy;
+  text-indent: 1rem;
+}
+
+textarea {
+  width: 100%;
+  display: block;
+  padding-top: 3px;
+  height: 4.8rem;
+  border: 1px solid $secondary;
+  font-size: 1rem;
+  font-family: $text-heavy;
+  text-indent: 1rem;
+}
+
+form button {
+  position: relative;
+  margin-top: 1rem;
+  left: 66%;
+}

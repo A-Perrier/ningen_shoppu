@@ -8,6 +8,7 @@ use App\Entity\Product;
 use App\Service\SluggerService;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Liior\Faker\Prices;
 
 class AppFixtures extends Fixture
 {
@@ -23,21 +24,6 @@ class AppFixtures extends Fixture
         "Condiments", "Epices", "Aromates", "Assaisonnement"
     ];
 
-    const PACKAGINGS = [
-        [
-            "Poche de 50g" => 129,
-            "Poche de 100g" => 250,
-            "Sac de 1kg" => 2000
-        ],
-
-        [
-            "Boite de 20g" => 360,
-            "Boite de 50g" => 720,
-            "Boite de 100g" => 1300,
-            "Boite de 1kg" => 12000
-        ]
-    ];
-
     private $slugger;
 
     public function __construct(SluggerService $slugger)
@@ -48,6 +34,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
+        $faker->addProvider(new Prices($faker));
 
         for ($c = 0; $c < count(self::CATEGORIES); $c++) {
             $category = new Category;
@@ -62,7 +49,7 @@ class AppFixtures extends Fixture
                         ->setWording($faker->randomElement(self::ADJECTIVES) . ' ' . $faker->randomElement(self::SPICES))
                         ->setSlug($this->slugger->slugify($product->getWording()))
                         ->setRating(null)
-                        ->setPackagings($faker->randomElement(self::PACKAGINGS))
+                        ->setPrice($faker->price(100, 2000))
                         ->setDescription($faker->sentences(3, true))
                         ;
 

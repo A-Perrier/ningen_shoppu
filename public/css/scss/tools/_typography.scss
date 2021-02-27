@@ -14,6 +14,7 @@ $primary: hsl(191.8,100%,32.9%); // Hex #0087A8
 $primary-hover: hsl(191.8,40%,80.9%); // Hex #BBDAE2
 $primary-dark:hsl(191.8,100%,12%);// Hex #00313D
 $secondary: hsl(11.8,100%,68%); // Hex #FF7C5C
+$secondary-hover: hsl(11.8,100%,73%); // Hex #FF9075
 $neutral: hsl(0,0%,31%); // Hex #4F4F4F
 $background: hsl(0,0%,95.7%); // Hex #F4F4F4
 
@@ -28,6 +29,12 @@ $background: hsl(0,0%,95.7%); // Hex #F4F4F4
 h1 {
   font-size: 1.625rem;
   font-family: $title;
+
+  &:not(.head-title) {
+    font-size: 2rem;
+    font-family: $header;
+    text-align: center;
+  }
 }
 
 // Colors

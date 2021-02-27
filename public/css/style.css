@@ -66,6 +66,11 @@ h1 {
   font-size: 1.625rem;
   font-family: "AkayaTelivigala", sans-serif;
 }
+h1:not(.head-title) {
+  font-size: 2rem;
+  font-family: "AbhayaLibre", sans-serif;
+  text-align: center;
+}
 
 h1 {
   color: #0087a8;
@@ -82,6 +87,9 @@ h1 {
   margin-left: 1rem;
   margin-right: 1rem;
   transform: translateY(-3px);
+}
+.navbar h1 a {
+  color: #0087a8;
 }
 .navbar .menu-icon {
   transform: translateY(2px);
@@ -127,6 +135,7 @@ h1 {
 .breadcrumb-container {
   text-align: center;
   margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .breadcrumb {
@@ -230,7 +239,7 @@ h1 {
 }
 
 footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0;
   right: 0;
@@ -272,6 +281,7 @@ footer {
 }
 
 #joinus {
+  background: #f4f4f4;
   padding: 2rem 0;
 }
 #joinus h2 {
@@ -329,6 +339,63 @@ footer {
   top: 50%;
   transform: translateY(-67%);
   width: 45%;
+}
+
+form div {
+  width: 70%;
+  margin: 2rem auto 0 auto;
+  position: relative;
+}
+
+form label {
+  display: block;
+  padding-bottom: 0.5rem;
+  color: #4f4f4f;
+  font-family: "Nunito-Light", sans-serif;
+}
+
+input, select {
+  width: 100%;
+  display: block;
+  padding-top: 3px;
+  height: 1.6rem;
+  border: 1px solid #ff7c5c;
+  font-size: 1rem;
+  font-family: "Nunito-Bold", sans-serif;
+  text-indent: 1rem;
+}
+
+textarea {
+  width: 100%;
+  display: block;
+  padding-top: 3px;
+  height: 4.8rem;
+  border: 1px solid #ff7c5c;
+  font-size: 1rem;
+  font-family: "Nunito-Bold", sans-serif;
+  text-indent: 1rem;
+}
+
+form button {
+  position: relative;
+  margin-top: 1rem;
+  left: 66%;
+}
+
+.btn {
+  padding: 0.4rem 1.6rem;
+  font-size: 1rem;
+  font-family: "Nunito-Regular", sans-serif;
+  border-radius: 6px;
+  border: none;
+  transition: 0.3s;
+}
+.btn.secondary {
+  background-color: #ff7c5c;
+  color: white;
+}
+.btn.secondary:hover {
+  background-color: #ff9075;
 }
 
 :root {
