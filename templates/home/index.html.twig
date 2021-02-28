@@ -6,7 +6,7 @@
 <div class="breadcrumb-container">
     <div class="breadcrumb flat">
         <a href="{{path('home')}}" class="active">
-            <img src="{{asset('img/home.svg')}}" alt="Accueil">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
         </a>
     </div>
 </div>
@@ -17,10 +17,10 @@
     <section class="card-container">
         {% for product in products %}
             <div class="card">
-                <img src="" alt="{{product.wording}}">
+                <img src="{{asset('img/products/' ~ firstImage(product))}}" alt="{{product.wording}}">
                 <p>{{product.wording}}</p>
                 <p>{{product.price}}</p>
-                <p>{{product.rating}}</p>
+                {# <p>{{product.rating}}</p> ON DEVRA AFFICHER PLUTÔT LE RESULTAT D'UNE FONCTION QUI CALCULE LES NOTES #} 
             </div>
         {% endfor %}
     </section>

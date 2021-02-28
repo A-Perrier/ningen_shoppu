@@ -376,6 +376,10 @@ textarea {
   text-indent: 1rem;
 }
 
+form img {
+  max-width: 100%;
+}
+
 form button {
   position: relative;
   margin-top: 1rem;
