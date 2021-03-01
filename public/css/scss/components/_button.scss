@@ -14,4 +14,10 @@
       background-color: $secondary-hover;
     }
   }
+
+  &.btn-primary-reverse {
+    border: 1px solid $primary;
+    background-color: white;
+    color: $primary;
+  }
 }

@@ -2,9 +2,14 @@
 @import 'tools/reset';
 @import 'tools/mixins';
 @import 'tools/typography';
-@import 'pages/layout';
+@import 'tools/placement';
+
 @import 'modules/forms';
+
 @import 'components/button';
+
+@import 'pages/layout';
+@import 'pages/home';
 
 :root {
   font-size: 28px;

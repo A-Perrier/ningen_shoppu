@@ -1,5 +1,5 @@
 form div {
-  width: 70%;
+  width: 80%;
   margin: 2rem auto 0 auto;
   position: relative;
 }
@@ -41,4 +41,43 @@ form button {
   position: relative;
   margin-top: 1rem;
   left: 66%;
+}
+
+.img-label {
+  display: block;
+  width: fit-content;
+  cursor: pointer;
+  color: $secondary;
+  border: 1px solid $secondary;
+  background-color: white;
+  padding: .3rem 1rem;
+  margin: auto;
+  transition: .3s;
+  transform: translateY(37%);
+}
+
+.img-label:hover {
+  border: 1px solid $secondary-hover;
+  color: $secondary-hover;
+}
+
+div[id^=product_product_images] > div {
+  width: 100%;
+}
+
+.vich-image {
+  width: 100%;
+}
+
+.vich-image input[type=file] {
+  display: none;
+}
+
+.vich-image > div {
+  display: flex;
+  font-size: .8rem;
+
+  & > input[type=checkbox] {
+    height: .8rem;
+  }
 }

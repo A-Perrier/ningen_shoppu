@@ -6,11 +6,10 @@
     >
         {% for key,productImageForm in form.children %}
             {{ form_widget(productImageForm) }}
-
         {% endfor %}
     </ul>
 
     <button type="button"
-            class="add-another-collection-widget"
+            class="add-another-collection-widget btn btn-primary-reverse adjust-left"
             data-list-selector="#product-images-fields-list">Ajouter une photo</button>
 {% endblock %}

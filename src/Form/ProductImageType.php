@@ -14,9 +14,12 @@ class ProductImageType extends AbstractType
     {
         $builder
             ->add('imageFile', VichImageType::class, [
-                'label' => "Image",
+                'label' => "Choisir une photo",
+                'label_attr' => [
+                    'class' => "img-label"
+                ],
                 'required' => false,
-                'download_uri' => true,
+                'download_uri' => false,
                 'image_uri' => true
             ])
         ;

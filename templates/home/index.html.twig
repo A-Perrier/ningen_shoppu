@@ -16,7 +16,7 @@
 
     <section class="card-container">
         {% for product in products %}
-            <div class="card">
+            <div class="list-card">
                 <img src="{{asset('img/products/' ~ firstImage(product))}}" alt="{{product.wording}}">
                 <p>{{product.wording}}</p>
                 <p>{{product.price}}</p>

@@ -76,6 +76,114 @@ h1 {
   color: #0087a8;
 }
 
+.adjust-left {
+  left: 10%;
+}
+
+form div {
+  width: 80%;
+  margin: 2rem auto 0 auto;
+  position: relative;
+}
+
+form label {
+  display: block;
+  padding-bottom: 0.5rem;
+  color: #4f4f4f;
+  font-family: "Nunito-Light", sans-serif;
+}
+
+input, select {
+  width: 100%;
+  display: block;
+  padding-top: 3px;
+  height: 1.6rem;
+  border: 1px solid #ff7c5c;
+  font-size: 1rem;
+  font-family: "Nunito-Bold", sans-serif;
+  text-indent: 1rem;
+}
+
+textarea {
+  width: 100%;
+  display: block;
+  padding-top: 3px;
+  height: 4.8rem;
+  border: 1px solid #ff7c5c;
+  font-size: 1rem;
+  font-family: "Nunito-Bold", sans-serif;
+  text-indent: 1rem;
+}
+
+form img {
+  max-width: 100%;
+}
+
+form button {
+  position: relative;
+  margin-top: 1rem;
+  left: 66%;
+}
+
+.img-label {
+  display: block;
+  width: fit-content;
+  cursor: pointer;
+  color: #ff7c5c;
+  border: 1px solid #ff7c5c;
+  background-color: white;
+  padding: 0.3rem 1rem;
+  margin: auto;
+  transition: 0.3s;
+  transform: translateY(37%);
+}
+
+.img-label:hover {
+  border: 1px solid #ff9075;
+  color: #ff9075;
+}
+
+div[id^=product_product_images] > div {
+  width: 100%;
+}
+
+.vich-image {
+  width: 100%;
+}
+
+.vich-image input[type=file] {
+  display: none;
+}
+
+.vich-image > div {
+  display: flex;
+  font-size: 0.8rem;
+}
+.vich-image > div > input[type=checkbox] {
+  height: 0.8rem;
+}
+
+.btn {
+  padding: 0.4rem 1.6rem;
+  font-size: 1rem;
+  font-family: "Nunito-Regular", sans-serif;
+  border-radius: 6px;
+  border: none;
+  transition: 0.3s;
+}
+.btn.secondary {
+  background-color: #ff7c5c;
+  color: white;
+}
+.btn.secondary:hover {
+  background-color: #ff9075;
+}
+.btn.btn-primary-reverse {
+  border: 1px solid #0087a8;
+  background-color: white;
+  color: #0087a8;
+}
+
 .navbar {
   background-color: white;
   display: flex;
@@ -305,6 +413,10 @@ footer {
   padding-bottom: 1rem;
 }
 
+.address {
+  max-width: 50%;
+}
+
 #findus {
   padding: 0 1rem 0 1rem;
   background-color: #0087a8;
@@ -317,12 +429,12 @@ footer {
   color: white;
   font-size: 1.9rem;
   font-family: "Nunito-Bold", sans-serif;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 #findus p {
   color: white;
   font-family: "Nunito-Regular", sans-serif;
-  font-size: 1.2rem;
+  font-size: 0.7rem;
 }
 #findus p:not(.copyright) {
   letter-spacing: 0.1rem;
@@ -339,67 +451,6 @@ footer {
   top: 50%;
   transform: translateY(-67%);
   width: 45%;
-}
-
-form div {
-  width: 70%;
-  margin: 2rem auto 0 auto;
-  position: relative;
-}
-
-form label {
-  display: block;
-  padding-bottom: 0.5rem;
-  color: #4f4f4f;
-  font-family: "Nunito-Light", sans-serif;
-}
-
-input, select {
-  width: 100%;
-  display: block;
-  padding-top: 3px;
-  height: 1.6rem;
-  border: 1px solid #ff7c5c;
-  font-size: 1rem;
-  font-family: "Nunito-Bold", sans-serif;
-  text-indent: 1rem;
-}
-
-textarea {
-  width: 100%;
-  display: block;
-  padding-top: 3px;
-  height: 4.8rem;
-  border: 1px solid #ff7c5c;
-  font-size: 1rem;
-  font-family: "Nunito-Bold", sans-serif;
-  text-indent: 1rem;
-}
-
-form img {
-  max-width: 100%;
-}
-
-form button {
-  position: relative;
-  margin-top: 1rem;
-  left: 66%;
-}
-
-.btn {
-  padding: 0.4rem 1.6rem;
-  font-size: 1rem;
-  font-family: "Nunito-Regular", sans-serif;
-  border-radius: 6px;
-  border: none;
-  transition: 0.3s;
-}
-.btn.secondary {
-  background-color: #ff7c5c;
-  color: white;
-}
-.btn.secondary:hover {
-  background-color: #ff9075;
 }
 
 :root {
