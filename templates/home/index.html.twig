@@ -14,14 +14,22 @@
 <main>
     <h1>Derniers arrivages</h1>
 
-    <section class="card-container">
+    <section class="list-card-container">
         {% for product in products %}
-            <div class="list-card">
-                <img src="{{asset('img/products/' ~ firstImage(product))}}" alt="{{product.wording}}">
-                <p>{{product.wording}}</p>
-                <p>{{product.price}}</p>
-                {# <p>{{product.rating}}</p> ON DEVRA AFFICHER PLUTÔT LE RESULTAT D'UNE FONCTION QUI CALCULE LES NOTES #} 
-            </div>
+            <a href="{{path('product_show', {'id': product.id, 'slug': product.slug})}}">
+                <div class="list-card">
+                    <img src="{{asset('img/products/' ~ firstImage(product))}}" alt="{{product.wording}}">
+                    <p class="list-card__wording">{{product.wording}}</p>
+                    <div class="list-card__infos">
+                        <p class="list-card__price">{{product.price}}</p>
+                        <p class="list-card__rating">
+                            <img class="list-card__star" src="{{asset('img/icons/star.svg')}}" alt="">
+                            4,7/5 (47 votes)
+                        </p>
+                        {# <p>{{product.rating}}</p> ON DEVRA AFFICHER PLUTÔT LE RESULTAT D'UNE FONCTION QUI CALCULE LES NOTES #} 
+                    </div>
+                </div>
+            </a>
         {% endfor %}
     </section>
 </main>

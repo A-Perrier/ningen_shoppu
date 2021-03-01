@@ -1,0 +1,118 @@
+.card-container {
+  width: 70%;
+  margin: auto;
+}
+
+.sections-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  background-color: white;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  
+  & img {
+    width: 100%;
+    max-height: 80%;
+  }
+
+  &__thumbnail-container {
+    transform: translateX(7%);
+    margin-top: 1rem;
+    padding-bottom: .5rem;
+  }
+
+  &__thumbnail {
+    max-width: 39%;
+    height: 6rem;
+    margin: 0 .5rem;
+  }
+
+  &__wording {
+    font-family: $text-heavy;
+    color: $secondary;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: .7rem;
+    margin-bottom: 1rem;
+  }
+
+  &__infos {
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    display: flex;
+  }
+
+  &__rating {
+    margin-left: auto;
+    transform: translate(-1rem, -20%);
+  }
+
+  &__star {
+    width: auto !important;
+    transform: translateY(14%);
+  }
+
+  &__cart-box {
+    display: flex;
+    justify-content: space-evenly;
+    transform: translateX(-3%);
+    padding-bottom: 2rem;
+
+    & label {
+      transform: translate(32%, 15%);
+    }
+  }
+
+  &.inner-card {
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 0 12px -3px black;
+    padding: 1rem;
+
+    & h2 {
+      text-transform: uppercase;
+      font-family: $text-heavy;
+      font-size: 1rem;
+      cursor: pointer;
+      display: inline-block;
+      margin-bottom: 1rem;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: '';
+        border-bottom: 3px solid $secondary;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+      }
+    
+      &:nth-of-type(1):hover::after {
+        width: 6.65rem;
+        animation: animate .3s alternate; 
+      }
+
+      &:nth-of-type(2):hover::after {
+        width: 3.7rem;
+        animation: animate .3s alternate; 
+      }
+
+      &:nth-of-type(3):hover::after {
+        width: 6.65rem;
+        animation: animate .3s alternate; 
+      }
+
+      &.active {
+        color: $secondary;
+      }
+    }
+
+  }
+}
+
+.inner-card__details-content:not(:first-of-type) {
+  display: none;
+}

@@ -70,6 +70,7 @@ h1:not(.head-title) {
   font-size: 2rem;
   font-family: "AbhayaLibre", sans-serif;
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 h1 {
@@ -80,6 +81,17 @@ h1 {
   left: 10%;
 }
 
+@keyframes animate {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  0% {
+    width: 0;
+  }
+}
 form div {
   width: 80%;
   margin: 2rem auto 0 auto;
@@ -102,6 +114,10 @@ input, select {
   font-size: 1rem;
   font-family: "Nunito-Bold", sans-serif;
   text-indent: 1rem;
+}
+
+input[type=number] {
+  width: 8%;
 }
 
 textarea {
@@ -243,7 +259,7 @@ div[id^=product_product_images] > div {
 .breadcrumb-container {
   text-align: center;
   margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .breadcrumb {
@@ -429,12 +445,12 @@ footer {
   color: white;
   font-size: 1.9rem;
   font-family: "Nunito-Bold", sans-serif;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 #findus p {
   color: white;
   font-family: "Nunito-Regular", sans-serif;
-  font-size: 0.7rem;
+  font-size: 1.2rem;
 }
 #findus p:not(.copyright) {
   letter-spacing: 0.1rem;
@@ -451,6 +467,142 @@ footer {
   top: 50%;
   transform: translateY(-67%);
   width: 45%;
+}
+
+.list-card-container {
+  width: 70%;
+  margin: auto;
+}
+
+.list-card {
+  background-color: white;
+  margin-bottom: 2rem;
+}
+.list-card img {
+  width: 100%;
+  max-height: 80%;
+}
+.list-card__wording {
+  font-family: "Nunito-Bold", sans-serif;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 0.7rem;
+  margin-bottom: 1rem;
+}
+.list-card__infos {
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  display: flex;
+}
+.list-card__rating {
+  margin-left: auto;
+  transform: translate(-1rem, -20%);
+}
+.list-card__star {
+  width: auto !important;
+  transform: translateY(14%);
+}
+
+.card-container {
+  width: 70%;
+  margin: auto;
+}
+
+.sections-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  background-color: white;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+.card img {
+  width: 100%;
+  max-height: 80%;
+}
+.card__thumbnail-container {
+  transform: translateX(7%);
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+.card__thumbnail {
+  max-width: 39%;
+  height: 6rem;
+  margin: 0 0.5rem;
+}
+.card__wording {
+  font-family: "Nunito-Bold", sans-serif;
+  color: #ff7c5c;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 0.7rem;
+  margin-bottom: 1rem;
+}
+.card__infos {
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  display: flex;
+}
+.card__rating {
+  margin-left: auto;
+  transform: translate(-1rem, -20%);
+}
+.card__star {
+  width: auto !important;
+  transform: translateY(14%);
+}
+.card__cart-box {
+  display: flex;
+  justify-content: space-evenly;
+  transform: translateX(-3%);
+  padding-bottom: 2rem;
+}
+.card__cart-box label {
+  transform: translate(32%, 15%);
+}
+.card.inner-card {
+  width: 80%;
+  margin: auto;
+  box-shadow: 0 0 12px -3px black;
+  padding: 1rem;
+}
+.card.inner-card h2 {
+  text-transform: uppercase;
+  font-family: "Nunito-Bold", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.card.inner-card h2::after {
+  position: absolute;
+  content: "";
+  border-bottom: 3px solid #ff7c5c;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+}
+.card.inner-card h2:nth-of-type(1):hover::after {
+  width: 6.65rem;
+  animation: animate 0.3s alternate;
+}
+.card.inner-card h2:nth-of-type(2):hover::after {
+  width: 3.7rem;
+  animation: animate 0.3s alternate;
+}
+.card.inner-card h2:nth-of-type(3):hover::after {
+  width: 6.65rem;
+  animation: animate 0.3s alternate;
+}
+.card.inner-card h2.active {
+  color: #ff7c5c;
+}
+
+.inner-card__details-content:not(:first-of-type) {
+  display: none;
 }
 
 :root {

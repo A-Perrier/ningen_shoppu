@@ -1,0 +1,87 @@
+{% extends "base.html.twig" %}
+
+{% block title %}NingenShoppu | {{product.wording}}{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="#">{{product.category.title}}</a>
+        <a href="#" class="active">{{product.wording}}</a>
+    </div>
+</div>
+
+<main>
+  <h1>{{ product.wording }}</h1>
+
+  <section class="card-container">
+    <div class="card">
+      {% for image in product.productImages %}
+        {% if loop.index == 1 %}
+          <img src="{{asset('img/products/' ~ firstImage(product))}}" alt="">
+        {% else %}
+          <img class="card__thumbnail" src="{{asset('img/products/' ~ sideImage(product, (loop.index - 1)))}}" alt="">
+        {% endif %}
+      {% endfor %}
+      <p class="card__wording">{{product.wording}}</p>
+      <div class="card__infos">
+        <p class="card__price">{{product.price}}</p>
+        <p class="card__rating">
+            <img class="card__star" src="{{asset('img/icons/star.svg')}}" alt="">
+            4,7/5 (47 votes)
+        </p>
+      </div>
+      <div class="card__cart-box">
+        <label for="quantity">Quantité :</label>
+        <input type="number" name="quantity" id="quantity">
+        <button class="btn secondary">Ajouter au panier</button>
+      </div>
+
+      <div class="card inner-card">
+
+        <section class="sections-container">
+          <h2 class="active details-section" for="description">Description</h2>
+          <h2 class="details-section" for="labels">Labels</h2>
+          <h2 class="details-section" for="feedbacks">Avis clients</h2>
+        </section>
+        
+        <section>
+          <div class="inner-card__details-content" id="description">
+            <p>Ici la description.</p>
+          </div>
+
+          <div class="inner-card__details-content" id="labels">
+            <p>Ici les labels.</p>
+          </div>
+
+          <div class="inner-card__details-content" id="feedbacks">
+            <p>Ici les avis.</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+$(function() {
+  $('.card__thumbnail').wrapAll('<div class="card__thumbnail-container"></div>')
+
+  $('.details-section').click((e) => {
+    let forAttr = $(e.currentTarget).attr("for");
+    let spoilerDivs = $('.inner-card__details-content');
+
+    $('.details-section.active').removeClass('active');
+    $(e.currentTarget).addClass('active');
+
+    $('.inner-card__details-content:not([id=' + forAttr + '])').fadeOut(200).promise().done(() => {
+      $('.inner-card__details-content[id=' + forAttr + ']').fadeIn(200);
+    });
+  })
+
+});
+</script>
+{% endblock %}

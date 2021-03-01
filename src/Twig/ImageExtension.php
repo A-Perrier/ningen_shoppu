@@ -2,6 +2,7 @@
 namespace App\Twig;
 
 use App\Entity\Product;
+use App\Service\ProductService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -10,7 +11,8 @@ class ImageExtension extends AbstractExtension
   public function getFunctions()
   {
     return [
-      new TwigFunction('firstImage', [$this, 'findFirstImageName'])
+      new TwigFunction('firstImage', [$this, 'findFirstImageName']),
+      new TwigFunction('sideImage', [$this, 'findSideImageName'])
     ];
   }
 
@@ -20,5 +22,13 @@ class ImageExtension extends AbstractExtension
 
     $firstImage = $product->getProductImages()->getValues()[0];
     return $firstImage->getImageName();
+  }
+
+  public function findSideImageName(Product $product, int $index)
+  {
+    if (!$product->getProductImages()->getValues()) return;
+
+    $image = $product->getProductImages()->getValues()[$index];
+    return $image->getImageName();
   }
 }

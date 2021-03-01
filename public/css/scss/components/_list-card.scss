@@ -1,3 +1,39 @@
+.list-card-container {
+  width: 70%;
+  margin: auto;
+}
+
 .list-card {
+  background-color: white;
+  margin-bottom: 2rem;
   
+  & img {
+    width: 100%;
+    max-height: 80%;
+  }
+
+  &__wording {
+    font-family: $text-heavy;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: .7rem;
+    margin-bottom: 1rem;
+  }
+
+  &__infos {
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    display: flex;
+  }
+
+  &__rating {
+    margin-left: auto;
+    transform: translate(-1rem, -20%);
+  }
+
+  &__star {
+    width: auto !important;
+    transform: translateY(14%);
+  }
+
 }

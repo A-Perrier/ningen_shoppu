@@ -15,14 +15,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProductController extends AbstractController
 {
     private $slugger;
-    private $em;
     private $productService;
 
-    public function __construct(SluggerService $slugger, EntityManagerInterface $em, ProductService $productService)
+    public function __construct(SluggerService $slugger, ProductService $productService)
     {
         $this->slugger = $slugger;
-        $this->em = $em;
         $this->productService = $productService;
+    }
+
+    /**
+     * @Route("/product/{id}-{slug}", name="product_show")
+     */
+    public function show($id, $slug): Response
+    {
+        $product = $this->productService->find($id);
+        if ($product->getSlug() !== $slug) return $this->redirectToRoute('product_show', ['id' => $id, 'slug' => $product->getSlug()]);
+
+        return $this->render('product/show.html.twig', [
+            'product' => $product
+        ]);
     }
 
     /**
