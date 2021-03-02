@@ -1,14 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}NingenShoppu | 
-
-  {% if editing %}
-    Modifier {{product.wording}}
-  {% else %}
-    Créer un produit
-  {% endif %}
-
-{% endblock %}
+{% block title %}NingenShoppu | Nouveau produit{% endblock %}
 
 {% block body %}
   <div class="breadcrumb-container">
@@ -17,19 +9,11 @@
             <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
         </a>
         <a href="#">Administration</a>
-        {% if editing %}
-          <a href="#" class="active">Modifier {{product.wording}}</a>
-        {% else %}
-          <a href="#" class="active">Nouveau produit</a>
-        {% endif %}
+        <a href="#" class="active">Nouveau produit</a>
     </div>
 </div>
 
-  {% if editing %}
-    <h1>Modifier le produit {{product.wording}}</h1>
-  {% else %}
-    <h1>Nouveau produit</h1>
-  {% endif %}
+  <h1>Nouveau produit</h1>
   
   {% form_theme form 'shared/forms/_form_theme.html.twig' %}
   {{form_start(form)}}
@@ -39,8 +23,9 @@
     {{form_row(form.category)}}
     {{form_row(form.product_images)}}
 
-    <button class="btn secondary" type="submit">Envoyer</button>
+    <button id="product-create" class="btn secondary" type="submit">Envoyer</button>
   {{form_end(form)}}
 
 <script src="{{asset('js/helpers/imageUploadWidget.js')}}"></script>
+<script src="{{asset('js/api/product.js')}}"></script>
 {% endblock %}

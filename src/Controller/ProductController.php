@@ -57,12 +57,11 @@ class ProductController extends AbstractController
             $this->productService->manageImageOnProductCreation($product);
 
             $this->addFlash("success", "Le produit a correctement été créé !");
-            return $this->redirectToRoute("product_maker");
+            return $this->redirectToRoute("product_create");
         }
 
-        return $this->render('product/maker.html.twig', [
+        return $this->render('product/create.html.twig', [
             'form' => $form->createView(),
-            'editing' => false
         ]);
     }
 
@@ -83,7 +82,7 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $product->setSlug($this->slugger->slugify($product->getWording()));
-
+            
             $this->productService->manageImageOnProductEdition($product);
 
             // This redirection avoid fields to render wrongly
@@ -92,10 +91,9 @@ class ProductController extends AbstractController
             ]);
         }
 
-        return $this->render('product/maker.html.twig', [
+        return $this->render('product/edit.html.twig', [
             'form' => $form->createView(),
             'product' => $product,
-            'editing' => true
         ]);
     }
 }

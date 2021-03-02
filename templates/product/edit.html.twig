@@ -1,0 +1,31 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}NingenShoppu | Modifier {{product.wording}}{% endblock %}
+
+{% block body %}
+  <div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="#">Administration</a>
+        <a href="#" class="active">Modifier {{product.wording}}</a>
+    </div>
+</div>
+
+  <h1>Modifier le produit {{product.wording}}</h1>
+  
+  {% form_theme form 'shared/forms/_form_theme.html.twig' %}
+  {{form_start(form)}}
+    {{form_row(form.wording)}}
+    {{form_row(form.description)}}
+    {{form_row(form.price)}}
+    {{form_row(form.category)}}
+    {{form_row(form.product_images)}}
+
+    <button id="product-edit" class="btn secondary" type="submit">Envoyer</button>
+  {{form_end(form)}}
+
+<script src="{{asset('js/helpers/imageUploadWidget.js')}}"></script>
+<script src="{{asset('js/api/product.js')}}"></script>
+{% endblock %}
