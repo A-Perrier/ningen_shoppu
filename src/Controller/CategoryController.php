@@ -4,13 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
-use App\Service\CategoryService;
 use App\Service\SluggerService;
+use App\Service\CategoryService;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 class CategoryController extends AbstractController
 {
@@ -49,6 +50,7 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/category/create", name="category_create")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function create(Request $request): Response
     {
@@ -74,6 +76,7 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/category/edit/{id<\d+>}", name="category_edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit($id, Request $request): Response
     {

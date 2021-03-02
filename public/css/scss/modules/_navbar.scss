@@ -1,3 +1,6 @@
+// Navbar classique
+// ==========================
+
 .navbar {
   background-color: white;
   display: flex;
@@ -29,4 +32,15 @@
       margin-right: 1rem;
     }
   }
+}
+
+// Navbar admin
+// ==========================
+.navbar.admin {
+  background-color: $primary;
+
+  & h1 a {
+    color: white;
+  }
+  
 }

@@ -6,6 +6,11 @@
   border: none;
   transition: .3s;
 
+  &.primary {
+    background-color: $primary;
+    color: white;
+  }
+
   &.secondary {
     background-color: $secondary;
     color: white;

@@ -81,6 +81,15 @@ h1 {
   left: 10%;
 }
 
+.adjust-right {
+  left: 68%;
+}
+
+.container {
+  width: 70%;
+  margin: auto;
+}
+
 @keyframes animate {
   0% {
     width: 0;
@@ -187,6 +196,10 @@ div[id^=product_product_images] > div {
   border: none;
   transition: 0.3s;
 }
+.btn.primary {
+  background-color: #0087a8;
+  color: white;
+}
 .btn.secondary {
   background-color: #ff7c5c;
   color: white;
@@ -226,6 +239,13 @@ div[id^=product_product_images] > div {
 }
 .navbar .user-icons a:first-child {
   margin-right: 1rem;
+}
+
+.navbar.admin {
+  background-color: #0087a8;
+}
+.navbar.admin h1 a {
+  color: white;
 }
 
 .search-block {

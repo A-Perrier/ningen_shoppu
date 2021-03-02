@@ -2,7 +2,6 @@
 namespace App\Twig;
 
 use App\Entity\Product;
-use App\Service\ProductService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

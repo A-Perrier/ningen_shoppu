@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}NingenShoppu | Accueil{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+
+        {% block javascripts %}
+        <script src="{{asset('js/libs/jquery-3.5.1.js')}}"></script>
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+    <header>
+        {% include "shared/_admin-navbar.html.twig" %}
+        {% include "shared/_searchbar.html.twig" %}
+    </header>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+    <footer>
+        {% include "shared/footer/_advantages.html.twig" %}
+        {% include "shared/footer/_joinus.html.twig" %}
+        {% include "shared/footer/_findus.html.twig" %}
+    </footer>
+</html>
