@@ -94,11 +94,20 @@ h1 {
   0% {
     width: 0;
   }
-  50% {
-    width: 100%;
+  65% {
+    width: 110%;
   }
-  0% {
-    width: 0;
+  75% {
+    width: 90%;
+  }
+  85% {
+    width: 104%;
+  }
+  92% {
+    width: 97%;
+  }
+  100% {
+    width: 100%;
   }
 }
 form div {
@@ -607,15 +616,15 @@ footer {
 }
 .card.inner-card h2:nth-of-type(1):hover::after {
   width: 6.65rem;
-  animation: animate 0.3s alternate;
+  animation: animate 0.5s alternate;
 }
 .card.inner-card h2:nth-of-type(2):hover::after {
   width: 3.7rem;
-  animation: animate 0.3s alternate;
+  animation: animate 0.5s alternate;
 }
 .card.inner-card h2:nth-of-type(3):hover::after {
   width: 6.65rem;
-  animation: animate 0.3s alternate;
+  animation: animate 0.5s alternate;
 }
 .card.inner-card h2.active {
   color: #ff7c5c;

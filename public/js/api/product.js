@@ -13,6 +13,15 @@ const resetForm = () => {
   $('form[name=product]')[0].reset();
 }
 
+
+/**
+ * On doit séparer en deux requêtes Ajax l'envoi du formulaire, puisque pour les fichiers, les données processData et contentType
+ * sont différentes.
+ * 1. On envoie la requête avec toutes les données sauf les photos.
+ * 2. Le produit est créé en base de données, on récupère son ID dans la réponse.
+ * 3. On utilise l'ID pour renvoyer une requête avec les bonnes entêtes pour les fichiers et on met à jour le produit
+ * 4. On réinitialise le formulaire
+ */
 createButton.click((e) => {
   e.preventDefault();
   

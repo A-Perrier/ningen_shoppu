@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller\Api;
 
-use DateTime;
 use Exception;
 use App\Entity\Product;
 use App\Entity\ProductImage;
