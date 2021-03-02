@@ -29,6 +29,10 @@ class ProductController extends AbstractController
     public function show($id, $slug): Response
     {
         $product = $this->productService->find($id);
+        if (!$product) {
+            $this->addFlash('danger', "Ce produit n'existe pas");
+            return $this->redirectToRoute('home');
+        }
         if ($product->getSlug() !== $slug) return $this->redirectToRoute('product_show', ['id' => $id, 'slug' => $product->getSlug()]);
 
         return $this->render('product/show.html.twig', [
@@ -51,11 +55,12 @@ class ProductController extends AbstractController
             $this->productService->manageImageOnProductCreation($product);
 
             $this->addFlash("success", "Le produit a correctement été créé !");
-            return $this->redirectToRoute("product_create");
+            return $this->redirectToRoute("product_maker");
         }
 
-        return $this->render('product/create.html.twig', [
+        return $this->render('product/maker.html.twig', [
             'form' => $form->createView(),
+            'editing' => false
         ]);
     }
 
@@ -84,8 +89,10 @@ class ProductController extends AbstractController
             ]);
         }
 
-        return $this->render('product/create.html.twig', [
+        return $this->render('product/maker.html.twig', [
             'form' => $form->createView(),
+            'product' => $product,
+            'editing' => true
         ]);
     }
 }

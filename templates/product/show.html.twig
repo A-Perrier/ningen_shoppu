@@ -8,7 +8,7 @@
         <a href="{{path('home')}}">
             <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
         </a>
-        <a href="#">{{product.category.title}}</a>
+        <a href="{{path('category_index', {'id':product.category.id, 'slug':product.category.slug})}}">{{product.category.title}}</a>
         <a href="#" class="active">{{product.wording}}</a>
     </div>
 </div>

@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NingenShoppu | Créer un produit{% endblock %}
+{% block title %}NingenShoppu | 
+
+  {% if editing %}
+    Modifier {{product.wording}}
+  {% else %}
+    Créer un produit
+  {% endif %}
+
+{% endblock %}
 
 {% block body %}
   <div class="breadcrumb-container">
@@ -9,12 +17,20 @@
             <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
         </a>
         <a href="#">Administration</a>
-        <a href="#" class="active">Nouveau produit</a>
+        {% if editing %}
+          <a href="#" class="active">Modifier {{product.wording}}</a>
+        {% else %}
+          <a href="#" class="active">Nouveau produit</a>
+        {% endif %}
     </div>
 </div>
 
-  <h1>Nouveau produit</h1>
-
+  {% if editing %}
+    <h1>Modifier le produit {{product.wording}}</h1>
+  {% else %}
+    <h1>Nouveau produit</h1>
+  {% endif %}
+  
   {% form_theme form 'shared/forms/_form_theme.html.twig' %}
   {{form_start(form)}}
     {{form_row(form.wording)}}

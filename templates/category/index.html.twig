@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NingenShoppu | {{category.title}}{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="#" class="active">{{category.title}}</a>
+    </div>
+</div>
+
+<main>
+    <h1>{{category.title}}</h1>
+
+    <section class="list-card-container">
+        {% for product in lastProducts %}
+            <a href="{{path('product_show', {'id': product.id, 'slug': product.slug})}}">
+                <div class="list-card">
+                    <img src="{{asset('img/products/' ~ firstImage(product))}}" alt="{{product.wording}}">
+                    <p class="list-card__wording">{{product.wording}}</p>
+                    <div class="list-card__infos">
+                        <p class="list-card__price">{{product.price}}</p>
+                        <p class="list-card__rating">
+                            <img class="list-card__star" src="{{asset('img/icons/star.svg')}}" alt="">
+                            4,7/5 (47 votes)
+                        </p>
+                        {# <p>{{product.rating}}</p> ON DEVRA AFFICHER PLUTÔT LE RESULTAT D'UNE FONCTION QUI CALCULE LES NOTES #} 
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}
