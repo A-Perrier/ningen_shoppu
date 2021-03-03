@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -21,6 +22,10 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le titre ne peut pas être nul")
+     * @Assert\Length(min="2", max="255", 
+     * minMessage="La longueur doit être comprise entre 2 et 255 caractères", 
+     * maxMessage="La longueur doit être comprise entre 2 et 255 caractères")
      */
     private $title;
 
@@ -31,6 +36,9 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category")
+     * @Assert\NotBlank(message="Le titre ne peut pas être nul")
+     * @Assert\Length(min="5",
+     * minMessage="La description doit faire au moins 5 caractères")
      */
     private $products;
 

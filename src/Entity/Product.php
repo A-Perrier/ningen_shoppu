@@ -6,6 +6,7 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -21,6 +22,8 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le produit doit avoir un libellé")
+     * @Assert\Length(min="2", minMessage="Le libellé doit avoir au moins 2 caractères")
      */
     private $wording;
 
@@ -31,6 +34,8 @@ class Product
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Le produit doit posséder une description")
+     * @Assert\Length(min="5", minMessage="La description doit faire au moins 5 caractères")
      */
     private $description;
 
@@ -47,6 +52,7 @@ class Product
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Votre produit doit avoir une catégorie")
      */
     private $price;
 
