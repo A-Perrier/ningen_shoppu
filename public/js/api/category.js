@@ -33,7 +33,8 @@ createButton.click((e) => {
     },
     error: function (result, status, error) {
       dangerToast("Le formulaire n'a pas été envoyé, il n'a pas été rempli correctement");
-      console.log(result.responseText);
+      let apiErrors = JSON.parse(result.responseText);
+      setErrors(apiErrors, 'category');
     }
   })
 })

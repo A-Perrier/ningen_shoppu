@@ -47,12 +47,14 @@ class Product
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Votre produit doit avoir une catégorie")
      */
     private $category;
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotBlank(message="Votre produit doit avoir une catégorie")
+     * @Assert\NotNull(message="Le prix doit être présent")
+     * @Assert\Positive(message="Le prix doit être supérieur à 0")
      */
     private $price;
 

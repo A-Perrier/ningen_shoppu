@@ -85,3 +85,26 @@ div[id^=product_product_images] > div {
     height: .8rem;
   }
 }
+
+.error-container {
+  transform: translateY(-50%);
+}
+
+.error-badge {
+  display: inline-block;
+  color: white;
+  background-color: $danger;
+  font-size: .6rem;
+  font-family: $header;
+  padding: .15rem .4rem;
+  margin-right: .3rem;
+  transform: translateY(-11%);
+  border-radius: 26px 12%;
+}
+
+.form-error {
+  display: block;
+  color: $danger;
+  font-size: .8rem;
+  transform: translateY(5px);
+}

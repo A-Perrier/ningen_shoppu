@@ -31,14 +31,14 @@ class Category
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank(message="Le titre ne peut pas être nul")
+     * @Assert\Length(min="5",
+     * minMessage="La description doit faire au moins 5 caractères")
      */
     private $description;
 
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category")
-     * @Assert\NotBlank(message="Le titre ne peut pas être nul")
-     * @Assert\Length(min="5",
-     * minMessage="La description doit faire au moins 5 caractères")
      */
     private $products;
 

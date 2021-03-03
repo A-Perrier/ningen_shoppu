@@ -1,6 +1,5 @@
 /**
- * Ne prend en charge que la création de produit.
- * Dans le cas d'une édition, on souhaite rediriger l'utilisateur sur le produit en question
+ * 
  */
 
 let createButton = $('#product-create');
@@ -20,6 +19,10 @@ const resetForm = () => {
 
 
 /**
+ * /!\ 
+ *     Ne prend en charge que la création de produit.
+ *     Dans le cas d'une édition, on souhaite rediriger l'utilisateur sur le produit en question 
+ * /!\
  * On doit séparer en deux requêtes Ajax l'envoi du formulaire, puisque pour les fichiers, les données processData et contentType
  * sont différentes.
  * 1. On envoie la requête avec toutes les données sauf les photos.
@@ -29,6 +32,7 @@ const resetForm = () => {
  */
 createButton.click((e) => {
   e.preventDefault();
+  $('.form-error').remove();
   
   const sendPicturesAjaxCall = (id) => {
     let filesData = new FormData($('form[name=product]')[0]);
@@ -39,11 +43,11 @@ createButton.click((e) => {
       contentType: false,
       data: filesData,
       success: function(response, statusCode) {
-        successToast("Les photos ont correctement été envoyées, merci !");
+        successToast("Le formulaire a totalement été validé");
         resetForm();
       },
       error: function (result, status, error) {
-        dangerToast("Le formulaire n'a pas été envoyé, il n'a pas été rempli correctement");
+        dangerToast("Les photos n'ont pas été envoyées, une erreur s'est produite");
         console.log(result.responseText);
       }
     })
@@ -67,8 +71,10 @@ createButton.click((e) => {
       infoToast("Le formulaire a été validé. En attente du chargement des photos ...");
     },
     error: function (result, status, error) {
-      dangerToast("Le formulaire n'a pas été envoyé, il n'a pas été rempli correctement");
-      console.log(result.responseText);
+      dangerToast("Le formulaire des  n'a pas été envoyé, il n'a pas été rempli correctement");
+      let apiErrors = JSON.parse(result.responseText);
+      setErrors(apiErrors, 'product');
+
     }
   })
 })

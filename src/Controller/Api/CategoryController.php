@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CategoryController extends AbstractController
 {
@@ -26,7 +27,7 @@ class CategoryController extends AbstractController
    * @Route("/api/category/create", name="api/category_create")
    * @IsGranted("ROLE_ADMIN")
    */
-  public function create(Request $request): Response
+  public function create(Request $request, ValidatorInterface $validator): Response
   {
     if (!$request->isXmlHttpRequest()) {
       throw new Exception("Une erreur s'est produite", 404);
@@ -39,10 +40,24 @@ class CategoryController extends AbstractController
              ->setSlug($this->slugger->slugify($category->getTitle()))
              ->setDescription($data->description)
     ;
-    
-    $this->em->persist($category);
-    $this->em->flush();
 
-    return $this->json($category);
+    $errors = $validator->validate($category);
+    $parsedErrors = [];
+
+    if (count($errors) > 0) {
+
+        for ($i = 0; $i < count($errors); $i++) {
+            $parsedErrors[$errors->get($i)->getPropertyPath()] = $errors->get($i)->getMessage();
+        }
+        return $this->json($parsedErrors, 400);
+
+    } else {
+      $this->em->persist($category);
+      $this->em->flush();
+
+      return $this->json($category);
+    }
+    
+   
   }
 }

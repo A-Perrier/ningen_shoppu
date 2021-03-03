@@ -13,3 +13,13 @@
             class="add-another-collection-widget btn btn-primary-reverse adjust-left"
             data-list-selector="#product-images-fields-list">Ajouter une photo</button>
 {% endblock %}
+
+{% block form_errors %}
+  <ul class="error-container">
+    {% for error in errors %}
+      <li>
+        <span class="form-error"><span class="error-badge">Erreur</span>{{ error.message }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

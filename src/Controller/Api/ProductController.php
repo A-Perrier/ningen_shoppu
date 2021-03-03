@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ProductController extends AbstractController
 {
@@ -34,7 +35,7 @@ class ProductController extends AbstractController
    * @Route("/api/product/create", name="api/product_create", methods={"POST"})
    * @IsGranted("ROLE_ADMIN")
    */
-  public function create(Request $request): Response
+  public function create(Request $request, ValidatorInterface $validator): Response
   {
     if (!$request->isXmlHttpRequest()) {
       throw new Exception("Une erreur s'est produite", 404);
@@ -47,15 +48,29 @@ class ProductController extends AbstractController
     $product->setWording($data->wording)
             ->setSlug($this->slugger->slugify($product->getWording()))
             ->setDescription($data->description)
-            ->setPrice($data->price)
+            ->setPrice($data->price ?? 0)
             ->setCategory($data->category)
             ->setRating([])
     ;
-    
-    $this->em->persist($product);
-    $this->em->flush();
 
-    return $this->json($product->getId(), 201);
+
+    $errors = $validator->validate($product);
+    $parsedErrors = [];
+
+    if (count($errors) > 0) {
+
+        for ($i = 0; $i < count($errors); $i++) {
+            $parsedErrors[$errors->get($i)->getPropertyPath()] = $errors->get($i)->getMessage();
+        }
+        return $this->json($parsedErrors, 400);
+
+    } else {
+        $this->em->persist($product);
+        $this->em->flush();
+
+        return $this->json($product->getId(), 201);
+    }
+    
   }
 
   /**
@@ -69,8 +84,8 @@ class ProductController extends AbstractController
     }
 
     $product = $this->productService->find($id);
-
-    $files = $request->files->get('product')['product_images'];
+    
+    $files = $request->files->get('product')['product_images'] ?? [];
     foreach ($files as $file) {
 
       /** @var UploadedFile */

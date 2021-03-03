@@ -197,6 +197,29 @@ div[id^=product_product_images] > div {
   height: 0.8rem;
 }
 
+.error-container {
+  transform: translateY(-50%);
+}
+
+.error-badge {
+  display: inline-block;
+  color: white;
+  background-color: #cd0909;
+  font-size: 0.6rem;
+  font-family: "AbhayaLibre", sans-serif;
+  padding: 0.15rem 0.4rem;
+  margin-right: 0.3rem;
+  transform: translateY(-11%);
+  border-radius: 26px 12%;
+}
+
+.form-error {
+  display: block;
+  color: #cd0909;
+  font-size: 0.8rem;
+  transform: translateY(5px);
+}
+
 .btn {
   padding: 0.4rem 1.6rem;
   font-size: 1rem;
