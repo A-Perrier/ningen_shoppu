@@ -1,0 +1,12 @@
+.cart-count {
+  display: inline-block;
+  font-size: .7rem;
+  height: 1rem;
+  width: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  border-radius: 50%;
+  background-color: $secondary;
+  color: white;
+  transform: translateX(-100%);
+}

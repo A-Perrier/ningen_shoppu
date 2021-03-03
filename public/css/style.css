@@ -227,6 +227,7 @@ div[id^=product_product_images] > div {
   border-radius: 6px;
   border: none;
   transition: 0.3s;
+  cursor: pointer;
 }
 .btn.primary {
   background-color: #0087a8;
@@ -412,6 +413,19 @@ div[id^=product_product_images] > div {
 .flat a:hover, .flat a.active,
 .flat a:hover:after, .flat a.active:after {
   background: #ff7c5c;
+}
+
+.cart-count {
+  display: inline-block;
+  font-size: 0.7rem;
+  height: 1rem;
+  width: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #ff7c5c;
+  color: white;
+  transform: translateX(-100%);
 }
 
 footer {

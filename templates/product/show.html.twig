@@ -35,8 +35,9 @@
       </div>
       <div class="card__cart-box">
         <label for="quantity">Quantité :</label>
-        <input type="number" name="quantity" id="quantity">
-        <button class="btn secondary">Ajouter au panier</button>
+        <input type="number" name="quantity" value="1" id="quantity">
+        <input id="product-id" type="hidden" value="{{product.id}}">
+        <button id="add-cart" class="btn secondary">Ajouter au panier</button>
       </div>
 
       <div class="card inner-card">

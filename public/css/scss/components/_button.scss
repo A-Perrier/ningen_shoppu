@@ -5,6 +5,7 @@
   border-radius: 6px;
   border: none;
   transition: .3s;
+  cursor: pointer;
 
   &.primary {
     background-color: $primary;

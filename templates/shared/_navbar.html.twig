@@ -11,6 +11,7 @@
         </a>
         <a href="#">
             <img src="{{asset('img/icons/cart.svg')}}" alt="Panier">
+            <span class="cart-count">{{ render(controller("App\\Controller\\CartController::count"))}}</span>
         </a>
     </div>
 </nav>

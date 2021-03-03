@@ -38,7 +38,7 @@ class ProductController extends AbstractController
   public function create(Request $request, ValidatorInterface $validator): Response
   {
     if (!$request->isXmlHttpRequest()) {
-      throw new Exception("Une erreur s'est produite", 404);
+      throw new Exception("Une erreur s'est produite", 400);
     }
 
     $data = json_decode($request->getContent());
