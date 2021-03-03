@@ -65,7 +65,7 @@ class ProductController extends AbstractController
   public function insertPictures(Request $request, $id): Response
   {
     if (!$request->isXmlHttpRequest()) {
-      throw new Exception("Une erreur s'est produite", 404);
+      throw new Exception("Une erreur s'est produite", 400);
     }
 
     $product = $this->productService->find($id);

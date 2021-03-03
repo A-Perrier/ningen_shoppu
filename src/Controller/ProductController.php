@@ -86,8 +86,9 @@ class ProductController extends AbstractController
             $this->productService->manageImageOnProductEdition($product);
 
             // This redirection avoid fields to render wrongly
-            return $this->redirectToRoute('product_edit', [
-                'id' => $id
+            return $this->redirectToRoute('product_show', [
+                'id' => $product->getId(),
+                'slug' => $product->getSlug()
             ]);
         }
 

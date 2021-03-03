@@ -1,3 +1,8 @@
+/**
+ * Ne prend en charge que la création de produit.
+ * Dans le cas d'une édition, on souhaite rediriger l'utilisateur sur le produit en question
+ */
+
 let createButton = $('#product-create');
 let editButton = $('#product-edit');
 
@@ -59,7 +64,7 @@ createButton.click((e) => {
     success: function(response) {
       let productId = response;
       sendPicturesAjaxCall(productId);
-      successToast("Le formulaire a été validé. En attente du chargement des photos ...");
+      infoToast("Le formulaire a été validé. En attente du chargement des photos ...");
     },
     error: function (result, status, error) {
       dangerToast("Le formulaire n'a pas été envoyé, il n'a pas été rempli correctement");
@@ -67,5 +72,3 @@ createButton.click((e) => {
     }
   })
 })
-
-

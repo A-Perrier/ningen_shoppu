@@ -68,9 +68,8 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute("category_create");
         }
 
-        return $this->render('category/maker.html.twig', [
+        return $this->render('category/create.html.twig', [
             'form' => $form->createView(),
-            'editing' => false
         ]);
     }
 
@@ -101,10 +100,9 @@ class CategoryController extends AbstractController
             ]);
         }
 
-        return $this->render('category/maker.html.twig', [
+        return $this->render('category/edit.html.twig', [
             'form' => $form->createView(),
             'category' => $category,
-            'editing' => true
         ]);
     }
 }

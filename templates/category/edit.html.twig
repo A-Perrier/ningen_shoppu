@@ -1,14 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}NingenShoppu | 
-
-  {% if editing %}
-    Modifier {{category.title}}
-  {% else %}
-    Créer une catégorie
-  {% endif %}
-
-{% endblock %}
+{% block title %}NingenShoppu | Modifier {{category.title}}{% endblock %}
 
 {% block body %}
   <div class="breadcrumb-container">
@@ -17,19 +9,11 @@
             <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
         </a>
         <a href="#">Administration</a>
-        {% if editing %}
-          <a href="#" class="active">Modifier {{category.title}}</a>
-        {% else %}
-          <a href="#" class="active">Nouvelle catégorie</a>
-        {% endif %}
+        <a href="#" class="active">Modifier {{category.title}}</a>
     </div>
 </div>
 
-  {% if editing %}
-    <h1>Modifier la catégorie {{category.title}}</h1>
-  {% else %}
-    <h1>Nouvelle catégorie</h1>
-  {% endif %}
+  <h1>Modifier la catégorie {{category.title}}</h1>
   
   {% form_theme form 'shared/forms/_form_theme.html.twig' %}
   {{form_start(form)}}
