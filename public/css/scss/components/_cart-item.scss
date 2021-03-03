@@ -1,0 +1,50 @@
+.cart-container {
+  width: 90%;
+  margin: auto;
+}
+
+.cart-item {
+  display: flex;
+  border-bottom: 1px solid $primary;
+  padding: .8rem;
+
+  & h2 {
+    & a {
+      color: $secondary;
+    }
+    font-family: $text-heavy;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  &__picture {
+    height: 60%;
+    width: 30%;
+    object-fit: contain;
+  }
+
+  &__data {
+    margin: 0 auto;
+  }
+
+  &__infos {
+    display: flex;
+    transform: translateY(64%);
+  }
+
+  &__price {
+    transform: translateY(5%);
+    font-size: 1.4rem;
+  }
+
+  &__quantity {
+    text-indent: 0;
+    margin: 0 3rem;
+  }
+
+  &__cross {
+    margin-left: auto;
+    transform: translate(-125%, -5%);
+    width: 5%;
+  }
+}

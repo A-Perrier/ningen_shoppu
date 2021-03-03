@@ -3,5 +3,34 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
+<div class="breadcrumb-container">
+  <div class="breadcrumb flat">
+      <a href="{{path('home')}}">
+          <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+      </a>
+      <a href="#" class="active">Panier</a>
+  </div>
+</div>
+
 <h1>Panier</h1>
+
+<section class="cart-container">
+  {% for cartItem in detailedCart %}
+    <article class="cart-item">
+      <img class="cart-item__picture" src="{{asset('img/products/' ~ firstImage(cartItem.product))}}" alt="{{cartItem.product.wording}}">
+      <div class="cart-item__data">
+        <h2 class="cart-item__wording">
+          <a href="{{path('product_show', {'id': cartItem.product.id, 'slug': cartItem.product.slug})}}">
+            {{cartItem.product.wording}}
+          </a>
+        </h2>
+        <div class="cart-item__infos">
+          <input class="cart-item__quantity" type="number" id="cart-quantity" value="{{cartItem.quantity}}">
+          <p class="cart-item__price">{{cartItem.product.price}}</p>
+          <img class="cart-item__cross" src="{{asset('img/icons/cross-danger.svg')}}" alt="Supprimer du panier ?">
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+</section>
 {% endblock %}

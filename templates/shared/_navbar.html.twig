@@ -9,7 +9,7 @@
         <a href="#">
             <img src="{{asset('img/icons/user.svg')}}" alt="Mon compte">
         </a>
-        <a href="#">
+        <a href="{{path('cart_show')}}">
             <img src="{{asset('img/icons/cart.svg')}}" alt="Panier">
             <span class="cart-count">{{ render(controller("App\\Controller\\CartController::count"))}}</span>
         </a>

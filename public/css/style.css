@@ -671,6 +671,50 @@ footer {
   display: none;
 }
 
+.cart-container {
+  width: 90%;
+  margin: auto;
+}
+
+.cart-item {
+  display: flex;
+  border-bottom: 1px solid #0087a8;
+  padding: 0.8rem;
+}
+.cart-item h2 {
+  font-family: "Nunito-Bold", sans-serif;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.cart-item h2 a {
+  color: #ff7c5c;
+}
+.cart-item__picture {
+  height: 60%;
+  width: 30%;
+  object-fit: contain;
+}
+.cart-item__data {
+  margin: 0 auto;
+}
+.cart-item__infos {
+  display: flex;
+  transform: translateY(64%);
+}
+.cart-item__price {
+  transform: translateY(5%);
+  font-size: 1.4rem;
+}
+.cart-item__quantity {
+  text-indent: 0;
+  margin: 0 3rem;
+}
+.cart-item__cross {
+  margin-left: auto;
+  transform: translate(-125%, -5%);
+  width: 5%;
+}
+
 :root {
   font-size: 28px;
 }

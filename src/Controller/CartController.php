@@ -17,15 +17,22 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/cart", name="cart")
+     * @Route("/cart", name="cart_show")
      */
-    public function index(): Response
+    public function show(): Response
     {
+        $detailedCart = $this->cartService->getDetailedCartItems();
+
         return $this->render('cart/cart.html.twig', [
-            
+            'detailedCart' => $detailedCart
         ]);
     }
 
+    /**
+     * Affiche la quantité de products dans la navbar
+     *
+     * @return Response
+     */
     public function count(): Response
     {
         $count = $this->cartService->countItems();
