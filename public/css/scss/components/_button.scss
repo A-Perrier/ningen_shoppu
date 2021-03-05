@@ -26,4 +26,19 @@
     background-color: white;
     color: $primary;
   }
+
+  &.btn-danger-reverse {
+    border: 1px solid $danger;
+    background-color: white;
+    color: $danger;
+    display: block;
+    width: fit-content;
+    margin: auto;
+  }
+}
+
+#to-register {
+  display: block;
+  width: fit-content;
+  transform: translateY(-113%);
 }

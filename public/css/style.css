@@ -245,6 +245,20 @@ div[id^=product_product_images] > div {
   background-color: white;
   color: #0087a8;
 }
+.btn.btn-danger-reverse {
+  border: 1px solid #cd0909;
+  background-color: white;
+  color: #cd0909;
+  display: block;
+  width: fit-content;
+  margin: auto;
+}
+
+#to-register {
+  display: block;
+  width: fit-content;
+  transform: translateY(-113%);
+}
 
 .navbar {
   background-color: white;

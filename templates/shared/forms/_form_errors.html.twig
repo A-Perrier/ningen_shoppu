@@ -1,0 +1,9 @@
+{% block form_errors %}
+  <ul class="error-container">
+    {% for error in errors %}
+      <li>
+        <span class="form-error"><span class="error-badge">Erreur</span>{{ error.message }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends template() %}
+
+{% block title %}NingenShoppu | Mon compte{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="#" class="active">Mon compte</a>
+    </div>
+</div>
+
+<h1>Bonjour, {{user.firstName}}</h1>
+<a class="btn btn-danger-reverse" href="{{path('app_logout')}}">Me déconnecter</a>
+{% endblock %}

@@ -35,6 +35,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -89,6 +90,6 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Votre adresse email a bien été vérifiée');
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('user_home');
     }
 }
