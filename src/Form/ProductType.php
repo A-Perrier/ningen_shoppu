@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -34,8 +35,9 @@ class ProductType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => "Description"
             ])
-            ->add('price', NumberType::class, [
-                'label' => "Prix"
+            ->add('price', MoneyType::class, [
+                'label' => "Prix",
+                'divisor' => 100
             ])
             ->add('category', EntityType::class, [
                 'label' => "Catégorie",

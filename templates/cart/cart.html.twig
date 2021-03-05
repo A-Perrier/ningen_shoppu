@@ -25,12 +25,32 @@
           </a>
         </h2>
         <div class="cart-item__infos">
-          <input class="cart-item__quantity" type="number" id="cart-quantity" value="{{cartItem.quantity}}">
-          <p class="cart-item__price">{{cartItem.product.price}}</p>
-          <img class="cart-item__cross" src="{{asset('img/icons/cross-danger.svg')}}" alt="Supprimer du panier ?">
+          <div class="cart-item__quantity">
+            <a href="{{path('cart_decrement', {'id': cartItem.product.id})}}"><button class="cart-stepdown"></button></a>
+            <p class="cart-item__input" id="cart-quantity">{{cartItem.quantity}}</p>
+            <a href="{{path('cart_increment', {'id': cartItem.product.id})}}"><button class="cart-stepup plus"></button></a>
+          </div>
+          <p class="cart-item__price">{{cartItem.total|amount}}</p>
+          <a href="{{path('cart_delete', {'id': cartItem.product.id})}}" class="cart-item__delete" onclick="return confirm('Voulez-vous vraiment supprimer cet article de votre panier ?')">
+            <img class="cart-item__cross" src="{{asset('img/icons/cross-danger.svg')}}" alt="Supprimer du panier ?">
+          </a>
         </div>
       </div>
     </article>
   {% endfor %}
+</section>
+<section class="cart-total">
+  <div class="cart-total__data">
+    <p class="cart-total__cart-total">Total panier : 
+      <span class="align-right">{{total|amount}}</span>
+    </p>
+    <p class="cart-total__shipping">Livraison : 
+      <span class="align-right">2,99 €</span>
+    </p>
+    <p class="cart-total__total">Total : 
+      <span class="align-right">{{(total + 2.99 * 100)|amount}}</span>
+    </p>
+    <a href="#" class="btn secondary">Valider mon panier</a>
+  </div>
 </section>
 {% endblock %}

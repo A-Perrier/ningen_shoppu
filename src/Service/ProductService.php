@@ -5,6 +5,7 @@ use App\Entity\Product;
 use App\Entity\ProductImage;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductService
 {
@@ -20,6 +21,17 @@ class ProductService
   public function find($id)
   {
     return $this->productRepository->find($id);
+  }
+
+  public function findOrThrow(int $id, ?string $message = null)
+  {
+    $product = $this->find($id);
+
+    if(!$product){
+      throw new NotFoundHttpException($message);
+    }
+
+    return $product;
   }
 
   public function findLasts($nb = 5)

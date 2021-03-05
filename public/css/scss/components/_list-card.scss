@@ -6,6 +6,10 @@
 .list-card {
   background-color: white;
   margin-bottom: 2rem;
+
+  & p {
+    color: $neutral;
+  }
   
   & img {
     width: 100%;

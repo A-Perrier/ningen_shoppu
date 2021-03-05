@@ -6,7 +6,7 @@
 .cart-item {
   display: flex;
   border-bottom: 1px solid $primary;
-  padding: .8rem;
+  padding: 1.5rem;
 
   & h2 {
     & a {
@@ -29,22 +29,85 @@
 
   &__infos {
     display: flex;
-    transform: translateY(64%);
+    width: 117%;
+    transform: translateY(53%);
+    justify-content: space-between;
   }
 
   &__price {
-    transform: translateY(5%);
-    font-size: 1.4rem;
+    transform: translate(27%, -11%);
+    font-size: 2rem;
   }
 
-  &__quantity {
+  &__input {
     text-indent: 0;
-    margin: 0 3rem;
+    margin: 0 1rem;
   }
 
-  &__cross {
+  &__delete {
     margin-left: auto;
-    transform: translate(-125%, -5%);
-    width: 5%;
+    transform: translate(70%, -7%);
+  }
+}
+
+.cart-item__input::-webkit-inner-spin-button,
+.cart-item__input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.cart-item__quantity {
+  border: 0;
+  display: inline-flex;
+  transform: translateY(-29%);
+
+  &, & * {
+    box-sizing: border-box;
+  }
+
+  & button {
+    background-color: white;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    box-shadow: 0px 0px 1px #474747;
+  }
+
+  & button:before, & button:after {
+    display: inline-block;
+    position: absolute;
+    content: '';
+    width: 1rem;
+    height: 2px;
+    background-color: #212121;
+    transform: translate(-50%, -50%);
+  }
+
+  & button.plus:after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  & .cart-item__input {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    width: auto !important;
+    font-family: sans-serif;
+    max-width: 4rem;
+    padding: .5rem 0;
+    border-width: 1px;
+    font-size: 2rem;
+    height: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: $primary;
+  }
+
+  & input[type=number] {
+    margin: 0;
   }
 }

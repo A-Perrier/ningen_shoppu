@@ -56,13 +56,16 @@
   }
 
   &__cart-box {
-    display: flex;
-    justify-content: space-evenly;
-    transform: translateX(-3%);
+    width: fit-content;
+    max-width: 50%;
+    margin: auto;
     padding-bottom: 2rem;
+    text-align: center;
 
-    & label {
-      transform: translate(32%, 15%);
+    & .cart-item__quantity {
+      transform: translate(0);
+      width: fit-content;
+      margin: 1rem auto;
     }
   }
 

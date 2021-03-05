@@ -57,7 +57,7 @@ createButton.click((e) => {
   let data = {
     wording: $('#product_wording').val(),
     description: $('#product_description').val(),
-    price: parseInt($('#product_price').val()),
+    price: parseInt($('#product_price').val() * 100), // Corrige le bug qui fait que le divisor du MoneyType ne s'applique que lors de l'edit
     category: parseInt($('#product_category').val())
   }
 

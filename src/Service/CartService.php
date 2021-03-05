@@ -72,4 +72,75 @@ class CartService
 
     return $detailedItems;
   }
+
+  /**
+   * Récupère le total monétaire en faisant la somme de chaque article en comprenant la quantité
+   * récupérée dans le panier contenu en session
+   *
+   * @return integer
+   */
+  public function getTotal()
+  {
+    $total = 0;
+
+    foreach ($this->getCart() as $id => $quantity) {
+      $product = $this->productService->find($id);
+
+      if (!$product) continue;
+
+      $total += ($product->getPrice() * $quantity);
+    }
+
+    return $total;
+  }
+
+
+  /**
+   * Enlève du panier le produit qui correspond à l'id passé en paramètre
+   *
+   * @param integer $id
+   * @return void
+   */
+  public function remove(int $id)
+  {
+    $cart = $this->getCart();
+    unset($cart[$id]);
+
+    $this->saveCart($cart);
+  }
+
+  /**
+   * Vide le panier en supprimant tous les éléments dans le cart de la session
+   *
+   * @return void
+   */
+  public function empty()
+  {
+    $this->saveCart([]);
+  }
+
+
+  /**
+   * Baisse d'une unité la quantité du produit passé en id, le supprime s'il n'en restait qu'un seul
+   *
+   * @param integer $id
+   * @return void
+   */
+  public function decrement(int $id)
+  {
+    $cart = $this->getCart();
+
+    if(!array_key_exists($id, $cart)){
+      return;
+    }
+
+    if($cart[$id] === 1){
+      $this->remove($id);
+      return;
+    }
+    
+    $cart[$id]--;
+    
+    $this->saveCart($cart);
+  }
 }

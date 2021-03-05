@@ -13,4 +13,9 @@ class CartItem
     $this->product = $product;
     $this->quantity = $quantity;
   }
+
+  public function getTotal()
+  {
+    return $this->product->getPrice() * $this->quantity;
+  }
 }

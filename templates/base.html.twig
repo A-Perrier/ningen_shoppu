@@ -12,7 +12,7 @@
         {% endblock %}
 
         {% block javascripts %}
-            {% include "shared/templates/javascripts.html.twig" %}
+            {% include "shared/tools/javascripts.html.twig" %}
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
@@ -21,6 +21,13 @@
         {% include "shared/_searchbar.html.twig" %}
     </header>
     <body>
+        {% for rubrique, messages in app.flashes %}
+            <div class="alert alert-{{rubrique}}">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endfor %}
         {% block body %}{% endblock %}
     </body>
     <footer>

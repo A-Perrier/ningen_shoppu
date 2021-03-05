@@ -20,5 +20,4 @@ cartButton.click((e) => {
       dangerToast("Une erreur s'est produite");
     }
   })
-
 })

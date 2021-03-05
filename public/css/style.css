@@ -428,6 +428,34 @@ div[id^=product_product_images] > div {
   transform: translateX(-100%);
 }
 
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -ms-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
+}
+
+.alert-danger {
+  color: #741d17;
+  background-color: #f9d7d5;
+  border-color: #f6c7c4;
+}
+
+.alert-success {
+  color: #1d5e26;
+  background-color: #d7f0db;
+  border-color: #c7eacc;
+}
+
 footer {
   position: relative;
   bottom: 0;
@@ -509,14 +537,14 @@ footer {
 }
 #findus h2 {
   color: white;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   font-family: "Nunito-Bold", sans-serif;
   margin-bottom: 1rem;
 }
 #findus p {
   color: white;
   font-family: "Nunito-Regular", sans-serif;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
 }
 #findus p:not(.copyright) {
   letter-spacing: 0.1rem;
@@ -543,6 +571,9 @@ footer {
 .list-card {
   background-color: white;
   margin-bottom: 2rem;
+}
+.list-card p {
+  color: #4f4f4f;
 }
 .list-card img {
   width: 100%;
@@ -620,13 +651,16 @@ footer {
   transform: translateY(14%);
 }
 .card__cart-box {
-  display: flex;
-  justify-content: space-evenly;
-  transform: translateX(-3%);
+  width: fit-content;
+  max-width: 50%;
+  margin: auto;
   padding-bottom: 2rem;
+  text-align: center;
 }
-.card__cart-box label {
-  transform: translate(32%, 15%);
+.card__cart-box .cart-item__quantity {
+  transform: translate(0);
+  width: fit-content;
+  margin: 1rem auto;
 }
 .card.inner-card {
   width: 80%;
@@ -679,7 +713,7 @@ footer {
 .cart-item {
   display: flex;
   border-bottom: 1px solid #0087a8;
-  padding: 0.8rem;
+  padding: 1.5rem;
 }
 .cart-item h2 {
   font-family: "Nunito-Bold", sans-serif;
@@ -699,20 +733,99 @@ footer {
 }
 .cart-item__infos {
   display: flex;
-  transform: translateY(64%);
+  width: 117%;
+  transform: translateY(53%);
+  justify-content: space-between;
 }
 .cart-item__price {
-  transform: translateY(5%);
-  font-size: 1.4rem;
+  transform: translate(27%, -11%);
+  font-size: 2rem;
 }
-.cart-item__quantity {
+.cart-item__input {
   text-indent: 0;
-  margin: 0 3rem;
+  margin: 0 1rem;
 }
-.cart-item__cross {
+.cart-item__delete {
   margin-left: auto;
-  transform: translate(-125%, -5%);
-  width: 5%;
+  transform: translate(70%, -7%);
+}
+
+.cart-item__input::-webkit-inner-spin-button,
+.cart-item__input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.cart-item__quantity {
+  border: 0;
+  display: inline-flex;
+  transform: translateY(-29%);
+}
+.cart-item__quantity, .cart-item__quantity * {
+  box-sizing: border-box;
+}
+.cart-item__quantity button {
+  background-color: white;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  box-shadow: 0px 0px 1px #474747;
+}
+.cart-item__quantity button:before, .cart-item__quantity button:after {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  width: 1rem;
+  height: 2px;
+  background-color: #212121;
+  transform: translate(-50%, -50%);
+}
+.cart-item__quantity button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.cart-item__quantity .cart-item__input {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  width: auto !important;
+  font-family: sans-serif;
+  max-width: 4rem;
+  padding: 0.5rem 0;
+  border-width: 1px;
+  font-size: 2rem;
+  height: 3rem;
+  font-weight: bold;
+  text-align: center;
+  color: #0087a8;
+}
+.cart-item__quantity input[type=number] {
+  margin: 0;
+}
+
+.cart-total {
+  border: 2px solid #0087a8;
+  padding: 1rem 1rem 2rem 1rem;
+  width: 78%;
+  margin: 2rem auto;
+}
+.cart-total__data {
+  width: fit-content;
+  margin-left: auto;
+}
+.cart-total p {
+  font-size: 2.2rem;
+  width: 21rem;
+  display: flex;
+}
+.cart-total p .align-right {
+  margin-left: auto;
+}
+.cart-total p:last-of-type {
+  margin-bottom: 2rem;
 }
 
 :root {

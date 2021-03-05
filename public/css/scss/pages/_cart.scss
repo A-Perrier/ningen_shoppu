@@ -1,1 +1,27 @@
 @import '../components/cart-item';
+
+.cart-total {
+  border: 2px solid $primary;
+  padding: 1rem 1rem 2rem 1rem;
+  width: 78%;
+  margin: 2rem auto;
+
+  &__data {
+    width: fit-content;
+    margin-left: auto;
+  }
+
+  & p {
+    font-size: 2.2rem;
+    width: 21rem;
+    display: flex;
+
+    & .align-right {
+      margin-left: auto;
+    }
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+  }
+}
