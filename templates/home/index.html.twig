@@ -18,7 +18,7 @@
         {% for product in products %}
             <a href="{{path('product_show', {'id': product.id, 'slug': product.slug})}}">
                 <div class="list-card">
-                    <img src="{{asset('img/products/' ~ firstImage(product))}}" alt="{{product.wording}}">
+                    <img src="{{getImage(firstImage(product), 300, 200)}}" alt="{{product.wording}}">
                     <p class="list-card__wording">{{product.wording}}</p>
                     <div class="list-card__infos">
                         <p class="list-card__price">{{product.price|amount}}</p>
