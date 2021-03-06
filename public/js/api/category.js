@@ -17,6 +17,7 @@ let editButton = $('#category-edit');
  */
 createButton.click((e) => {
   e.preventDefault();
+  $('.form-error').remove();
   
   let data = {
     title: $('#category_title').val(),

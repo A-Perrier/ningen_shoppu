@@ -308,6 +308,18 @@ div[id^=product_product_images] > div {
   color: #ff7c5c;
 }
 
+@media only screen and (min-width: 1024px) {
+  .dropdown-menu {
+    display: block;
+    position: initial;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .dropdown-menu .dropdown-item {
+    margin-bottom: 0;
+    font-size: initial;
+  }
+}
 .navbar {
   background-color: white;
   display: flex;
@@ -354,6 +366,44 @@ div[id^=product_product_images] > div {
   right: 1.2rem;
 }
 
+@media only screen and (min-width: 1024px) {
+  .navbar {
+    height: 3rem;
+  }
+  .navbar .cart-count {
+    font-size: 0.6rem;
+    height: 0.8rem;
+    width: 0.8rem;
+    line-height: 0.8rem;
+    transform: translate(274%, -97%);
+  }
+  .navbar h1 {
+    position: initial;
+  }
+  .navbar .user-icons {
+    position: initial;
+    transform: translateY(23%);
+    margin-right: 1rem;
+  }
+  .navbar .user-icons a:first-child {
+    margin-right: 0.3rem;
+  }
+  .navbar .user-icons img {
+    width: 30%;
+  }
+  .navbar .menu-icon {
+    position: initial;
+    width: 100%;
+  }
+
+  .navbar li a {
+    font-size: 0.6rem;
+  }
+
+  .menu-icon img {
+    display: none;
+  }
+}
 .search-block {
   background-color: white;
   padding: 1rem 0;
@@ -382,6 +432,41 @@ div[id^=product_product_images] > div {
   text-indent: 1rem;
 }
 
+@media only screen and (min-width: 1024px) {
+  #searchbar-label {
+    position: absolute;
+    right: 0;
+    transform: translate(-7.5rem, 3px);
+  }
+  #searchbar-label img {
+    width: 68%;
+  }
+}
+@media only screen and (min-width: 1288px) {
+  #searchbar-label {
+    transform: translate(-8.5rem, 3px);
+  }
+}
+@media only screen and (min-width: 1440px) {
+  #searchbar-label {
+    transform: translate(-10rem, 3px);
+  }
+}
+@media only screen and (min-width: 1650px) {
+  #searchbar-label {
+    transform: translate(-11rem, 3px);
+  }
+}
+@media only screen and (min-width: 1938px) {
+  #searchbar-label {
+    transform: translate(-12rem, 3px);
+  }
+}
+@media only screen and (min-width: 2150px) {
+  #searchbar-label {
+    transform: translate(-14rem, 3px);
+  }
+}
 .breadcrumb-container {
   text-align: center;
   margin-top: 2rem;
@@ -488,6 +573,24 @@ div[id^=product_product_images] > div {
   background: #ff7c5c;
 }
 
+@media only screen and (min-width: 1024px) {
+  .breadcrumb {
+    height: 1.5rem;
+  }
+
+  .breadcrumb a {
+    line-height: 1.5rem;
+  }
+  .breadcrumb a img {
+    width: 52%;
+    transform: translateY(11%);
+  }
+  .breadcrumb a::after {
+    top: -13%;
+    width: 2rem;
+    height: 2rem;
+  }
+}
 .cart-count {
   display: inline-block;
   font-size: 0.7rem;
@@ -675,6 +778,16 @@ footer {
   transform: translateY(14%);
 }
 
+@media only screen and (min-width: 1024px) {
+  .list-card-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .list-card-container a {
+    max-width: 30%;
+    margin-right: 1rem;
+  }
+}
 .card-container {
   width: 70%;
   margin: auto;
@@ -940,6 +1053,12 @@ body {
   background: #f4f4f4;
   position: relative;
   padding-bottom: 24rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  :root {
+    font-size: 24px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

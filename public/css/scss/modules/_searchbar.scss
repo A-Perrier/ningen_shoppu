@@ -25,3 +25,47 @@
   font-family: $text-heavy;
   text-indent: 1rem;
 }
+
+
+@media only screen and (min-width: $desktop-breakpoint) {
+
+  #searchbar-label {
+    position: absolute;
+    right: 0;
+    transform: translate(-7.5rem, 3px);
+
+    & img {
+      width: 68%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1288px) {
+  #searchbar-label {
+    transform: translate(-8.5rem, 3px);
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  #searchbar-label {
+    transform: translate(-10rem, 3px);
+  }
+}
+
+@media only screen and (min-width: 1650px) {
+  #searchbar-label {
+    transform: translate(-11rem, 3px);
+  }
+}
+
+@media only screen and (min-width: 1938px) {
+  #searchbar-label {
+    transform: translate(-12rem, 3px);
+  }
+}
+
+@media only screen and (min-width: 2150px) {
+  #searchbar-label {
+    transform: translate(-14rem, 3px);
+  }
+}

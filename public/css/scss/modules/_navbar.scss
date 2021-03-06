@@ -58,3 +58,50 @@
   }
   
 }
+
+
+@media only screen and (min-width: $desktop-breakpoint) {
+  
+  .navbar {
+    height: 3rem;
+
+    & .cart-count {
+      font-size: 0.6rem;
+      height: .8rem;
+      width: .8rem;
+      line-height: .8rem;
+      transform: translate(274%, -97%);
+    }
+
+    & h1 {
+      position: initial;
+    }
+
+    & .user-icons {
+      position: initial;
+      transform: translateY(23%);
+      margin-right: 1rem;
+
+      & a:first-child {
+        margin-right: .3rem;
+      }
+
+      & img {
+        width: 30%;
+      }
+    }
+
+    & .menu-icon {
+    position: initial;
+    width: 100%;
+    }
+  }
+
+  .navbar li a {
+    font-size: .6rem;
+  }
+
+  .menu-icon img {
+    display: none;
+  }
+}

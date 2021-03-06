@@ -1,15 +1,19 @@
 $(function() {
 
-  $('#hamburger').mouseover((e) => {
+  if ($(document).width() < 1011) {
+
+    $('#hamburger').mouseover((e) => {
       $('.navbar').css('height', "21rem");
       $('.menu-icon').addClass('active');
       $('.dropdown-menu').css('display', 'block')
-  })
+    })
+  
+    $('.navbar').mouseleave((e) => {
+      $('.navbar').css('height', "4rem");
+      $('.menu-icon').removeClass('active');
+      $('.dropdown-menu').css('display', 'none')
+    })
 
-  $('.navbar').mouseleave((e) => {
-    $('.navbar').css('height', "4rem");
-    $('.menu-icon').removeClass('active');
-    $('.dropdown-menu').css('display', 'none')
-  })
+  }
 
 })

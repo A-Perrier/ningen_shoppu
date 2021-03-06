@@ -41,3 +41,16 @@
   }
 
 }
+
+@media only screen and (min-width: $desktop-breakpoint) {
+  .list-card-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    & a {
+      max-width: 30%;
+      margin-right: 1rem;
+    }
+  }
+
+}

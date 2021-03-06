@@ -98,3 +98,26 @@
 .flat a:hover:after, .flat a.active:after{
 	background: $secondary;
 }
+
+
+@media only screen and (min-width: $desktop-breakpoint) {
+
+	.breadcrumb {
+		height: 1.5rem;
+	}
+
+  .breadcrumb a {
+		line-height: 1.5rem;
+		
+		& img {
+			width: 52%;
+			transform: translateY(11%);
+		}
+
+		&::after {
+			top: -13%;
+			width: 2rem;
+			height: 2rem;
+		}
+  }
+}
