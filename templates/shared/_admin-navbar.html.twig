@@ -7,14 +7,46 @@
           </span>
         </a>
     </h1>
-    <div class="menu-icon">
-        <img src="{{asset('img/icons/admin-menu.svg')}}" alt="Menu">
+    <div class="menu-icon admin">
+        <img id="hamburger" src="{{asset('img/icons/admin-menu.svg')}}" alt="Menu">
+        <ul class="dropdown-menu admin">
+            <li class="dropdown-item admin">
+                <a href="#">
+                    Tous les produits
+                </a>
+            </li>
+            <li class="dropdown-item admin">
+                <a href="#">
+                    Catégories
+                </a>
+            </li>
+            <li class="dropdown-item admin">
+                <a href="#">
+                    Actualités
+                </a>
+            </li>
+            <li class="dropdown-item admin">
+                <a href="#">
+                    Qui sommes-nous ?
+                </a>
+            </li>
+            <li class="dropdown-item admin">
+                <a href="#">
+                    FAQ
+                </a>
+            </li>
+            <li class="dropdown-item admin">
+                <a href="#">
+                    Contact
+                </a>
+            </li>
+        </ul>
     </div>
     <div class="user-icons">
         <a href="{{path('user_home')}}">
             <img src="{{asset('img/icons/admin-user.svg')}}" alt="Mon compte">
         </a>
-        <a href="#">
+        <a href="{{path('administration')}}">
             <img src="{{asset('img/icons/admin.svg')}}" alt="Administration">
         </a>
     </div>

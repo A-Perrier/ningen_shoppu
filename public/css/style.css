@@ -37,6 +37,26 @@ a {
   text-decoration: none;
 }
 
+@keyframes animate {
+  0% {
+    width: 0;
+  }
+  65% {
+    width: 110%;
+  }
+  75% {
+    width: 90%;
+  }
+  85% {
+    width: 104%;
+  }
+  92% {
+    width: 97%;
+  }
+  100% {
+    width: 100%;
+  }
+}
 @font-face {
   font-family: "AkayaTelivigala";
   font-display: swap;
@@ -90,26 +110,6 @@ h1 {
   margin: auto;
 }
 
-@keyframes animate {
-  0% {
-    width: 0;
-  }
-  65% {
-    width: 110%;
-  }
-  75% {
-    width: 90%;
-  }
-  85% {
-    width: 104%;
-  }
-  92% {
-    width: 97%;
-  }
-  100% {
-    width: 100%;
-  }
-}
 form div {
   width: 80%;
   margin: 2rem auto 0 auto;
@@ -220,6 +220,22 @@ div[id^=product_product_images] > div {
   transform: translateY(5px);
 }
 
+.form-control {
+  margin-bottom: 1rem;
+}
+
+#product_price {
+  text-indent: 2rem;
+}
+
+.currency {
+  position: absolute;
+  transform: translate(2%, 85%);
+  padding: 0.39rem 0.5rem;
+  background: #e9ecef;
+  color: #6c757d;
+}
+
 .btn {
   padding: 0.4rem 1.6rem;
   font-size: 1rem;
@@ -260,6 +276,38 @@ div[id^=product_product_images] > div {
   transform: translateY(-113%);
 }
 
+.menu-icon.active {
+  position: relative;
+  display: inline-block;
+  z-index: 3;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  min-width: 52%;
+  left: -41vw;
+  top: 4rem;
+  z-index: 3;
+  background-color: white;
+}
+.dropdown-menu.admin {
+  background-color: #0087a8;
+}
+.dropdown-menu .dropdown-item {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+.dropdown-menu .dropdown-item a {
+  color: #4f4f4f;
+}
+.dropdown-menu .dropdown-item.admin a {
+  color: white;
+}
+.dropdown-menu .dropdown-item a:hover {
+  color: #ff7c5c;
+}
+
 .navbar {
   background-color: white;
   display: flex;
@@ -271,18 +319,26 @@ div[id^=product_product_images] > div {
   margin-left: 1rem;
   margin-right: 1rem;
   transform: translateY(-3px);
+  position: absolute;
+  top: 1.02rem;
 }
 .navbar h1 a {
   color: #0087a8;
 }
 .navbar .menu-icon {
-  transform: translateY(2px);
+  transform: translateY(-50%, 2px);
   cursor: pointer;
+  position: absolute;
+  top: 1.02rem;
+  left: 50%;
 }
 .navbar .user-icons {
   transform: translateY(2px);
   margin-left: auto;
   margin-right: 2rem;
+  position: absolute;
+  top: 1.02rem;
+  right: 0;
 }
 .navbar .user-icons a:first-child {
   margin-right: 1rem;
@@ -293,6 +349,9 @@ div[id^=product_product_images] > div {
 }
 .navbar.admin h1 a {
   color: white;
+}
+.navbar.admin .user-icons {
+  right: 1.2rem;
 }
 
 .search-block {
@@ -471,7 +530,7 @@ div[id^=product_product_images] > div {
 }
 
 footer {
-  position: relative;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -485,7 +544,7 @@ footer {
 
 .advantages {
   background-color: #00313d;
-  height: 5rem;
+  height: 8rem;
   padding-top: 2rem;
   padding-bottom: 0.9rem;
 }
@@ -515,6 +574,7 @@ footer {
 #joinus {
   background: #f4f4f4;
   padding: 2rem 0;
+  height: 6rem;
 }
 #joinus h2 {
   text-transform: uppercase;
@@ -530,6 +590,7 @@ footer {
 
 #address-container {
   padding-bottom: 4rem;
+  height: 9rem;
 }
 
 .spacer {
@@ -842,6 +903,30 @@ footer {
   margin-bottom: 2rem;
 }
 
+.actions-list-container {
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.action {
+  position: relative;
+  background-color: #00333b;
+  margin-bottom: 1px;
+  padding: 1rem 3rem;
+  transition: 0.1s;
+}
+.action:hover {
+  background-color: #005b69;
+}
+.action a {
+  color: white;
+  font-size: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 :root {
   font-size: 28px;
 }
@@ -854,6 +939,7 @@ body {
   min-height: 100%;
   background: #f4f4f4;
   position: relative;
+  padding-bottom: 24rem;
 }
 
 /*# sourceMappingURL=style.css.map */

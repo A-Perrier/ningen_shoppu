@@ -1,0 +1,22 @@
+.actions-list-container {
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.action {
+  position: relative;
+  background-color: $action-bg;
+  margin-bottom: 1px;
+  padding: 1rem 3rem;
+  transition: .1s;
+
+  &:hover {
+    background-color: $action-bg-hover;
+  }
+
+  & a {
+    color: white;
+    font-size: 2rem;
+  }
+  
+}

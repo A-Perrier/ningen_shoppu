@@ -1,0 +1,46 @@
+{% extends template() %}
+
+{% block title %}Hello AdministrationController!{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+  <div class="breadcrumb flat">
+      <a href="{{path('home')}}">
+          <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+      </a>
+      <a href="#" class="active">Administration</a>
+  </div>
+</div>
+
+<h1>Administration</h1>
+
+<section class="actions-list-container">
+    <ul class="actions-list">
+        <li class="action">
+            <a href="{{path('product_create')}}">
+                Intégrer un produit
+            </a>
+        </li>
+        <li class="action">
+            <a href="#">
+                Modifier un produit existant
+            </a>
+        </li>
+        <li class="action">
+            <a href="{{path('category_create')}}">
+                Créer une catégorie
+            </a>
+        </li>
+        <li class="action">
+            <a href="#">
+                Modifier une catégorie existante
+            </a>
+        </li>
+        <li class="action">
+            <a href="#">
+                Dashboard
+            </a>
+        </li>
+    </ul>
+</section>
+{% endblock %}

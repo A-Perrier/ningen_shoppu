@@ -1,9 +1,9 @@
 
 @import 'tools/reset';
+@import 'tools/animations';
 @import 'tools/mixins';
 @import 'tools/typography';
 @import 'tools/placement';
-@import 'tools/animations';
 
 @import 'modules/forms';
 
@@ -13,6 +13,11 @@
 @import 'pages/home';
 @import 'pages/product';
 @import 'pages/cart';
+@import 'pages/user';
+
+* {
+  box-sizing: border-box;
+}
 
 :root {
   font-size: 28px;
@@ -26,4 +31,5 @@ body {
   min-height: 100%;
   background: $background;
   position: relative;
+  padding-bottom: 24rem; // Hauteur du footer : 23rem
 }

@@ -13,5 +13,27 @@
 </div>
 
 <h1>Bonjour, {{user.firstName}}</h1>
-<a class="btn btn-danger-reverse" href="{{path('app_logout')}}">Me déconnecter</a>
+<a class="btn btn-danger-reverse" href="{{path('app_logout')}}">Déconnexion</a>
+
+<section class="actions-list-container">
+    <ul class="actions-list">
+        <li class="action">
+            <a href="#">
+                Mes informations
+            </a>
+        </li>
+        <li class="action">
+            <a href="#">
+                Mon mot de passe
+            </a>
+        </li>
+        <li class="action">
+            <a href="#">
+                Mes commandes
+            </a>
+        </li>
+    </ul>
+</section>
+
+{% include "shared/footer/position.html.twig" %}
 {% endblock %}

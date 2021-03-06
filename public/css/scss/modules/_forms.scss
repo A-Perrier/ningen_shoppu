@@ -108,3 +108,19 @@ div[id^=product_product_images] > div {
   font-size: .8rem;
   transform: translateY(5px);
 }
+
+.form-control {
+  margin-bottom: 1rem;
+}
+
+#product_price {
+  text-indent: 2rem;
+}
+
+.currency {
+  position: absolute;
+  transform: translate(2%, 85%);
+  padding: .39rem .5rem;
+  background: hsl(210,15.8%,92.5%);
+  color: hsl(208.2,7.3%,45.7%);
+}
