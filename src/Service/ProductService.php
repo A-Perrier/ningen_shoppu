@@ -23,6 +23,16 @@ class ProductService
     return $this->productRepository->find($id);
   }
 
+  public function findAll()
+  {
+    return $this->productRepository->findAll();
+  }
+
+  public function findBy(array $criteria = [], ?array $orderBy = null, ?int $limit = null, ?int $offset = null)
+  {
+    return $this->productRepository->findBy($criteria, $orderBy, $limit, $offset);
+  }
+
   public function findOrThrow(int $id, ?string $message = null)
   {
     $product = $this->find($id);

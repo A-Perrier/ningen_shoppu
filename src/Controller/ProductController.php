@@ -7,6 +7,7 @@ use App\Form\ProductType;
 use App\Service\ProductService;
 use App\Service\SluggerService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
+    const PER_PAGE = 12;
+
     private $slugger;
     private $productService;
 
@@ -22,6 +25,23 @@ class ProductController extends AbstractController
     {
         $this->slugger = $slugger;
         $this->productService = $productService;
+    }
+
+    /**
+     * @Route("/products", name="products_all")
+     */
+    public function all(Request $request, PaginatorInterface $paginator): Response
+    {
+        $data = $this->productService->findBy([], ["id" => "DESC"]);
+        $products = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            self::PER_PAGE
+        );
+        
+        return $this->render('product/all.html.twig', [
+            'products' => $products
+        ]);
     }
 
     /**

@@ -1,5 +1,7 @@
 $desktop-breakpoint: 1024px;
 
+@import 'libs/bootstrap-pagination.scss';
+
 @import 'tools/reset';
 @import 'tools/animations';
 @import 'tools/mixins';

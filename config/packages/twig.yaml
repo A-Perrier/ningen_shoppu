@@ -3,3 +3,5 @@ twig:
     globals:
         cartController: "@App\\Controller\\CartController"
         ImagePathGenerator: "@App\\Service\\Image\\ImagePathGenerator"
+    path:
+        - "vendor/knplabs/knp-paginator-bundle/templates/Pagination"
