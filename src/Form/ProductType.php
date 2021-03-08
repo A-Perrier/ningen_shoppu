@@ -8,6 +8,7 @@ use App\Repository\CategoryRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -43,6 +44,13 @@ class ProductType extends AbstractType
                 'label' => "Catégorie",
                 'class' => Category::class,
                 'choice_label' => "title"
+            ])
+            ->add('isOnSale', CheckboxType::class, [
+                'label' => "En ligne",
+                'required' => false,
+                'attr' => [
+                    'class' => 'onSale' 
+                ]
             ])
             ->add('product_images', CollectionType::class, [
                 'label' => "Photos du produit",

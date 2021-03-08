@@ -3,6 +3,7 @@ namespace App\Controller\Api;
 
 use Exception;
 use App\Entity\Category;
+use App\Service\CategoryService;
 use App\Service\SluggerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,11 +17,13 @@ class CategoryController extends AbstractController
 {
   private $em;
   private $slugger;
+  private $categoryService;
 
-  public function __construct(EntityManagerInterface $em, SluggerService $slugger)
+  public function __construct(EntityManagerInterface $em, SluggerService $slugger, CategoryService $categoryService)
   {
     $this->em = $em;
     $this->slugger = $slugger;
+    $this->categoryService = $categoryService;
   }
 
   /**
@@ -58,6 +61,26 @@ class CategoryController extends AbstractController
       return $this->json($category);
     }
     
-   
+   }
+
+
+   /**
+   * @Route("/api/category/delete/{id}", name="api/category_delete", methods={"POST"})
+   * @IsGranted("ROLE_ADMIN")
+   */
+  public function delete(Request $request, $id): Response
+  {
+    if (!$request->isXmlHttpRequest()) {
+      throw new Exception("Une erreur s'est produite", 400);
+    }
+    
+    $category = $this->categoryService->find($id);
+    if (!$category) {
+      return $this->json("Aucune donnée n'a été trouvée", 400);
+    }
+
+    $this->categoryService->remove($category);
+
+    return $this->json("La catégorie a correctement été supprimée, et tous ses articles ont été déplacés dans la catégorie \"Hors vente \"", 200);
   }
 }

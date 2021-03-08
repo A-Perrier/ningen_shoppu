@@ -101,4 +101,25 @@ class ProductController extends AbstractController
 
     return $this->json("", 201);
   }
+
+
+  /**
+   * @Route("/api/product/delete/{id}", name="api/product_delete", methods={"POST"})
+   * @IsGranted("ROLE_ADMIN")
+   */
+  public function delete(Request $request, $id): Response
+  {
+    if (!$request->isXmlHttpRequest()) {
+      throw new Exception("Une erreur s'est produite", 400);
+    }
+    
+    $product = $this->productService->find($id);
+    if (!$product) {
+      return $this->json("Aucune donnée n'a été trouvée", 400);
+    }
+
+    $this->productService->remove($product);
+
+    return $this->json("Le produit a correctement été supprimé", 200);
+  }
 }

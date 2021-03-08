@@ -5,6 +5,7 @@
 
 let createButton = $('#category-create');
 let editButton = $('#category-edit');
+let deleteButton = $('[role=category-delete]');
 
 
 /**
@@ -36,6 +37,26 @@ createButton.click((e) => {
       dangerToast("Le formulaire n'a pas été envoyé, il n'a pas été rempli correctement");
       let apiErrors = JSON.parse(result.responseText);
       setErrors(apiErrors, 'category');
+    }
+  })
+})
+
+deleteButton.click(e => {
+  e.preventDefault();
+
+  let id = parseInt($(e.currentTarget).attr('data-id'));
+  let row = $(e.currentTarget).parent().parent();
+
+  $.ajax({
+    url: '/api/category/delete/' + id,
+    method: "POST",
+    data: {id: JSON.stringify(id)},
+    success: function(response) {
+      successToast(response, 5000);
+      $(row).remove();
+    },
+    error: function(result) {
+      dangerToast(result.responseJSON);
     }
   })
 })

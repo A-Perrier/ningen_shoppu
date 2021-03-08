@@ -1,0 +1,72 @@
+{% extends template() %}
+
+{% block title %}NingenShoppu | Modifier un produit{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('administration')}}">Administration</a>
+        {% if outsale %}
+          <a href="#" class="active">Produits hors-vente</a>
+        {% else %}
+          <a href="#" class="active">Modifier un produit</a>
+        {% endif %}
+        
+    </div>
+</div>
+
+<main>
+  {% if outsale %}
+    <h1>Liste des produits hors-vente</h1>
+  {% else %}
+    <h1>Liste des produits</h1>
+  {% endif %}
+  
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Libellé</th>
+        <th>Prix</th>
+        <th>En vente</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+        <tr>
+          <th>
+            {{product.id}}
+          </th>
+          <th>
+            {{product.wording}}
+          </th>
+          <th>
+            {{product.price|amount}}
+          </th>
+          <th>
+            {% if product.isOnSale %}
+              <img src="{{asset('img/icons/check.svg')}}" alt="">
+            {% else %}
+              <img src="{{asset('img/icons/false.svg')}}" alt="">
+            {% endif %}
+          </th>
+          <th>
+            <a href="{{path('product_edit', {'id':product.id, 'slug':product.slug})}}" class="btn primary">Modifier</a>
+          </th>
+          <th>
+            <button role="product-delete" data-id="{{product.id}}" class="btn danger delete-btn">Supprimer</button>
+          </th>
+        </tr>
+      {% endfor %}
+    </tbody> 
+  </table>
+  {{ knp_pagination_render(products) }}
+</main>
+
+<script src="{{asset('js/api/product.js')}}"></script>
+{% endblock %}

@@ -819,6 +819,10 @@ div[id^=product_product_images] > div {
 .btn.secondary:hover {
   background-color: #ff9075;
 }
+.btn.danger {
+  background-color: #cd0909;
+  color: white;
+}
 .btn.btn-primary-reverse {
   border: 1px solid #0087a8;
   background-color: white;
@@ -837,6 +841,92 @@ div[id^=product_product_images] > div {
   display: block;
   width: fit-content;
   transform: translateY(-113%);
+}
+
+table {
+  border: 2px solid #0087a8;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+table th {
+  height: 2rem;
+  border: 1px solid #0087a8;
+  vertical-align: middle;
+}
+table .btn {
+  padding: 0.2rem 0.8rem;
+  font-size: 0.5rem;
+  border-radius: 3px;
+}
+table .btn.delete-btn {
+  padding: 0.3rem 0.8rem;
+}
+table + .pagination {
+  position: relative;
+  right: -50%;
+  transform: translateX(-50%);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  display: flex;
+  margin: auto;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 .menu-icon.active {
@@ -1792,6 +1882,10 @@ footer {
 
 html {
   height: 100%;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 body {

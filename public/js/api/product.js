@@ -4,7 +4,7 @@
 
 let createButton = $('#product-create');
 let editButton = $('#product-edit');
-
+let deleteButton = $('[role=product-delete]');
 
 const resetForm = () => {
   let vichInputs = $('.vich-image input[type="file"]');
@@ -48,7 +48,6 @@ createButton.click((e) => {
       },
       error: function (result, status, error) {
         dangerToast("Les photos n'ont pas été envoyées, une erreur s'est produite");
-        console.log(result.responseText);
       }
     })
   }
@@ -75,6 +74,25 @@ createButton.click((e) => {
       let apiErrors = JSON.parse(result.responseText);
       setErrors(apiErrors, 'product');
 
+    }
+  })
+})
+
+deleteButton.click(e => {
+  e.preventDefault();
+  let id = parseInt($(e.currentTarget).attr('data-id'));
+  let row = $(e.currentTarget).parent().parent();
+
+  $.ajax({
+    url: '/api/product/delete/' + id,
+    method: "POST",
+    data: {id: JSON.stringify(id)},
+    success: function(response) {
+      successToast(response, 2000);
+      $(row).remove();
+    },
+    error: function(result) {
+      dangerToast(result.responseJSON);
     }
   })
 })

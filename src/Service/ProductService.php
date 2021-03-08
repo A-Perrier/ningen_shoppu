@@ -28,6 +28,16 @@ class ProductService
     return $this->productRepository->findAll();
   }
 
+  public function findAllOnSale()
+  {
+    return $this->productRepository->findBy(["isOnSale" => true], ["id" => "DESC"]);
+  }
+
+  public function findAllOutSale()
+  {
+    return $this->productRepository->findBy(["isOnSale" => false], ["id" => "DESC"]);
+  }
+
   public function findBy(array $criteria = [], ?array $orderBy = null, ?int $limit = null, ?int $offset = null)
   {
     return $this->productRepository->findBy($criteria, $orderBy, $limit, $offset);
@@ -47,6 +57,11 @@ class ProductService
   public function findLasts($nb = 5)
   {
     return $this->productRepository->findBy([], ["id" => "DESC"], $nb); 
+  }
+
+  public function findLastsOnSale($nb = 5)
+  {
+    return $this->productRepository->findBy(["isOnSale" => true], ["id" => "DESC"], $nb); 
   }
 
   public function manageImageOnProductEdition(Product $product)
@@ -83,6 +98,21 @@ class ProductService
       };
     }
     $this->em->persist($product);
+    $this->em->flush();
+  }
+
+  /**
+   * Delete a product and all pictures attached on it
+   *
+   * @param Product $product
+   * @return void
+   */
+  public function remove(Product $product)
+  {
+    foreach ($product->getProductImages() as $image) {
+      $this->em->remove($image);
+    }
+    $this->em->remove($product);
     $this->em->flush();
   }
   

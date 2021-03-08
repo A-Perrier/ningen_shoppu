@@ -1,0 +1,56 @@
+{% extends template() %}
+
+{% block title %}NingenShoppu | Modifier une catégorie{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('administration')}}">Administration</a>
+        <a href="#" class="active">Modifier une catégorie</a>
+    </div>
+</div>
+
+<main>
+  <h1>Liste des catégories</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Quantité de produits</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+        <tr>
+          <th>
+            {{category.id}}
+          </th>
+          <th>
+            {{category.title}}
+          </th>
+          <th>
+            X
+          </th>
+          <th>
+            <a href="{{path('category_edit', {'id':category.id, 'slug':category.slug})}}" class="btn primary">Modifier</a>
+          </th>
+          <th>
+            <a href="#" role="category-delete" data-id="{{category.id}}" class="btn danger delete-btn">
+              Supprimer
+            </a>
+          </th>
+        </tr>
+      {% endfor %}
+    </tbody> 
+  </table>
+  {{ knp_pagination_render(categories) }}
+</main>
+
+<script src="{{asset('js/api/category.js')}}"></script>
+{% endblock %}

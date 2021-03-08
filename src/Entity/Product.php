@@ -46,7 +46,7 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="SET NULL")
      * @Assert\NotBlank(message="Votre produit doit avoir une catégorie")
      */
     private $category;
@@ -62,6 +62,11 @@ class Product
      * @ORM\OneToMany(targetEntity=ProductImage::class, mappedBy="product")
      */
     private $productImages;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isOnSale;
 
     public function __construct()
     {
@@ -171,6 +176,18 @@ class Product
                 $productImage->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsOnSale(): ?bool
+    {
+        return $this->isOnSale;
+    }
+
+    public function setIsOnSale(bool $isOnSale): self
+    {
+        $this->isOnSale = $isOnSale;
 
         return $this;
     }

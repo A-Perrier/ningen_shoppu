@@ -32,7 +32,7 @@ class ProductController extends AbstractController
      */
     public function all(Request $request, PaginatorInterface $paginator): Response
     {
-        $data = $this->productService->findBy([], ["id" => "DESC"]);
+        $data = $this->productService->findAllOnSale();
         $products = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
@@ -72,7 +72,9 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $product->setSlug($this->slugger->slugify($product->getWording()));
+            $product->setSlug($this->slugger->slugify($product->getWording()))
+                    ->setIsOnSale(true);
+            ;
 
             $this->productService->manageImageOnProductCreation($product);
 
@@ -117,4 +119,5 @@ class ProductController extends AbstractController
             'product' => $product,
         ]);
     }
+
 }

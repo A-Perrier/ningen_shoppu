@@ -11,6 +11,8 @@ $desktop-breakpoint: 1024px;
 @import 'modules/forms';
 
 @import 'components/button';
+@import 'components/table';
+@import 'components/switch';
 
 @import 'pages/layout';
 @import 'pages/home';
@@ -30,6 +32,10 @@ $desktop-breakpoint: 1024px;
 
 html {
   height: 100%;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 body {

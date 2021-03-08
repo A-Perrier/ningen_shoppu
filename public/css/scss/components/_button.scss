@@ -21,6 +21,11 @@
     }
   }
 
+  &.danger {
+    background-color: $danger;
+    color: white;
+  }
+
   &.btn-primary-reverse {
     border: 1px solid $primary;
     background-color: white;

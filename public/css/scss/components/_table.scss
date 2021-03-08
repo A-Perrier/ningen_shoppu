@@ -1,0 +1,28 @@
+table {
+  border: 2px solid $primary;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 1rem;
+
+  & th {
+    height: 2rem;
+    border: 1px solid $primary;
+    vertical-align: middle;
+  }
+
+  & .btn {
+    padding: 0.2rem .8rem;
+    font-size: .5rem;
+    border-radius: 3px;
+
+    &.delete-btn {
+      padding: .3rem .8rem;
+    }
+  }
+
+  & + .pagination {
+    position: relative;
+    right: -50%;
+    transform: translateX(-50%);
+  }
+}
