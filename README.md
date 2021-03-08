@@ -1,4 +1,4 @@
-1. Créer le design PC
+# TODO
 3. Intégration de Stripe
 4. Gestion de la passation des commandes
 5. Mettre en place la barre de recherche

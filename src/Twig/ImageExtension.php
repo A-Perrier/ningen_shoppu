@@ -20,7 +20,8 @@ class ImageExtension extends AbstractExtension
     return [
       new TwigFunction('firstImage', [$this, 'findFirstImageName']),
       new TwigFunction('sideImage', [$this, 'findSideImageName']),
-      new TwigFunction('getImage', [$this, 'getImage'])
+      new TwigFunction('getImage', [$this, 'getImage']),
+      new TwigFunction('getAsset', [$this, 'getAsset'])
     ];
   }
 
@@ -40,7 +41,33 @@ class ImageExtension extends AbstractExtension
     return $image->getImageName();
   }
 
-  public function getImage(string $path, int $width, int $height) {
-    return $this->imagePathGenerator->generate($path, $width, $height);
+  /**
+   * Returns the full view path from the filename
+   *
+   * @param string $filename
+   * @param integer $width
+   * @param integer $height
+   * @return string
+   */
+  public function getImage(?string $filename = null, int $width, int $height) 
+  {
+    if (!$filename) return $this->imagePathGenerator->generateAsset("default-placeholder.png", $width, $height);
+    
+    return $this->imagePathGenerator->generate($filename, $width, $height);
+  }
+
+  /**
+   * Returns the full view path from the filename
+   *
+   * @param string $filename
+   * @param integer $width
+   * @param integer $height
+   * @return string
+   */
+  public function getAsset(string $filename, int $width, int $height) 
+  {
+    if (!$filename) return;
+    
+    return $this->imagePathGenerator->generateAsset($filename, $width, $height);
   }
 }

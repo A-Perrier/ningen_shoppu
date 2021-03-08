@@ -26,3 +26,25 @@
     padding-top: .5rem;
   }
 }
+
+@media only screen and (min-width: $desktop-breakpoint) {
+
+  #section-container {
+    width: initial;
+    justify-content: space-evenly;
+  }
+
+  .advantages {
+    height: 6rem;
+    padding-top: 1rem;
+
+    & img {
+      right: -20%;
+    }
+
+    & p {
+      font-size: 0.6em;
+    }
+  }
+
+}

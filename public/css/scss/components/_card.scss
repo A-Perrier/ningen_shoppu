@@ -14,7 +14,7 @@
   padding-bottom: 2rem;
   
   & img {
-    width: 100%;
+    max-width: 100%;
     max-height: 80%;
   }
 
@@ -118,4 +118,83 @@
 
 .inner-card__details-content:not(:first-of-type) {
   display: none;
+}
+
+
+@media only screen and (min-width: $desktop-breakpoint) {
+  .card-container {
+    width: 55%;
+  }
+
+  .card {
+
+    &__wording {
+      font-size: 1rem;
+    }
+    
+    &__infos {
+      font-size: .7rem;
+    }
+
+    &__star {
+      width: 14% !important;
+    }
+
+    &__cart-box label {
+        font-size: .7rem;
+    }
+
+    &__cart-box .cart-item__quantity {
+
+      & button {
+        max-width: 2rem;
+        height: 2rem;
+
+        &:before, &:after {
+          width: .5rem;
+        }
+      }
+
+      & input {
+        font-size: .7rem;
+        max-width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    &.inner-card h2 {
+      font-size: .7rem;
+
+      &::after {
+        border-bottom: 2px solid $secondary;
+        bottom: -3px;
+      }
+    
+      &:nth-of-type(1):hover::after {
+        width: 4.65rem;
+        animation: animate .5s alternate; 
+      }
+
+      &:nth-of-type(2):hover::after {
+        width: 2.7rem;
+        animation: animate .5s alternate; 
+      }
+
+      &:nth-of-type(3):hover::after {
+        width: 4.65rem;
+        animation: animate .5s alternate; 
+      }
+    }
+
+    &__thumbnail-container {
+      transform: translateX(21%);
+    }
+
+    &__thumbnail {
+      max-width: 39%;
+      height: initial;
+      margin: 0 .5rem;
+    }
+
+  }
 }

@@ -111,3 +111,49 @@
     margin: 0;
   }
 }
+
+@media only screen and (min-width: $desktop-breakpoint) {
+  .cart-container {
+    width: 60%;
+  }
+  
+  .cart-item {
+    &__picture {
+      width: initial;
+      height: initial;
+    }
+
+    & h2 {
+      font-size: 1rem;
+    }
+
+    &__price {
+      font-size: .7rem;
+    }
+
+    & .cart-item__quantity {
+
+      & button {
+        max-width: 2rem;
+        height: 2rem;
+
+        &:before, &:after {
+          width: .5rem;
+        }
+      }
+
+      & p {
+        font-size: 1rem;
+      }
+    }
+
+    &__cross {
+      width: 45%;
+    }
+  }
+
+  .cart-total p {
+    font-size: 1rem !important;
+    width: 15rem !important;
+  }
+}

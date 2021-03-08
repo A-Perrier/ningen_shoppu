@@ -41,4 +41,14 @@ body {
   :root {
     font-size: 24px;
   }
+
+  body {
+    padding-bottom: 55rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  body {
+    padding-bottom: 68rem;
+  }
 }

@@ -53,3 +53,38 @@
     width: 45%;
   }
 }
+
+@media only screen and (min-width: $desktop-breakpoint) {
+
+  #findus {
+    padding: 2rem;
+
+    & #address-container {
+      height: auto;  
+    }
+
+    & h2 {
+      transform: initial;
+      text-align: center;
+    }
+
+    & .address {
+      text-align: center;
+      width: initial;
+      margin: auto;
+    }
+    
+    & img {
+      position: initial;
+      transform: translateX(6%);
+      width: 90%;
+      margin: auto;
+      padding-top: 3rem;
+    }
+
+    & .spacer {
+      padding: 0;
+    }
+  }
+
+}

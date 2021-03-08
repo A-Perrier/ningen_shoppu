@@ -21,7 +21,7 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        $products = $this->productService->findLasts(4);
+        $products = $this->productService->findLasts(12);
 
         return $this->render('home/index.html.twig', [
             'products' => $products,

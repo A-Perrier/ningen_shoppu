@@ -18,11 +18,14 @@
 
   <section class="card-container">
     <div class="card">
+      {% if product.productImages|length == 0 %}
+        <img src="{{getImage('default-placeholder.png', 1300, 867)}}" alt="">
+      {% endif %}
       {% for image in product.productImages %}
         {% if loop.index == 1 %}
-          <img src="{{asset('img/products/' ~ firstImage(product))}}" alt="">
+          <img src="{{getImage(firstImage(product), 1300, 867)}}" alt="">
         {% else %}
-          <img class="card__thumbnail" src="{{asset('img/products/' ~ sideImage(product, (loop.index - 1)))}}" alt="">
+          <img class="card__thumbnail" src="{{getImage(sideImage(product, (loop.index - 1)), 150, 100)}}" alt="">
         {% endif %}
       {% endfor %}
       <p class="card__wording">{{product.wording}}</p>

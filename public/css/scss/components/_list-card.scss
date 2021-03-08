@@ -47,9 +47,24 @@
     display: flex;
     flex-wrap: wrap;
 
+    & p {
+      font-size: .6rem;
+    }
+
     & a {
       max-width: 30%;
       margin-right: 1rem;
+    }
+  }
+
+  .list-card {
+
+    &__infos p:last-of-type {
+      text-align: end;
+    }
+    
+    &__star {
+      width: 11% !important;
     }
   }
 

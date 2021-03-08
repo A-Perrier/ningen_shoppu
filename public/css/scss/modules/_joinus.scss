@@ -23,3 +23,24 @@
     justify-content: space-evenly;
   }
 }
+
+@media only screen and (min-width: $desktop-breakpoint) {
+
+  #joinus {
+    height: 5rem;
+  }
+
+  #joinus-container {
+    justify-content: space-around;
+
+    & h2 {
+      font-size: 1rem;
+    }
+
+    & img {
+      width: 70%;
+    }
+
+  }
+
+}

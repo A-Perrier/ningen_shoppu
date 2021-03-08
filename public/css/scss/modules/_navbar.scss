@@ -51,6 +51,11 @@
 
   & h1 a {
     color: white;
+
+    & span {
+      position: absolute;
+      transform: translate(-27%, 50%);
+    }
   }
 
   & .user-icons {
@@ -66,15 +71,17 @@
     height: 3rem;
 
     & .cart-count {
+      position: absolute;
       font-size: 0.6rem;
       height: .8rem;
       width: .8rem;
       line-height: .8rem;
-      transform: translate(274%, -97%);
+      transform: translate(-47%, 50%);
     }
 
     & h1 {
       position: initial;
+      font-size: 1.2rem;
     }
 
     & .user-icons {
@@ -84,6 +91,10 @@
 
       & a:first-child {
         margin-right: .3rem;
+      }
+
+      & a:last-child {
+        position: relative;
       }
 
       & img {

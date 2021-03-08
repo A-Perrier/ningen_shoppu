@@ -25,7 +25,7 @@
   <section class="cart-container">
     {% for cartItem in detailedCart %}
       <article class="cart-item">
-        <img class="cart-item__picture" src="{{asset('img/products/' ~ firstImage(cartItem.product))}}" alt="{{cartItem.product.wording}}">
+        <img class="cart-item__picture" src="{{getImage(firstImage(cartItem.product), 150, 113)}}" alt="{{cartItem.product.wording}}">
         <div class="cart-item__data">
           <h2 class="cart-item__wording">
             <a href="{{path('product_show', {'id': cartItem.product.id, 'slug': cartItem.product.slug})}}">
