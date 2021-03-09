@@ -3,14 +3,14 @@
 {% block title %}NingenShoppu | Modifier {{product.wording}}{% endblock %}
 
 {% block body %}
-  <div class="breadcrumb-container">
-    <div class="breadcrumb flat">
-        <a href="{{path('home')}}">
-            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
-        </a>
-        <a href="{{path('administration')}}">Administration</a>
-        <a href="#" class="active">Modifier {{product.wording}}</a>
-    </div>
+<div class="breadcrumb-container">
+  <div class="breadcrumb flat">
+      <a href="{{path('home')}}">
+          <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+      </a>
+      <a href="{{path('administration')}}">Administration</a>
+      <a href="#" class="active">Modifier {{product.wording}}</a>
+  </div>
 </div>
 
   <h1>Modifier le produit {{product.wording}}</h1>

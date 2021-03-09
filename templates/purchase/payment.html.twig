@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NingenShoppu | Paiement de la commande{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('user_home')}}">Mon compte</a>
+        <a href="#">Confirmation de commande</a>
+        <a href="#" class="active">Paiement</a>
+    </div>
+</div>
+
+<section>
+  <h1>Récupitulatif</h1>
+</section>
+
+<section>
+  <h1>Paiement</h1>
+</section>
+
+{% endblock %}

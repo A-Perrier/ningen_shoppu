@@ -2,17 +2,27 @@
 namespace App\Service;
 
 use App\Entity\Unmapped\CartItem;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CartService
 {
   private $session;
   private $productService;
+  private $urlGenerator;
+  private $flashBag;
 
-  public function __construct(SessionInterface $session, ProductService $productService)
+  public function __construct(SessionInterface $session, 
+                              ProductService $productService,
+                              UrlGeneratorInterface $urlGenerator, 
+                              FlashBagInterface $flashBag)
   {
     $this->session = $session;
     $this->productService = $productService;
+    $this->urlGenerator = $urlGenerator;
+    $this->flashBag = $flashBag;
   }
 
   private function getCart()
@@ -142,5 +152,15 @@ class CartService
     $cart[$id]--;
     
     $this->saveCart($cart);
+  }
+
+
+  public function ifCartEmptyThrows()
+  {
+    $detailedCart = $this->getDetailedCartItems();
+    if (count($detailedCart) == 0) {
+      $this->flashBag->add("danger", "Votre panier est vide");
+      return new RedirectResponse($this->urlGenerator->generate('cart_show'));
+    }
   }
 }

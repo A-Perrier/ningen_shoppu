@@ -1,20 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PurchaseController!{% endblock %}
+{% block title %}NingenShoppu | Confirmation de la commande{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/ningenshoppu/src/Controller/PurchaseController.php'|file_link(0) }}">src/Controller/PurchaseController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/ningenshoppu/templates/purchase/index.html.twig'|file_link(0) }}">templates/purchase/index.html.twig</a></code></li>
-    </ul>
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('user_home')}}">Mon compte</a>
+        <a href="#" class="active">Confirmation de commande</a>
+    </div>
 </div>
+
+<h1>Confirmation de votre commande</h1>
+
+{{form_start(form)}}
+    {{form_row(form.fullName)}}
+    {{form_row(form.address)}}
+    {{form_row(form.postalCode)}}
+    {{form_row(form.city)}}
+    <button type="submit" class="btn primary">Confirmer</button>
+{{form_end(form)}}
 {% endblock %}
