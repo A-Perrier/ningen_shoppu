@@ -13,7 +13,7 @@ const successToast = (string, duration = 5000, destination = null) => {
   }).showToast();
 }
 
-const dangerToast = (string, destination = null) => {
+const dangerToast = (string, duration = 5000, destination = null) => {
   Toastify({
     text: string,
     duration: 5000,

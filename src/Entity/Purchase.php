@@ -17,6 +17,11 @@ class Purchase
     public const STATUS_PENDING = "PENDING";
     public const STATUS_PAID = "PAID";
     public const STATUS_SENT = "SENT";
+    
+    public const CART_CONFIRMATION_EVENT = "purchase.cart_confirmation";
+    public const PAYMENT_SUCCEED_EVENT = "purchase.payment_succeed";
+
+    public const SHIPPING_FEE = 299;
 
     /**
      * @ORM\Id

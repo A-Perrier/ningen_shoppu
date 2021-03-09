@@ -4,6 +4,7 @@ namespace App\Controller\Purchase;
 
 use App\Entity\Purchase;
 use App\Event\CartConfirmationEvent;
+use App\Event\PurchasePaymentSucceedEvent;
 use App\Service\CartService;
 use App\Form\CartConfirmationType;
 use App\Service\PurchaseService;
@@ -48,7 +49,7 @@ class PurchaseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $event = new CartConfirmationEvent($purchase);
-            $this->dispatcher->dispatch($event, 'purchase.cart_confirmation');
+            $this->dispatcher->dispatch($event, Purchase::CART_CONFIRMATION_EVENT);
             $this->addFlash("success", "Votre commande a correctement été créée. Vous pouvez procéder au paiement");
 
             $purchase = $this->purchaseService->findLastFromUser();
@@ -84,6 +85,30 @@ class PurchaseController extends AbstractController
         return $this->render('purchase/payment.html.twig', [
             'purchase' => $purchase,
             'clientSecret' => $paymentIntent->client_secret,
+        ]);
+    }
+
+
+    /**
+     * @Route("/purchase/payment/succeed/{id}", name="purchase_payment_succeed")
+     * @IsGranted("ROLE_USER", message="Vous devez être connecté pour payer une commande")
+     */
+    public function paymentSucceed($id)
+    {
+        $purchase = $this->purchaseService->find($id);
+        if (!$purchase 
+            || !in_array($purchase, $this->getUser()->getPurchases()->getValues())
+            || $purchase->getStatus() !== Purchase::STATUS_PENDING) {
+            $this->addFlash("danger", "Vous ne possédez aucune commande en cours avec ce numéro");
+            return $this->redirectToRoute("cart_show");
+        }
+
+        $event = new PurchasePaymentSucceedEvent($purchase);
+        $this->dispatcher->dispatch($event, Purchase::PAYMENT_SUCCEED_EVENT);
+        
+        return $this->render("purchase/payment_succeed.html.twig", [
+            'purchase' => $purchase,
+            'user' => $this->getUser()
         ]);
     }
 }

@@ -698,6 +698,14 @@ h1 {
   margin: auto;
 }
 
+.spoiler-content {
+  display: none;
+  color: #4f4f4f;
+  font-size: 0.8rem;
+  max-width: 50%;
+  margin: auto;
+}
+
 form div {
   width: 80%;
   margin: 2rem auto 0 auto;

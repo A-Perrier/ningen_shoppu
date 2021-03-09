@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}NingenShoppu | Confirmation du paiement{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('user_home')}}">Mon compte</a>
+        <a href="#" class="active">Confirmation de paiement</a>
+    </div>
+</div>
+
+<h1>Confirmation de paiement</h1>
+
+<main>
+  <div class="alert alert-success">
+    <p style="text-align:center;">Félicitations, votre commande a bien été payée !</p> 
+    <p style="text-align:center;">Nos équipes se chargent de vous l'envoyer au plus tôt.</p> 
+    <br>
+    <p style="text-align:center;">Vous pouvez retrouver la totalité de vos commandes <a href="#">ici</a></p> 
+  </div>
+</main>
+{% endblock %}

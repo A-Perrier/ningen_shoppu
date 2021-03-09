@@ -14,12 +14,43 @@
     </div>
 </div>
 
-<section>
+<section class="cart-container">
   <h1>Récupitulatif</h1>
+
+  {% for purchaseItem in purchase.purchaseItems %}
+      <article class="cart-item" style="margin-bottom: 1rem;">
+        <img class="cart-item__picture" src="{{getImage(firstImage(purchaseItem.product), 150, 113)}}" alt="{{purchaseItem.product.wording}}">
+        <div class="cart-item__data">
+          <h2 class="cart-item__wording">
+            <a href="{{path('product_show', {'id': purchaseItem.product.id, 'slug': purchaseItem.product.slug})}}">
+              {{purchaseItem.product.wording}}
+            </a>
+          </h2>
+          <div class="cart-item__infos">
+            <div class="cart-item__quantity">
+              <p class="cart-item__input" id="cart-quantity">Quantité: {{purchaseItem.quantity}}</p>
+            </div>
+            <p class="cart-item__price">{{purchaseItem.total|amount}}</p>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
 </section>
 
 <section>
-  <h1>Paiement</h1>
+  <h1 class="spoiler-element">
+    Paiement
+    <img src="{{asset('img/icons/info.svg')}}" class="spoiler-icon">
+    <p class="spoiler-content">
+      Testez Stripe ! 
+      <br>
+      Commande rejetée : 4000 0000 0000 9995
+      <br>
+      Commande acceptée : 4242 4242 4242 4242
+      <br>
+      (fonctionnent avec n'importe quel CVC / date d'expiration)
+    </p>
+  </h1>
 
   <form id="payment-form">
       <div id="card-element"><!--Stripe.js injects the Card Element--></div>
@@ -34,7 +65,6 @@
       </p>
     </form>
 </section>
-
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
@@ -79,10 +109,13 @@
         .then(function(result) {
           if (result.error) {
             // Show error to your customer
-            console.log(result.error.message);
+            dangerToast("Une erreur est survenue. Vérifiez que vous n'avez pas fait de faute de frappe et réessayez");
           } else {
             // The payment succeeded!
-            console.log(result)
+            successToast("Félicitations ! Votre paiement a bien été pris en compte. Vous allez être redirigé...", 3000);
+            setTimeout(() => {
+              window.location.href = "{{path('purchase_payment_succeed', {'id': purchase.id}) }}";
+            }, 3000)
           }
         });
   });

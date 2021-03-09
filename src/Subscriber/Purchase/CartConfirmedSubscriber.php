@@ -63,7 +63,7 @@ class CartConfirmedSubscriber implements EventSubscriberInterface
     $purchase->setPurchasedAt(new DateTime())
              ->setStatus(Purchase::STATUS_PENDING)
              ->setUser($this->security->getUser())
-             ->setTotal($this->purchaseService->getTotal($purchase))
+             ->setTotal(($this->purchaseService->getTotal($purchase) + Purchase::SHIPPING_FEE))
     ;
 
     $this->em->persist($purchase);
