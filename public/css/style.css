@@ -849,6 +849,19 @@ table {
   margin: auto;
   margin-bottom: 1rem;
 }
+table thead tr th {
+  background-color: #0087a8;
+  font-weight: bold;
+  color: white;
+  border-right: 2px solid white;
+  border-left: 2px solid white;
+}
+table thead tr th:first-of-type {
+  border-left: 2px solid #0087a8;
+}
+table thead tr th:last-of-type {
+  border-right: 2px solid #0087a8;
+}
 table th {
   height: 2rem;
   border: 1px solid #0087a8;

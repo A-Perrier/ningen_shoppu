@@ -58,7 +58,7 @@
       <p class="cart-total__total">Total : 
         <span class="align-right">{{(total + 2.99 * 100)|amount}}</span>
       </p>
-      <a href="#" class="btn secondary">Valider mon panier</a>
+      <a href="{{path('purchase_confirm')}}" class="btn secondary">Valider mon panier</a>
     </div>
   </section>
 {% endif %}
