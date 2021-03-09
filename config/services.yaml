@@ -35,3 +35,8 @@ services:
     App\Service\Image\ImagePathGenerator:
         arguments:
             $signature: '%env(GLIDE_KEY)%'
+
+    App\Service\StripeService:
+        arguments:
+            $publicKey: '%env(STRIPE_PK)%'
+            $secretKey: '%env(STRIPE_SK)%'

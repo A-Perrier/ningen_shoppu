@@ -56,6 +56,7 @@ class CartConfirmedSubscriber implements EventSubscriberInterface
                    ->setTotal($cartItem->getTotal())
       ;
       $this->em->persist($purchaseItem);
+      $purchase->addPurchaseItem($purchaseItem);
     }
 
 

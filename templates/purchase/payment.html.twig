@@ -20,6 +20,71 @@
 
 <section>
   <h1>Paiement</h1>
+
+  <form id="payment-form">
+      <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+      <button id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">Payer</span>
+      </button>
+      <p id="card-error" role="alert"></p>
+      <p class="result-message hidden">
+        Payment succeeded, see the result in your
+        <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+      </p>
+    </form>
 </section>
 
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const clientSecret = '{{clientSecret}}'
+  const stripe = Stripe("pk_test_51HvIlwBDJNWnSsG02yupoRHUxKb0iGZQ7vRaPcvhKvxM3i6IW4iuJRDMBVZVMx69gMzkru55EeeheqXSCNgccqqq00OBB6erLN");
+  const elements = stripe.elements();
+  var style = {
+    base: {
+      color: "#32325d",
+      fontFamily: 'Arial, sans-serif',
+      fontSmoothing: "antialiased",
+      fontSize: "16px",
+      "::placeholder": {
+        color: "#32325d"
+      }
+    },
+    invalid: {
+      fontFamily: 'Arial, sans-serif',
+      color: "#fa755a",
+      iconColor: "#fa755a"
+    }
+  };
+
+  const card = elements.create("card", { style });
+  // Stripe injects an iframe into the DOM
+  card.mount("#card-element");
+  card.on("change", function (event) {
+    // Disable the Pay button if there are no card details in the Element
+    document.querySelector("button").disabled = event.empty;
+    document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+  });
+  var form = document.getElementById("payment-form");
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    // Complete payment when the submit button is clicked
+    stripe
+        .confirmCardPayment(clientSecret, {
+          payment_method: {
+            card
+          }
+        })
+        .then(function(result) {
+          if (result.error) {
+            // Show error to your customer
+            console.log(result.error.message);
+          } else {
+            // The payment succeeded!
+            console.log(result)
+          }
+        });
+  });
+</script>
 {% endblock %}

@@ -7,6 +7,7 @@ use App\Event\CartConfirmationEvent;
 use App\Service\CartService;
 use App\Form\CartConfirmationType;
 use App\Service\PurchaseService;
+use App\Service\StripeService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,13 +19,18 @@ class PurchaseController extends AbstractController
 {
     private $cartService;
     private $purchaseService;
+    private $stripeService;
     private $dispatcher;
 
-    public function __construct(CartService $cartService, PurchaseService $purchaseService, EventDispatcherInterface $dispatcher)
+    public function __construct(CartService $cartService, 
+                                PurchaseService $purchaseService, 
+                                StripeService $stripeService,
+                                EventDispatcherInterface $dispatcher)
     {
         $this->cartService = $cartService;
         $this->dispatcher = $dispatcher;
         $this->purchaseService = $purchaseService;
+        $this->stripeService = $stripeService;
     }
 
     /**
@@ -66,14 +72,18 @@ class PurchaseController extends AbstractController
     {
         $purchase = $this->purchaseService->find($id);
 
-        if (!in_array($purchase, $this->getUser()->getPurchases()->getValues())) {
-            $this->addFlash("danger", "Vous ne possédez aucune commande avec ce numéro");
+        if (!$purchase 
+            || !in_array($purchase, $this->getUser()->getPurchases()->getValues())
+            || $purchase->getStatus() !== Purchase::STATUS_PENDING) {
+            $this->addFlash("danger", "Vous ne possédez aucune commande en cours avec ce numéro");
             return $this->redirectToRoute("cart_show");
         }
         
+        $paymentIntent = $this->stripeService->getPaymentIntent($purchase);
 
         return $this->render('purchase/payment.html.twig', [
-            'purchase' => $purchase
+            'purchase' => $purchase,
+            'clientSecret' => $paymentIntent->client_secret,
         ]);
     }
 }
