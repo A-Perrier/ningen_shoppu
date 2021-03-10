@@ -55,6 +55,18 @@
   }
 }
 
+.address {
+  max-width: fit-content;
+  text-align: center;
+  margin: 2rem auto 5rem auto;
+
+  & h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: .4rem;
+  }
+}
+
 @media only screen and (min-width: $desktop-breakpoint) {
 
   .purchase-list {

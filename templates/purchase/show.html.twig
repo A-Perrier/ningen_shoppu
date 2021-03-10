@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block title %}NingenShoppu | Commande n°{{purchase.id}}{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('user_home')}}">Mon compte</a>
+        <a href="{{path('purchase_index')}}">Mes commandes</a>
+        <a href="#" class="active">Commande n°{{purchase.id}}</a>
+    </div>
+</div>
+
+<section class="cart-container">
+  <h1>Commande n°{{purchase.id}}</h1>
+
+  {% for purchaseItem in purchase.purchaseItems %}
+      <article class="cart-item" style="margin-bottom: 1rem;">
+        <img class="cart-item__picture" src="{{getImage(firstImage(purchaseItem.product), 150, 113)}}" alt="{{purchaseItem.productName}}">
+        <div class="cart-item__data">
+          <h2 class="cart-item__wording">
+            <a href="{{path('product_show', {'id': purchaseItem.product.id, 'slug': purchaseItem.product.slug})}}">
+              {{purchaseItem.productName}}
+            </a>
+          </h2>
+          <div class="cart-item__infos">
+            <div class="cart-item__quantity">
+              <p class="cart-item__input" id="cart-quantity" style="max-width:inherit;font-size:.8rem">Quantité: {{purchaseItem.quantity}}</p>
+            </div>
+            <p class="cart-item__price">{{purchaseItem.total|amount}}</p>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+
+    <div class="address">
+    <h2>Adresse</h2>
+    <p>{{purchase.fullName}}</p>
+    <p>{{purchase.address}}</p>
+    <p>{{purchase.postalCode}}</p>
+    <p>{{purchase.city}}</p>
+  </div>
+</section>
+
+<br><br>
+
+{% if purchase.status == "PENDING" %}
+<section class="ctas-section" style="max-width:fit-content;margin:auto;">
+  <a href="{{path('purchase_payment', {'id':purchase.id})}}" class="btn primary">Payer</a>
+  <a href="{{path('purchase_cancel', {'id':purchase.id})}}" class="btn danger" onclick="return confirm('Voulez-vous vraiment supprimer cette commande ? Cette action est irréversible')">Annuler</a>
+</section>
+{% endif %}
+
+{% endblock %}

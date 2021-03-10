@@ -4,17 +4,20 @@ namespace App\Service;
 use App\Entity\Purchase;
 use App\Repository\PurchaseRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
 
 class PurchaseService
 {
   private $purchaseRepository;
   private $security;
+  private $em;
 
-  public function __construct(PurchaseRepository $purchaseRepository, Security $security)
+  public function __construct(PurchaseRepository $purchaseRepository, Security $security, EntityManagerInterface $em)
   {
     $this->purchaseRepository = $purchaseRepository;
     $this->security = $security;
+    $this->em = $em;
   }
 
   public function find($id)
@@ -41,5 +44,11 @@ class PurchaseService
     }
 
     return $total;
+  }
+
+  public function cancel(Purchase $purchase)
+  {
+    $purchase->setStatus(Purchase::STATUS_CANCELLED);
+    $this->em->flush();
   }
 }

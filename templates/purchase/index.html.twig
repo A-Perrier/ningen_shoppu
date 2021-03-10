@@ -24,7 +24,7 @@
       <p class="purchase__info">{{purchase.totalQuantity}} articles</p>
       <div class="purchase__bottom-info">
         <p class="purchase__price">{{purchase.total|amount}}</p>
-        <a href="#">
+        <a href="{{path('purchase_show', {'id':purchase.id})}}">
           Détail
           <img src="{{asset('img/icons/right-arrow.svg')}}" alt="">
         </a>

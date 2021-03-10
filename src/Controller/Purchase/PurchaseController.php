@@ -53,6 +53,29 @@ class PurchaseController extends AbstractController
 
 
     /**
+     * @Route("/purchases/{id}", name="purchase_show")
+     * @IsGranted("ROLE_USER", message="Vous devez être connecté pour regarder vos commandes")
+     */
+    public function show($id): Response
+    {
+        /** @var User */
+        $user = $this->getUser();
+        $purchase = $this->purchaseService->find($id);
+
+        if (!in_array($purchase, $user->getPurchases()->getValues())
+            || !$purchase) {
+                $this->addFlash('danger', 'Vous ne possédez pas de commande avec cet identifiant');
+                return $this->redirectToRoute("user_home");
+            }
+
+
+        return $this->render('purchase/show.html.twig', [
+            'purchase' => $purchase
+        ]);
+    }
+
+
+    /**
      * @Route("/purchase", name="purchase_confirm")
      * @IsGranted("ROLE_USER", message="Vous devez être connecté pour confirmer une commande")
      */
@@ -128,5 +151,26 @@ class PurchaseController extends AbstractController
             'purchase' => $purchase,
             'user' => $this->getUser()
         ]);
+    }
+
+
+    /**
+     * @Route("/purchase/cancel/{id}", name="purchase_cancel")
+     * @IsGranted("ROLE_USER")
+     */
+    public function cancel($id)
+    {
+        $purchase = $this->purchaseService->find($id);
+        if (!$purchase 
+            || !in_array($purchase, $this->getUser()->getPurchases()->getValues())
+            || $purchase->getStatus() !== Purchase::STATUS_PENDING) {
+            $this->addFlash("danger", "Vous ne possédez aucune commande en cours avec ce numéro");
+            return $this->redirectToRoute("purchase_index");
+        }
+
+        $this->purchaseService->cancel($purchase);
+        $this->addFlash("success", "Votre commande a correctement été annulée");
+
+        return $this->redirectToRoute("purchase_index");
     }
 }

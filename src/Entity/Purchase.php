@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Purchase
 {
 
+    public const STATUS_CANCELLED = "CANCELLED";
     public const STATUS_PENDING = "PENDING";
     public const STATUS_PAID = "PAID";
     public const STATUS_SENT = "SENT";
