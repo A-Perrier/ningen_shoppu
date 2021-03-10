@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    const PER_PAGE = 12;
+    public const PER_PAGE = 12;
 
     private $slugger;
     private $productService;

@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -14,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Product
 {
     /**
+     * @Groups("delivery")
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -21,6 +24,7 @@ class Product
     private $id;
 
     /**
+     * @Groups("delivery")
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le produit doit avoir un libellé")
      * @Assert\Length(min="2", minMessage="Le libellé doit avoir au moins 2 caractères")
@@ -45,6 +49,8 @@ class Product
     private $rating = [];
 
     /**
+     * @MaxDepth(2)
+     * @Groups("delivery")
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      * @ORM\JoinColumn(onDelete="SET NULL")
      * @Assert\NotBlank(message="Votre produit doit avoir une catégorie")
@@ -52,6 +58,7 @@ class Product
     private $category;
 
     /**
+     * @Groups("delivery")
      * @ORM\Column(type="integer")
      * @Assert\NotNull(message="Le prix doit être présent")
      * @Assert\Positive(message="Le prix doit être supérieur à 0")
@@ -74,6 +81,7 @@ class Product
     private $purchaseItems;
 
     /**
+     * @Groups("delivery")
      * @ORM\Column(type="integer")
      */
     private $quantityInStock;

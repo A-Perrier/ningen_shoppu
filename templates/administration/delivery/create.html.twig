@@ -1,0 +1,79 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}NingenShoppu | Intégrer une livraison{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('administration')}}">Administration</a>
+        <a href="#">Livraisons</a>
+        <a href="#" class="active">Intégrer une livraison</a>
+    </div>
+</div>
+
+<h1>Intégrer une livraison</h1>
+
+<table>
+<thead>
+    <tr>
+    <th>ID</th>
+    <th>Libellé</th>
+    <th>Catégorie</th>
+    <th>Prix</th>
+    <th>Stock</th>
+    <th colspan="2"></th>
+    </tr>
+</thead>
+<tbody>
+    {% for product in products %}
+    <tr>
+        <th>
+        {{product.id}}
+        </th>
+        <th>
+        {{product.wording}}
+        </th>
+        <th>
+        {{product.category ? product.category.title : ''}}
+        </th>
+        <th>
+        {{product.price|amount}}
+        </th>
+        <th {% if product.quantityInStock <= 10 %}style="background-color:#CD0909;color:white"{% endif %}>
+        {{product.quantityInStock}}
+        </th>
+        <th colspan="2">
+            <div class="stock-btn__quantity">
+                <button class="cart-stepdown" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+                <input class="stock-btn__input" type="number" id="quantity" min="0" value="0">
+                <button class="cart-stepup plus" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></button>
+            </div>
+        </th>
+    </tr>
+    {% endfor %}
+</tbody> 
+</table>
+{{ knp_pagination_render(products) }}
+
+
+<script>
+    $(function() {
+        $('.page-link').click(e => {
+            e.preventDefault();
+            page = parseInt($(e.currentTarget).text());
+
+            $.ajax({
+                url: "/api/product/getPaginated/" + page,
+                method: "GET",
+                success: (result) => {
+                    successToast(result);
+                    console.log(result)
+                }
+            })
+        })
+    })
+</script>
+{% endblock %}

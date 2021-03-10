@@ -8,12 +8,16 @@ use App\Service\ProductService;
 use App\Service\SluggerService;
 use App\Service\CategoryService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ProductController extends AbstractController
@@ -121,5 +125,26 @@ class ProductController extends AbstractController
     $this->productService->remove($product);
 
     return $this->json("Le produit a correctement été supprimé", 200);
+  }
+
+  /**
+   * @Route("/api/product/getPaginated/{id}", name="api/product_paginated")
+   * @IsGranted("ROLE_ADMIN")
+   */
+  public function getPaginated(Request $request, PaginatorInterface $paginator, $id, SerializerInterface $serializer)
+  {
+    if (!$request->isXmlHttpRequest()) throw new Exception("Une erreur s'est produite", 400);
+    
+    $data = $this->productService->findAll();
+    $products = $paginator->paginate(
+      $data,
+      $request->query->getInt('page', $id),
+      \App\Controller\ProductController::PER_PAGE
+    );
+
+    // $json Contient les produits de la page demandée (id, wording, price, quantityInStock, category.title)
+    $json = $serializer->serialize($products, 'json', ['groups' => 'delivery']);
+
+    return $this->json($json, 200);
   }
 }
