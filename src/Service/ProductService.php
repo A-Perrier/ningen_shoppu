@@ -30,7 +30,7 @@ class ProductService
 
   public function findAllOnSale()
   {
-    return $this->productRepository->findBy(["isOnSale" => true], ["id" => "DESC"]);
+    return $this->productRepository->findAllOnSale();
   }
 
   public function findAllOutSale()
@@ -61,7 +61,7 @@ class ProductService
 
   public function findLastsOnSale($nb = 5)
   {
-    return $this->productRepository->findBy(["isOnSale" => true], ["id" => "DESC"], $nb); 
+    return $this->productRepository->findLastsOnSale($nb); 
   }
 
   public function manageImageOnProductEdition(Product $product)

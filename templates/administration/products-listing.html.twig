@@ -33,6 +33,7 @@
         <th>Catégorie</th>
         <th>Prix</th>
         <th>En vente</th>
+        <th>Stock</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -57,6 +58,9 @@
             {% else %}
               <img src="{{asset('img/icons/false.svg')}}" alt="">
             {% endif %}
+          </th>
+          <th {% if product.quantityInStock <= 10 %}style="background-color:#CD0909;color:white"{% endif %}>
+            {{product.quantityInStock}}
           </th>
           <th>
             <a href="{{path('product_edit', {'id':product.id, 'slug':product.slug})}}" class="btn primary">Modifier</a>

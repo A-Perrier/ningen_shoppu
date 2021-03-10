@@ -19,6 +19,35 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function findAllOnSale()
+    {
+        $qb = $this->createQueryBuilder('p');
+        return $qb
+            ->where('p.isOnSale = :isOnSale')
+            ->andWhere('p.quantityInStock > 0')
+            ->setParameter('isOnSale', true)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+    public function findLastsOnSale($nb)
+    {
+        $qb = $this->createQueryBuilder('p');
+        return $qb
+            ->where('p.isOnSale = :isOnSale')
+            ->andWhere('p.quantityInStock > :stock')
+            ->setParameter('isOnSale', true)
+            ->setParameter('stock', 0)
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults($nb)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */

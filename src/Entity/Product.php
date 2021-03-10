@@ -73,6 +73,11 @@ class Product
      */
     private $purchaseItems;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $quantityInStock;
+
     public function __construct()
     {
         $this->productImages = new ArrayCollection();
@@ -224,6 +229,18 @@ class Product
                 $purchaseItem->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getQuantityInStock(): ?int
+    {
+        return $this->quantityInStock;
+    }
+
+    public function setQuantityInStock(int $quantityInStock): self
+    {
+        $this->quantityInStock = $quantityInStock;
 
         return $this;
     }
