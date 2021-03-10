@@ -78,10 +78,16 @@ class Product
      */
     private $quantityInStock;
 
+    /**
+     * @ORM\OneToMany(targetEntity=DeliveryItem::class, mappedBy="product", orphanRemoval=true)
+     */
+    private $deliveryItems;
+
     public function __construct()
     {
         $this->productImages = new ArrayCollection();
         $this->purchaseItems = new ArrayCollection();
+        $this->deliveryItems = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -241,6 +247,36 @@ class Product
     public function setQuantityInStock(int $quantityInStock): self
     {
         $this->quantityInStock = $quantityInStock;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DeliveryItem[]
+     */
+    public function getDeliveryItems(): Collection
+    {
+        return $this->deliveryItems;
+    }
+
+    public function addDeliveryItem(DeliveryItem $deliveryItem): self
+    {
+        if (!$this->deliveryItems->contains($deliveryItem)) {
+            $this->deliveryItems[] = $deliveryItem;
+            $deliveryItem->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDeliveryItem(DeliveryItem $deliveryItem): self
+    {
+        if ($this->deliveryItems->removeElement($deliveryItem)) {
+            // set the owning side to null (unless already changed)
+            if ($deliveryItem->getProduct() === $this) {
+                $deliveryItem->setProduct(null);
+            }
+        }
 
         return $this;
     }
