@@ -19,6 +19,17 @@ class PurchaseRepository extends ServiceEntityRepository
         parent::__construct($registry, Purchase::class);
     }
 
+    
+    public function findAllCurrent()
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.status = :val')
+            ->setParameter('val', Purchase::STATUS_PAID)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Purchase[] Returns an array of Purchase objects
     //  */

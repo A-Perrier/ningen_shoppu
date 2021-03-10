@@ -34,6 +34,16 @@ class PurchaseService
     return $lastPurchase;
   }
 
+  /**
+   * Returns only purchases where its status is paid
+   *
+   * @return array Purchase
+   */
+  public function findAllCurrent()
+  {
+    return $this->purchaseRepository->findAllCurrent();
+  }
+
   public function getTotal(Purchase $purchase)
   {
     $total = 0;

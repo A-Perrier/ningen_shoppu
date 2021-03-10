@@ -26,6 +26,15 @@
     color: white;
   }
 
+  &.success {
+    background-color: $success;
+    color: white;
+
+    &:hover {
+      background-color: $success-hover;
+    }
+  }
+
   &.btn-primary-reverse {
     border: 1px solid $primary;
     background-color: white;

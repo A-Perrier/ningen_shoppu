@@ -1,0 +1,55 @@
+{% extends "admin.html.twig" %}
+
+{% block title %}NingenShoppu | Commandes en cours{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('user_home')}}">Administration</a>
+        <a href="{{path('purchase_index')}}" class="active">Commandes en cours</a>
+    </div>
+</div>
+
+<h1>Commandes en cours</h1>
+
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom complet</th>
+        <th>Adresse</th>
+        <th>Code postal</th>
+        <th>Ville</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for purchase in purchases %}
+        <tr>
+          <th>
+            {{purchase.id}}
+          </th>
+          <th>
+            {{purchase.fullName}}
+          </th>
+          <th>
+            {{purchase.address}}
+          </th>
+          <th>
+            {{purchase.postalCode}}
+          </th>
+          <th>
+            {{purchase.city}}
+          </th>
+          <th>
+            <a href="{{path('purchase_show_admin', {'id':purchase.id})}}" class="btn primary">Consulter</a>
+          </th>
+        </tr>
+      {% endfor %}
+    </tbody> 
+  </table>
+
+{% endblock %}

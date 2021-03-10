@@ -48,7 +48,7 @@
 <br><br>
 
 {% if purchase.status == "PENDING" %}
-<section class="ctas-section" style="max-width:fit-content;margin:auto;">
+<section class="ctas-section" style="max-width:fit-content;margin:auto;padding-bottom:3rem">
   <a href="{{path('purchase_payment', {'id':purchase.id})}}" class="btn primary">Payer</a>
   <a href="{{path('purchase_cancel', {'id':purchase.id})}}" class="btn danger" onclick="return confirm('Voulez-vous vraiment supprimer cette commande ? Cette action est irréversible')">Annuler</a>
 </section>

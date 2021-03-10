@@ -21,6 +21,7 @@ class Purchase
     
     public const CART_CONFIRMATION_EVENT = "purchase.cart_confirmation";
     public const PAYMENT_SUCCEED_EVENT = "purchase.payment_succeed";
+    public const PURCHASE_SENT_EVENT = "purchase.sent";
 
     public const SHIPPING_FEE = 299;
 

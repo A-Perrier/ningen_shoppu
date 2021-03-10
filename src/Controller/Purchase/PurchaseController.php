@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Purchase;
 use App\Service\CartService;
 use App\Service\StripeService;
+use App\Event\PurchaseSentEvent;
 use App\Service\PurchaseService;
 use App\Form\CartConfirmationType;
 use App\Event\CartConfirmationEvent;
@@ -172,5 +173,58 @@ class PurchaseController extends AbstractController
         $this->addFlash("success", "Votre commande a correctement été annulée");
 
         return $this->redirectToRoute("purchase_index");
+    }
+
+    /**
+     * @Route("/administration/purchases", name="purchase_index_admin")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function indexAdmin()
+    {
+        $purchases = $this->purchaseService->findAllCurrent();
+
+        return $this->render('administration/purchase/current-listing.html.twig', [
+            'purchases' => $purchases
+        ]);
+    }
+
+
+    /**
+     * @Route("/administration/purchases/{id}", name="purchase_show_admin")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function showAdmin($id): Response
+    {
+        $purchase = $this->purchaseService->find($id);
+
+        if (!$purchase) {
+                $this->addFlash('danger', 'Il n\'existe pas de commande avec cet identifiant');
+                return $this->redirectToRoute("purchase_index_admin");
+        }
+
+
+        return $this->render('administration/purchase/show.html.twig', [
+            'purchase' => $purchase
+        ]);
+    }
+
+    /**
+     * @Route("/administration/purchase/sent/{id}", name="purchase_sent")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function sent($id): Response
+    {
+        $purchase = $this->purchaseService->find($id);
+
+        if (!$purchase) {
+                $this->addFlash('danger', 'Il n\'existe pas de commande avec cet identifiant');
+                return $this->redirectToRoute("purchase_index_admin");
+        }
+
+        $event = new PurchaseSentEvent($purchase);
+        $this->dispatcher->dispatch($event, Purchase::PURCHASE_SENT_EVENT);
+        $this->addFlash("success", "La commande a correctement été marquée expédiée !");
+
+        return $this->redirectToRoute("purchase_index_admin");
     }
 }

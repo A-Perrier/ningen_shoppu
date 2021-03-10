@@ -15,25 +15,31 @@
 
 <h1>Mes commandes</h1>
 
-<section class="purchase-list">
-  {% for purchase in purchases %}
-  <article class="purchase">
-    <div class="purchase__data">
-      <h2>Commande n°{{purchase.id}}</h2>
-      <p class="purchase__info">Passée le : {{purchase.purchasedAt|date('d/m/Y')}}</p>
-      <p class="purchase__info">{{purchase.totalQuantity}} articles</p>
-      <div class="purchase__bottom-info">
-        <p class="purchase__price">{{purchase.total|amount}}</p>
-        <a href="{{path('purchase_show', {'id':purchase.id})}}">
-          Détail
-          <img src="{{asset('img/icons/right-arrow.svg')}}" alt="">
-        </a>
+  {% if purchases|length == 0 %}
+    <div class="alert alert-danger">
+      Vous n'avez passé aucune commande
+    </div>
+  {% else %}
+  <section class="purchase-list">
+    {% for purchase in purchases %}
+    <article class="purchase">
+      <div class="purchase__data">
+        <h2>Commande n°{{purchase.id}}</h2>
+        <p class="purchase__info">Passée le : {{purchase.purchasedAt|date('d/m/Y')}}</p>
+        <p class="purchase__info">{{purchase.totalQuantity}} articles</p>
+        <div class="purchase__bottom-info">
+          <p class="purchase__price">{{purchase.total|amount}}</p>
+          <a href="{{path('purchase_show', {'id':purchase.id})}}">
+            Détail
+            <img src="{{asset('img/icons/right-arrow.svg')}}" alt="">
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="purchase__status" style="background-color:{{color(purchase.status)}}">
-      <p>{{format(purchase.status)}}</p>
-    </div>
-  </article>
-  {% endfor %}
-</section>
+      <div class="purchase__status" style="background-color:{{color(purchase.status)}}">
+        <p>{{format(purchase.status)}}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+  {% endif %}
 {% endblock %}

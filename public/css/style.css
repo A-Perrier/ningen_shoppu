@@ -973,6 +973,13 @@ form#payment-form .spinner:after {
   background-color: #cd0909;
   color: white;
 }
+.btn.success {
+  background-color: #68c068;
+  color: white;
+}
+.btn.success:hover {
+  background-color: #398939;
+}
 .btn.btn-primary-reverse {
   border: 1px solid #0087a8;
   background-color: white;
@@ -1142,7 +1149,7 @@ input:checked + .slider:before {
 .address {
   max-width: fit-content;
   text-align: center;
-  margin: 2rem auto 5rem auto;
+  margin: 2rem auto 4rem auto;
 }
 .address h2 {
   font-size: 1.2rem;
