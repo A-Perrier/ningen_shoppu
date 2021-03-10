@@ -2,19 +2,20 @@
 
 namespace App\Controller\Purchase;
 
+use App\Entity\User;
 use App\Entity\Purchase;
+use App\Service\CartService;
+use App\Service\StripeService;
+use App\Service\PurchaseService;
+use App\Form\CartConfirmationType;
 use App\Event\CartConfirmationEvent;
 use App\Event\PurchasePaymentSucceedEvent;
-use App\Service\CartService;
-use App\Form\CartConfirmationType;
-use App\Service\PurchaseService;
-use App\Service\StripeService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PurchaseController extends AbstractController
 {
@@ -34,11 +35,28 @@ class PurchaseController extends AbstractController
         $this->stripeService = $stripeService;
     }
 
+
+    /**
+     * @Route("/my-purchases", name="purchase_index")
+     * @IsGranted("ROLE_USER", message="Vous devez être connecté pour regarder vos commandes")
+     */
+    public function index(): Response
+    {
+        /** @var User */
+        $user = $this->getUser();
+        $purchases = $user->getPurchases();
+
+        return $this->render('purchase/index.html.twig', [
+            'purchases' => $purchases
+        ]);
+    }
+
+
     /**
      * @Route("/purchase", name="purchase_confirm")
      * @IsGranted("ROLE_USER", message="Vous devez être connecté pour confirmer une commande")
      */
-    public function index(Request $request): Response
+    public function confirm(Request $request): Response
     {
         $purchase = new Purchase;
         $form = $this->createForm(CartConfirmationType::class, $purchase);

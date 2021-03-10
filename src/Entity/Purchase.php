@@ -84,6 +84,18 @@ class Purchase
         $this->purchaseItems = new ArrayCollection();
     }
 
+    public function totalQuantity()
+    {
+        $total = 0;
+
+        foreach ($this->getPurchaseItems() as $item)
+        {
+            $total += $item->getQuantity();
+        }
+
+        return $total;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
