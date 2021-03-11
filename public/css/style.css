@@ -2181,6 +2181,14 @@ footer {
     font-size: 1rem;
   }
 }
+.resume {
+  width: 70%;
+  margin: 2rem auto;
+}
+.resume .resume-list {
+  text-align: center;
+}
+
 * {
   box-sizing: border-box;
 }

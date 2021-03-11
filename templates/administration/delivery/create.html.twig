@@ -48,7 +48,7 @@
         <th colspan="2">
             <div class="stock-btn__quantity">
                 <button class="cart-stepdown" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-                <input class="stock-btn__input" type="number" id="quantity" min="0" value="0">
+                <input class="stock-btn__input" type="number" data-name="{{product.wording}}" data-id="{{product.id}}" id="quantity" min="0" value="0">
                 <button class="cart-stepup plus" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></button>
             </div>
         </th>
@@ -58,9 +58,19 @@
 </table>
 {{ knp_pagination_render(products) }}
 
+<section class="resume">
+    <h1>Liste des produits insérés :</h1>
 
+    <ul class="resume-list">
+        <!-- Injection de la liste de commande -->
+    </ul>
+</section>
+
+<script src="{{asset('js/api/delivery.js')}}"></script>
 <script>
     $(function() {
+        let resumeItems = {};
+
         $('.page-link').click(e => {
             e.preventDefault();
             page = parseInt($(e.currentTarget).text());
@@ -69,11 +79,42 @@
                 url: "/api/product/getPaginated/" + page,
                 method: "GET",
                 success: (result) => {
-                    successToast(result);
-                    console.log(result)
+                    $('li.active').removeClass('active');
+                    $(e.currentTarget).parent().addClass('active');
+
+                    let productsParsed = JSON.parse(result);
+                    let currentProductRows = $('tbody').children('tr');
+                    $(currentProductRows).remove();
+
+                    $.map(productsParsed, (product) => {
+                        product = '<tr><th>' + product.id + '</th><th>' + product.wording + '</th><th>' + 'Catégorie' + '</th><th>' + (product.price / 100) + '€</th><th>' + product.quantityInStock + '</th><th colspan="2"><div class="stock-btn__quantity"><button class="cart-stepdown" onclick="this.parentNode.querySelector(\'input[type=number]\').stepDown()"></button><input class="stock-btn__input" type="number" data-name="' + product.wording + '" data-id="' + product.id + '" id="quantity" min="0" value="0"><button class="cart-stepup plus" onclick="this.parentNode.querySelector(\'input[type=number]\').stepUp()"></button></div></th></tr>';
+
+                        $('tbody').append(product);
+                    });
+                    // Incrémentation
+                    $('.cart-stepup').click(e => {
+                        listIncrement(e, resumeItems)
+                    })
+
+                    // Décrémentation
+                    $('.cart-stepdown').click(e => {
+                        listDecrement(e, resumeItems)
+                    })
+                },
+                error: (result) => {
+                    dangerToast("Une erreur s'est produite");
                 }
             })
         })
-    })
+
+
+        $('.cart-stepup').click(e => {
+            listIncrement(e, resumeItems);
+        }) 
+
+        $('.cart-stepdown').click(e => {
+            listDecrement(e, resumeItems);
+        })
+    });
 </script>
 {% endblock %}
