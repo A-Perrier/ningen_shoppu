@@ -43,6 +43,11 @@ class ProductService
     return $this->productRepository->findBy($criteria, $orderBy, $limit, $offset);
   }
 
+  public function findOneBy(array $criteria = [], ?array $orderBy = null)
+  {
+    return $this->productRepository->findOneBy($criteria, $orderBy);
+  }
+
   public function findOrThrow(int $id, ?string $message = null)
   {
     $product = $this->find($id);

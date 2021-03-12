@@ -9,9 +9,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
+ * @UniqueEntity(fields={"wording"}, message="Il existe déjà un produit avec ce libellé")
  */
 class Product
 {

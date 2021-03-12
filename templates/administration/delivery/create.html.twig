@@ -24,7 +24,7 @@
     <th>Catégorie</th>
     <th>Prix</th>
     <th>Stock</th>
-    <th colspan="2"></th>
+    <th colspan="2">Quantité reçue</th>
     </tr>
 </thead>
 <tbody>
@@ -56,14 +56,23 @@
     {% endfor %}
 </tbody> 
 </table>
-{{ knp_pagination_render(products) }}
+
+<span class="links-removal">
+    {{ knp_pagination_render(products) }}
+</span>
 
 <section class="resume">
-    <h1>Liste des produits insérés :</h1>
+    <h1>Résumé :</h1>
 
+    <h2 style="margin-bottom:1rem">Transporteur :</h2>
+    <input type="text" id="carrier" name="carrier" style="margin-bottom:2rem" required>
+
+    <h2 style="margin-bottom:1rem">Liste des produits insérés :</h2>
     <ul class="resume-list">
         <!-- Injection de la liste de commande -->
     </ul>
+
+    <a href="#" id="delivery-submit" class="btn primary">Valider la livraison</a>
 </section>
 
 <script src="{{asset('js/api/delivery.js')}}"></script>
@@ -87,10 +96,27 @@
                     $(currentProductRows).remove();
 
                     $.map(productsParsed, (product) => {
-                        product = '<tr><th>' + product.id + '</th><th>' + product.wording + '</th><th>' + 'Catégorie' + '</th><th>' + (product.price / 100) + '€</th><th>' + product.quantityInStock + '</th><th colspan="2"><div class="stock-btn__quantity"><button class="cart-stepdown" onclick="this.parentNode.querySelector(\'input[type=number]\').stepDown()"></button><input class="stock-btn__input" type="number" data-name="' + product.wording + '" data-id="' + product.id + '" id="quantity" min="0" value="0"><button class="cart-stepup plus" onclick="this.parentNode.querySelector(\'input[type=number]\').stepUp()"></button></div></th></tr>';
+                        // Permet de récupérer la quantité de chaque produit depuis la liste de résumé pour la réinjecter
+                        // dans les inputs à chaque changement de page
+                        let inputValue = $($('li[data-name="' + product.wording + '"]')).text();
+                        let quantity = 0
+                        if (inputValue) {
+                            quantity = inputValue.replace(/\D/g, "") // Récupère les chiffres d'une string
+                        };
+                        
+                        let category = '';
+                        if (product.category) category = product.category['title'];
+
+                        product = '<tr><th>' + product.id + '</th><th>' + product.wording + '</th><th>' + category + '</th><th>' + (product.price / 100) + '€</th><th>' + product.quantityInStock + '</th><th colspan="2"><div class="stock-btn__quantity"><button class="cart-stepdown" onclick="this.parentNode.querySelector(\'input[type=number]\').stepDown()"></button><input class="stock-btn__input" type="number" data-name="' + product.wording + '" data-id="' + product.id + '" id="quantity" min="0" value="'+ quantity +'"><button class="cart-stepup plus" onclick="this.parentNode.querySelector(\'input[type=number]\').stepUp()"></button></div></th></tr>';
 
                         $('tbody').append(product);
                     });
+
+                    // Sur changement manuel des inputs
+                    $('.stock-btn__input').change(e => {
+                        onQuantityChange(e, resumeItems);
+                    })
+
                     // Incrémentation
                     $('.cart-stepup').click(e => {
                         listIncrement(e, resumeItems)
@@ -108,12 +134,21 @@
         })
 
 
+        $('.stock-btn__input').change(e => {
+            onQuantityChange(e, resumeItems);
+        })
+
         $('.cart-stepup').click(e => {
             listIncrement(e, resumeItems);
         }) 
 
         $('.cart-stepdown').click(e => {
             listDecrement(e, resumeItems);
+        })
+
+        $('#delivery-submit').click(e => {
+            e.preventDefault();
+            handleSubmit(e, resumeItems);
         })
     });
 </script>

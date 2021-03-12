@@ -42,3 +42,16 @@ table {
     transform: translateX(-50%);
   }
 }
+
+
+@media only screen and (min-width: $desktop-breakpoint) {
+
+  table {
+    width: 85%;
+  }
+
+  th {
+    font-size: .7rem;
+  }
+
+}

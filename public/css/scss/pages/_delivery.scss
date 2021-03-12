@@ -4,5 +4,16 @@
 
   & .resume-list {
     text-align: center;
+    margin-bottom: 3rem;
   }
+}
+
+.links-removal {
+  display: block;
+  text-align: center;
+}
+
+.links-removal ul li:first-of-type,
+.links-removal ul li:last-of-type {
+  display: none;
 }

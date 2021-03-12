@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Delivery
 {
+    public const DELIVERY_CREATE_EVENT = 'delivery.create';
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

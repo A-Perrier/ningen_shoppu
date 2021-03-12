@@ -1038,6 +1038,15 @@ table + .pagination {
   transform: translateX(-50%);
 }
 
+@media only screen and (min-width: 1024px) {
+  table {
+    width: 85%;
+  }
+
+  th {
+    font-size: 0.7rem;
+  }
+}
 .switch {
   position: relative;
   display: inline-block;
@@ -1231,11 +1240,16 @@ input:checked + .slider:before {
 
 @media only screen and (min-width: 1024px) {
   .stock-btn__quantity button {
-    max-width: 2rem;
-    height: 2rem;
+    max-width: 1.5rem;
+    height: 1.5rem;
   }
   .stock-btn__quantity button:before, .stock-btn__quantity button:after {
     width: 0.5rem;
+  }
+
+  .stock-btn__input {
+    height: 1.5rem !important;
+    max-width: 1.5rem !important;
   }
 }
 .menu-icon.active {
@@ -2187,6 +2201,17 @@ footer {
 }
 .resume .resume-list {
   text-align: center;
+  margin-bottom: 3rem;
+}
+
+.links-removal {
+  display: block;
+  text-align: center;
+}
+
+.links-removal ul li:first-of-type,
+.links-removal ul li:last-of-type {
+  display: none;
 }
 
 * {

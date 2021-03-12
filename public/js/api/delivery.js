@@ -1,3 +1,5 @@
+// =========================================== GESTION DE L'AFFICHAGE =========================================== //
+
 // Affichage de la liste de livraison
 let showList = (resumeItems) => {
   $.map(resumeItems, (quantity, name) => {
@@ -8,30 +10,39 @@ let showList = (resumeItems) => {
       // Si la quantité vaut 0, l'item ne sera pas réinvoqué au prochain appel
       if (quantity == 0) return;
 
-      $('.resume-list').append('<li data-name="' + name + '">' + name + ' - ' + quantity + 'x</li>')
+      $('.resume-list').append('<li class="delivery-item" data-name="' + name + '">' + name + ' - x' + quantity + '</li>')
   });
 }
 
+let resetList = () => {
+  $('input.stock-btn__input').val(0);
+  $('li.delivery-item').remove();
+  $('#carrier').val('');
+}
+
+let onQuantityChange = (event, resumeItems) => {
+  let value = parseInt($(event.currentTarget).val());
+  let productName = $(event.currentTarget).attr('data-name');
+  resumeItems[productName] = value;
+
+  showList(resumeItems);
+}
 
 // Incrémentation
 let listIncrement = (event, resumeItems) => {
-  
-      let productId = $(event.currentTarget).prev().attr('data-id');
-      let productName = $(event.currentTarget).prev().attr('data-name');
+  let productName = $(event.currentTarget).prev().attr('data-name');
 
-      if (productName in resumeItems) {
-          resumeItems[productName] += 1;
-      } else {
-          resumeItems[productName] = 1;
-      }
-      showList(resumeItems);
+  if (productName in resumeItems) {
+      resumeItems[productName] += 1;
+  } else {
+      resumeItems[productName] = 1;
+  }
+  showList(resumeItems);
 }
-
 
 
 // Décrémentation
 let listDecrement = (event, resumeItems) => {
-  let productId = $(event.currentTarget).next().attr('data-id');
   let productName = $(event.currentTarget).next().attr('data-name');
 
   if (productName in resumeItems) {
@@ -39,4 +50,28 @@ let listDecrement = (event, resumeItems) => {
       if (resumeItems[productName] >= 1) resumeItems[productName] -= 1;
   }
   showList(resumeItems);
+}
+
+
+// =========================================== GESTION DE L'ENVOI DE LA LIVRAISON EN AJAX =========================================== //
+
+let handleSubmit = (event, resumeItems) => {
+  event.preventDefault();
+  let deliveryItems = JSON.stringify(resumeItems);
+  let carrier = JSON.stringify($('#carrier').val());
+
+  $.ajax({
+    url: "/api/delivery/create",
+    method: "POST",
+    data: JSON.stringify({deliveryItems, carrier}),
+    success: (result) => {
+      successToast(result)
+      resetList();
+
+    },
+    error: (result) => {
+      dangerToast(result.message)
+    }
+  })
+
 }
