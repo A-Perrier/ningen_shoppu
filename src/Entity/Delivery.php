@@ -42,6 +42,22 @@ class Delivery
         $this->deliveryItems = new ArrayCollection();
     }
 
+    public function getTotalDistinct()
+    {
+        return count($this->getDeliveryItems()->getValues());
+    }
+
+    public function getTotalUVC()
+    {
+        $total = 0;
+
+        foreach($this->getDeliveryItems()->getValues() as $deliveryItem) {
+            $total += $deliveryItem->getQuantity();
+        }
+
+        return $total;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

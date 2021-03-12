@@ -1,0 +1,45 @@
+{% extends "admin.html.twig" %}
+
+{% block title %}NingenShoppu | Livraison n°{{delivery.id}}{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('administration')}}">Administration</a>
+        <a href="#">Livraisons</a>
+        <a href="#" class="active">Livraison n°{{delivery.id}}</a>
+    </div>
+</div>
+
+<h1>Livraison n°{{delivery.id}}</h1>
+<div class="delivery-infos">
+  <p>Transporteur: {{delivery.carrier}}</p>
+  <p>Livrée le: {{delivery.deliveredAt|date('d/m/Y')}}</p>
+  <p>Quantité de produits distincts: {{delivery.totalDistinct}}</p>
+  <p>Quantité d'UVC: {{delivery.totalUVC}}</p>
+</div>
+
+<section class="cart-container">
+    {% for deliveryItem in delivery.deliveryItems %}
+      <article class="cart-item">
+        <img class="cart-item__picture" src="{{getImage(firstImage(deliveryItem.product), 150, 113)}}" alt="{{deliveryItem.product.wording}}">
+        <div class="cart-item__data">
+          <h2 class="cart-item__wording">
+            <a href="{{path('product_show', {'id': deliveryItem.product.id, 'slug': deliveryItem.product.slug})}}">
+              {{deliveryItem.product.wording}}
+            </a>
+          </h2>
+          <div class="cart-item__infos">
+            <div class="cart-item__quantity">
+              <p class="cart-item__input" id="cart-quantity">Quantité: {{deliveryItem.quantity}}</p>
+            </div>
+            {# <p class="cart-item__price">{{deliveryItem.total|amount}}</p> #}
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+{% endblock %}

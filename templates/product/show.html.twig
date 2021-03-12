@@ -40,8 +40,11 @@
         <label for="quantity">Quantité :</label>
         <div class="cart-item__quantity">
           <button class="cart-stepdown" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-          <input class="cart-item__input" type="number" id="quantity" min="1" value="1">
+          <input class="cart-item__input" type="number" id="quantity" min="1" max="{{product.quantityInStock}}" value="1">
           <button class="cart-stepup plus" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></button>
+        {% if product.quantityInStock <= 10 %}
+        <span class="warning-stock">Il ne reste que {{product.quantityInStock}} exemplaires !</span>
+        {% endif %}
         </div>
         <input id="product-id" type="hidden" value="{{product.id}}">
         <button id="add-cart" class="btn secondary">Ajouter au panier</button>

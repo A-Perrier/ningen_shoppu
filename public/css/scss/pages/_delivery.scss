@@ -17,3 +17,17 @@
 .links-removal ul li:last-of-type {
   display: none;
 }
+
+.delivery-infos {
+  width: fit-content;
+  margin: auto;
+  transform: translateY(-55%);
+  
+  & p {
+    text-align: center;
+    color: $neutral;
+    font-size: .7rem;
+    text-transform: uppercase;
+    margin-bottom: .2rem;
+  }
+}

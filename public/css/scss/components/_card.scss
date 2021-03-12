@@ -67,6 +67,12 @@
       width: fit-content;
       margin: 1rem auto;
     }
+
+    .warning-stock {
+      color: $danger;
+      margin-left: 1rem;
+      transform: translateY(16%);
+    }
   }
 
   &.inner-card {
@@ -196,5 +202,11 @@
       margin: 0 .5rem;
     }
 
+    .warning-stock {
+      color: $danger;
+      margin-left: 1rem;
+      transform: translateY(30%);
+      font-size: .7rem;
+    }
   }
 }

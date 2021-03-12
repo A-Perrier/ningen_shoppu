@@ -51,8 +51,12 @@ class CartController extends AbstractController
      */
     public function add($id): Response
     {
-        $this->productService->findOrThrow($id, "Le produit $id n'existe pas");
+        $product = $this->productService->findOrThrow($id, "Le produit $id n'existe pas");
  
+        if (!$this->cartService->isAddAllowed($product, 1)) {
+            $this->addFlash("danger", "Vous avez atteint la limite de notre stock");
+            return $this->redirectToRoute("cart_show");
+        }
         $this->cartService->add($id, 1);
 
         $this->addFlash("success", "Le produit a bien été incrémenté au panier !");

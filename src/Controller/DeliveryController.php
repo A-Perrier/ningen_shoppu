@@ -28,7 +28,7 @@ class DeliveryController extends AbstractController
      * @Route("/delivery/create", name="delivery_create")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(Request $request, PaginatorInterface $paginator): Response
+    public function create(Request $request, PaginatorInterface $paginator): Response
     {
         $data = $this->productService->findAll();
         $products = $paginator->paginate(
@@ -39,6 +39,34 @@ class DeliveryController extends AbstractController
 
         return $this->render('administration/delivery/create.html.twig', [
             'products' => $products
+        ]);
+    }
+
+
+    /**
+     * @Route("/deliveries", name="delivery_listing")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function all(): Response
+    {
+        $deliveries = $this->deliveryService->findBy([], ['id' => "DESC"]);
+
+        return $this->render('administration/delivery/delivery-listing.html.twig', [
+            'deliveries' => $deliveries
+        ]);
+    }
+
+
+    /**
+     * @Route("/delivery/{id}", name="delivery_show")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function show($id): Response
+    {
+        $delivery = $this->deliveryService->findOrThrow($id);
+
+        return $this->render('administration/delivery/show.html.twig', [
+            'delivery' => $delivery
         ]);
     }
 }

@@ -1,0 +1,55 @@
+{% extends "admin.html.twig" %}
+
+{% block title %}NingenShoppu | Historique des livraisons{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('administration')}}">Administration</a>
+        <a href="#">Livraisons</a>
+        <a href="#" class="active">Historique</a>
+    </div>
+</div>
+
+<h1>Historique des livraisons</h1>
+
+<table>
+<thead>
+    <tr>
+    <th>ID</th>
+    <th>Transporteur</th>
+    <th>Date de livraison</th>
+    <th>Nombre de produits</th>
+    <th>Quantité d'UVC</th>
+    <th colspan="2"></th>
+    </tr>
+</thead>
+<tbody>
+    {% for delivery in deliveries %}
+    <tr>
+        <th>
+          {{delivery.id}}
+        </th>
+        <th>
+          {{delivery.carrier}}
+        </th>
+        <th>
+          {{delivery.deliveredAt|date('d/m/Y')}}
+        </th>
+        <th>
+          {{delivery.totalDistinct}}
+        </th>
+        <th>
+          {{delivery.totalUVC}}
+        </th>
+        <th colspan="2">
+            <a href="{{path('delivery_show', {'id':delivery.id})}}" class="btn primary">Consulter</a>
+        </th>
+    </tr>
+    {% endfor %}
+</tbody> 
+</table>
+{% endblock %}

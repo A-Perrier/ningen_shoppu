@@ -1910,6 +1910,11 @@ footer {
   width: fit-content;
   margin: 1rem auto;
 }
+.card__cart-box .warning-stock {
+  color: #cd0909;
+  margin-left: 1rem;
+  transform: translateY(16%);
+}
 .card.inner-card {
   width: 80%;
   margin: auto;
@@ -2008,6 +2013,12 @@ footer {
     max-width: 39%;
     height: initial;
     margin: 0 0.5rem;
+  }
+  .card .warning-stock {
+    color: #cd0909;
+    margin-left: 1rem;
+    transform: translateY(30%);
+    font-size: 0.7rem;
   }
 }
 .cart-container {
@@ -2212,6 +2223,19 @@ footer {
 .links-removal ul li:first-of-type,
 .links-removal ul li:last-of-type {
   display: none;
+}
+
+.delivery-infos {
+  width: fit-content;
+  margin: auto;
+  transform: translateY(-55%);
+}
+.delivery-infos p {
+  text-align: center;
+  color: #4f4f4f;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
 }
 
 * {

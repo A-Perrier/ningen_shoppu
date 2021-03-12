@@ -1,10 +1,11 @@
 <?php
 namespace App\Subscriber\Purchase;
 
+use App\Entity\Product;
 use App\Entity\Purchase;
+use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Event\PurchasePaymentSucceedEvent;
-use App\Service\CartService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PurchasePaymentSucceedSubscriber implements EventSubscriberInterface
@@ -22,8 +23,9 @@ class PurchasePaymentSucceedSubscriber implements EventSubscriberInterface
   {
     return [
       Purchase::PAYMENT_SUCCEED_EVENT => [
-        ["emptyCart", 1],
-        ["setPaid", 2]
+        ["setPaid", 10],
+        ["emptyCart", 9],
+        ["decreaseStock", 8]
       ]
     ];
   }
@@ -37,6 +39,23 @@ class PurchasePaymentSucceedSubscriber implements EventSubscriberInterface
   {
     $purchase = $event->getPurchase();
     $purchase->setStatus(Purchase::STATUS_PAID);
+
+    $this->em->flush();
+  }
+
+  public function decreaseStock(PurchasePaymentSucceedEvent $event)
+  {
+    $purchase = $event->getPurchase();
+
+    foreach ($purchase->getPurchaseItems()->getValues() as $purchaseItem) {
+      /** @var Product */
+      $product = $purchaseItem->getProduct();
+      $quantity = $purchaseItem->getQuantity();
+
+      $product->setQuantityInStock(($product->getQuantityInStock() - $quantity));
+
+      if($product->getQuantityInStock() == 0) $product->setIsOnSale(false);
+    }
 
     $this->em->flush();
   }

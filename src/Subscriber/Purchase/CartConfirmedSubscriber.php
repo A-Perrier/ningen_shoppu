@@ -30,7 +30,7 @@ class CartConfirmedSubscriber implements EventSubscriberInterface
   {
     return [
       'purchase.cart_confirmation' => [
-        ['setPurchaseItemsAndCompletePurchase', 2]  
+        ['setPurchaseItemsAndCompletePurchase', 9]  
       ]
     ];
   }
@@ -67,6 +67,7 @@ class CartConfirmedSubscriber implements EventSubscriberInterface
     ;
 
     $this->em->persist($purchase);
+
     $this->em->flush();
 
     $this->cartService->empty();

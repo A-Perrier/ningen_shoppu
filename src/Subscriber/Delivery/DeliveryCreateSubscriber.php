@@ -109,7 +109,9 @@ class DeliveryCreateSubscriber implements EventSubscriberInterface
       /** @var Product */
       $product = $deliveryItem->getProduct();
       $quantity = $deliveryItem->getQuantity();
-      $product->setQuantityInStock(($product->getQuantityInStock() + $quantity));
+      $product->setQuantityInStock(($product->getQuantityInStock() + $quantity))
+              ->setIsOnSale(true);
+      ;
     }
 
     $this->em->flush();

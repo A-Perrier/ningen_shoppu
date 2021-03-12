@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 
+use App\Entity\Product;
 use App\Entity\Unmapped\CartItem;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
@@ -162,5 +163,20 @@ class CartService
       $this->flashBag->add("danger", "Votre panier est vide");
       return new RedirectResponse($this->urlGenerator->generate('cart_show'));
     }
+  }
+
+
+  public function isAddAllowed(Product $product, int $quantity)
+  {
+    $cart = $this->getCart();
+    $quantityInStock = $product->getQuantityInStock();
+
+    $totalRequired = $quantity;
+
+    if(array_key_exists($product->getId(), $cart)) {
+      $totalRequired += $cart[$product->getId()];
+    }
+
+    return $totalRequired <= $quantityInStock;
   }
 }

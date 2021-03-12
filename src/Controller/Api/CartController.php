@@ -36,6 +36,11 @@ class CartController extends AbstractController
       return $this->json("Une erreur est survenue", 400);
     }
 
+    $isAllowed = $this->cartService->isAddAllowed($product, $data->quantity);
+    if (!$isAllowed) {
+      return $this->json("Vous souhaitez commander plus d'articles que nous n'en n'avons", 400);
+    }
+
     $this->cartService->add($data->productId, $data->quantity);
 
     return $this->json($data);

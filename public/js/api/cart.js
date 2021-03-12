@@ -17,7 +17,7 @@ cartButton.click((e) => {
       $('.cart-count').text(count + data.quantity);
     },
     error: function (response) {
-      dangerToast("Une erreur s'est produite");
+      dangerToast(response.responseJSON);
     }
   })
 })
