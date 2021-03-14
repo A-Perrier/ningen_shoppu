@@ -1417,6 +1417,22 @@ input:checked + .slider:before {
   text-indent: 1rem;
 }
 
+#search-results {
+  position: relative;
+  width: 70%;
+  margin: auto;
+  top: 0.2rem;
+}
+#search-results .search-result {
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+#search-results .search-result a:hover {
+  color: #ff7c5c;
+}
+
 @media only screen and (min-width: 1024px) {
   #searchbar-label {
     position: absolute;
@@ -1425,6 +1441,11 @@ input:checked + .slider:before {
   }
   #searchbar-label img {
     width: 68%;
+  }
+
+  #search-results .search-result {
+    font-size: 0.7rem;
+    line-height: 1.3;
   }
 }
 @media only screen and (min-width: 1288px) {

@@ -15,8 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -34,6 +32,23 @@ class ProductController extends AbstractController
     $this->slugger = $slugger;
     $this->em = $em;
   }
+
+
+  /**
+   * @Route("/api/product", name="api/product_findAll", methods={"GET"})
+   */
+  public function findAll(Request $request, SerializerInterface $serializer): Response
+  {
+    if (!$request->isXmlHttpRequest()) {
+      throw new Exception("Une erreur s'est produite", 400);
+    }
+
+    $products = $this->productService->findAll();
+    $jsonProducts = $serializer->serialize($products, 'json', ['groups' => 'products:all']);
+
+    return $this->json($jsonProducts);
+  }
+
 
   /**
    * @Route("/api/product/create", name="api/product_create", methods={"POST"})

@@ -26,6 +26,24 @@
   text-indent: 1rem;
 }
 
+#search-results {
+  position: relative;
+  width: 70%;
+  margin: auto;
+  top: .2rem;
+
+  .search-result {
+    transition: .3s;
+    text-transform: uppercase;
+    font-size: 1rem;
+    line-height: 1.2;
+
+    & a:hover {
+      color: $secondary;
+    }
+  }
+}
+
 
 @media only screen and (min-width: $desktop-breakpoint) {
 
@@ -37,6 +55,11 @@
     & img {
       width: 68%;
     }
+  }
+
+  #search-results .search-result {
+      font-size: .7rem;
+      line-height: 1.3;
   }
 }
 

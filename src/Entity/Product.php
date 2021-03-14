@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Product
 {
     /**
-     * @Groups("delivery")
+     * @Groups({"delivery", "products:all"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -26,7 +26,7 @@ class Product
     private $id;
 
     /**
-     * @Groups("delivery")
+     * @Groups({"delivery", "products:all"})
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le produit doit avoir un libellé")
      * @Assert\Length(min="2", minMessage="Le libellé doit avoir au moins 2 caractères")
@@ -34,6 +34,7 @@ class Product
     private $wording;
 
     /**
+     * @Groups({"products:all"})
      * @ORM\Column(type="string", length=255)
      */
     private $slug;

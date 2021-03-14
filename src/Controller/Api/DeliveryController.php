@@ -2,12 +2,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\Delivery;
-use App\Entity\DeliveryItem;
 use App\Event\DeliveryCreateEvent;
-use App\Service\DeliveryService;
-use App\Service\ProductService;
-use DateTime;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,8 +22,6 @@ class DeliveryController extends AbstractController
     if (!$request->isXmlHttpRequest()) throw new \Exception("Une erreur s'est produite", 400);
     
     $data = json_decode($request->getContent());
-    //dd(json_decode($data->deliveryItems));
-    //return $this->json($data);
 
     $dispatcher->dispatch(new DeliveryCreateEvent($data), Delivery::DELIVERY_CREATE_EVENT);
 
