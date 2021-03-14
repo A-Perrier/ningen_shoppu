@@ -8,7 +8,12 @@
         <a href="{{path('home')}}">
             <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
         </a>
+        {% if product.category %}
         <a href="{{path('category_index', {'id':product.category.id, 'slug':product.category.slug})}}">{{product.category.title}}</a>
+        {% else %}
+        <a href="#">Aucune catégorie</a>
+        {% endif %}
+        
         <a href="#" class="active">{{product.wording}}</a>
     </div>
 </div>

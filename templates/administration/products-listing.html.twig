@@ -44,7 +44,7 @@
             {{product.id}}
           </th>
           <th>
-            {{product.wording}}
+            <a href="{{path('product_show', {'id':product.id, 'slug':product.slug})}}">{{product.wording}}</a>
           </th>
           <th>
             {{product.category ? product.category.title : ''}}

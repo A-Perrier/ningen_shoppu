@@ -79,8 +79,10 @@ class CategoryController extends AbstractController
       return $this->json("Aucune donnée n'a été trouvée", 400);
     }
 
+    foreach($category->getProducts()->getValues() as $product) $product->setIsOnSale(false);
     $this->categoryService->remove($category);
+    $this->em->flush();
 
-    return $this->json("La catégorie a correctement été supprimée, et tous ses articles ont été déplacés dans la catégorie \"Hors vente \"", 200);
+    return $this->json("La catégorie a correctement été supprimée, et tous les articles qu'elle contenait on été mis hors-ligne", 200);
   }
 }

@@ -54,7 +54,15 @@ class ProductController extends AbstractController
             $this->addFlash('danger', "Ce produit n'existe pas");
             return $this->redirectToRoute('home');
         }
+
+        // Assure la coordination entre l'ID et le slug du produit
         if ($product->getSlug() !== $slug) return $this->redirectToRoute('product_show', ['id' => $id, 'slug' => $product->getSlug()]);
+
+        // Empêche les non-admins de voir les produits retirés de la vente
+        if ($product && !in_array("ROLE_ADMIN", $this->getUser()->getRoles())) { 
+            $this->addFlash("danger", $product->getWording() . " est actuellement en rupture de stock. Veuillez nous excuser pour la gêne occasionnée");
+            return $this->redirectToRoute("home");
+        }
 
         return $this->render('product/show.html.twig', [
             'product' => $product

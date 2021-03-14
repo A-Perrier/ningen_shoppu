@@ -11,12 +11,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductType extends AbstractType
 {
@@ -44,6 +42,9 @@ class ProductType extends AbstractType
                 'label' => "Catégorie",
                 'class' => Category::class,
                 'choice_label' => "title"
+            ])
+            ->add('quantityInStock', NumberType::class, [
+                'label' => "Quantité en stock",
             ])
             ->add('isOnSale', CheckboxType::class, [
                 'label' => "En ligne",

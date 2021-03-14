@@ -59,6 +59,11 @@ class Category
         return $this->id;
     }
 
+    public function getTotalProducts()
+    {
+        return count($this->getProducts()->getKeys());
+    }
+
     public function getTitle(): ?string
     {
         return $this->title;

@@ -43,7 +43,7 @@ class ProductController extends AbstractController
       throw new Exception("Une erreur s'est produite", 400);
     }
 
-    $products = $this->productService->findAll();
+    $products = $this->productService->findAllOnSale();
     $jsonProducts = $serializer->serialize($products, 'json', ['groups' => 'products:all']);
 
     return $this->json($jsonProducts);
@@ -61,6 +61,7 @@ class ProductController extends AbstractController
     }
 
     $data = json_decode($request->getContent());
+
     $data->category = $this->categoryService->find($data->category);
    
     $product = new Product();
@@ -70,7 +71,10 @@ class ProductController extends AbstractController
             ->setPrice($data->price ?? 0)
             ->setCategory($data->category)
             ->setRating([])
+            ->setIsOnSale($data->isOnSale == 1 ? true : false)
+            ->setQuantityInStock($data->quantityInStock)
     ;
+    if ($product->getQuantityInStock() == 0) $product->setIsOnSale(false);
 
 
     $errors = $validator->validate($product);

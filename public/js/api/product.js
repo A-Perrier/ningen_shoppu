@@ -57,7 +57,9 @@ createButton.click((e) => {
     wording: $('#product_wording').val(),
     description: $('#product_description').val(),
     price: parseInt($('#product_price').val() * 100), // Corrige le bug qui fait que le divisor du MoneyType ne s'applique que lors de l'edit
-    category: parseInt($('#product_category').val())
+    category: parseInt($('#product_category').val()),
+    isOnSale: $('#product_isOnSale').is(':checked'),
+    quantityInStock: parseInt($('#product_quantityInStock').val())
   }
 
   $.ajax({
@@ -70,7 +72,7 @@ createButton.click((e) => {
       infoToast("Le formulaire a été validé. En attente du chargement des photos ...");
     },
     error: function (result, status, error) {
-      dangerToast("Le formulaire des  n'a pas été envoyé, il n'a pas été rempli correctement");
+      dangerToast("Le formulaire n'a pas été envoyé, il n'a pas été rempli correctement");
       let apiErrors = JSON.parse(result.responseText);
       setErrors(apiErrors, 'product');
 
