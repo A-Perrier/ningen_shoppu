@@ -2,15 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\FeedbackRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FeedbackRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 
 /**
  * @ORM\Entity(repositoryClass=FeedbackRepository::class)
  */
 class Feedback
 {
+
+    public const FEEDBACK_SENT_EVENT = 'feedback.sent';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -26,12 +31,15 @@ class Feedback
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Vous ne pouvez pas laisser ce champ vide")
+     * @Assert\Length(min="2", minMessage="Votre commentaire doit faire au moins 2 caractères")
      */
     private $comment;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Vous ne pouvez pas ne pas mettre de note")
+     * @Assert\GreaterThanOrEqual(0)
+     * @Assert\LessThanOrEqual(5)
      */
     private $rating;
 

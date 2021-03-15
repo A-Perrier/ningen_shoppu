@@ -5,6 +5,7 @@ use App\Entity\Product;
 use App\Entity\ProductImage;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductService

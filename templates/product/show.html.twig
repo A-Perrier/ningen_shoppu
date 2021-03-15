@@ -73,7 +73,32 @@
           </div>
 
           <div class="inner-card__details-content" id="feedbacks">
-            <p>Ici les avis.</p>
+            {% if product.feedback|length == 0 %}
+              <p style="text-align:center">Il n'y a pas encore d'avis sur cet article</p>
+            {% endif %}
+            
+            {% for feedback in product.feedback %}
+              <p>{{feedback.comment}}</p>
+            {% endfor %}
+
+            <div class="comment">
+              <h2>Donner mon avis</h2>
+              
+              <form action="#">
+                {% if hasBought %}
+                  <label for="feedback_comment" style="padding-bottom:.4rem;">Quel est votre avis sur ce produit ?</label>
+                  <textarea name="feedback_comment" id="feedback_comment" cols="30" rows="10" placeholder="Votre avis"></textarea>
+                {% else %}
+                  <p>Vous devez être connecté et avoir déjà acheté ce produit pour donner votre avis dessus</p>
+                {% endif %}
+              </form>
+
+              {% if hasBought %}
+                {% include "shared/forms/_star_rating.html.twig" %}
+              {% endif %}
+
+              <a href="#" id="send-feedback" class="btn secondary" style="display:block;width:fit-content;margin-top:1rem;">Envoyer</a>
+            </div>
           </div>
         </section>
 
@@ -82,6 +107,7 @@
   </section>
 </main>
 
+<script src="{{asset('js/api/feedback.js')}}"></script>
 <script>
 $(function() {
   $('.card__thumbnail').wrapAll('<div class="card__thumbnail-container"></div>')
@@ -97,6 +123,7 @@ $(function() {
       $('.inner-card__details-content[id=' + forAttr + ']').fadeIn(200);
     });
   })
+
 
 });
 </script>

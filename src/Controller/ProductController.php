@@ -50,6 +50,7 @@ class ProductController extends AbstractController
     public function show($id, $slug): Response
     {
         $product = $this->productService->find($id);
+
         if (!$product) {
             $this->addFlash('danger', "Ce produit n'existe pas");
             return $this->redirectToRoute('home');
@@ -65,7 +66,8 @@ class ProductController extends AbstractController
         }
 
         return $this->render('product/show.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'hasBought' => $this->getUser()->hasBought($product)
         ]);
     }
 

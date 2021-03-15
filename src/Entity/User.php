@@ -77,6 +77,19 @@ class User implements UserInterface
         $this->feedback = new ArrayCollection();
     }
 
+    public function hasBought(Product $product): bool
+    {
+        $hasBought = false;
+
+        foreach ($this->getPurchases()->getValues() as $purchase) {
+            foreach ($purchase->getPurchaseItems()->getValues() as $purchaseItem) {
+                if ($purchaseItem->getProduct() === $product) $hasBought = true;
+            }
+        }
+
+        return $hasBought;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

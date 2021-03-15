@@ -126,6 +126,23 @@
   display: none;
 }
 
+.comment {
+  margin-top: 2rem;
+  text-align: center;
+
+  & label {
+    text-align: initial !important;
+  }
+
+  & h2 {
+    display: block !important;
+  }
+
+  & h2:hover::after {
+    all: unset;
+  }
+}
+
 
 @media only screen and (min-width: $desktop-breakpoint) {
   .card-container {
