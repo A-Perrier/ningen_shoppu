@@ -1,0 +1,68 @@
+<style>
+  .background {
+    width: 100%;
+    background-color: #EEEEEE;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .container {
+    width: 80%;
+    margin: auto;
+    background-color: #FFFFFF;
+  }
+  .body {
+    padding-top: 100px;
+  }
+  .footer {
+    padding-bottom: 100px;
+  }
+  .body, .footer {
+    width: 80%;
+    margin:auto;
+  }
+  p {
+    text-align: center;
+    color: #4F4F4F;
+  }
+  .body p {
+    font-size: 20px;
+  }
+  .email-box {
+    width: 80%;
+    margin: 30px auto;
+    padding: 50px 30px;
+    box-shadow: 0 0 12px -3px black;
+  }
+  .subject {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .footer p {
+    font-size: 16px;
+  }
+  .footer p a {
+    color: #FF7C5C;
+  }
+</style>
+
+<div class="background">
+  <div class="container">
+    <div class="body">
+      <p>Vous avez soumis notre formulaire de contact et nous vous en remercions.</p>
+      <p>Cet email automatique vous transmet une copie de votre message.</p>
+      <p>Si vous souhaitez ajouter une précision ou répondre lorsqu'une réponse vous aura été transmise, vous pourrez directement répondre a l'email reçu depuis votre boîte mail.</p>
+      <p>Si vous soumettez un nouveau formulaire à la place, nous ne pourrons pas suivre votre demande de façon optimale.</p>
+
+      <div class="email-box">
+        <p class="subject">{{flushedEmail.subject}}</p>
+        <p>{{flushedEmail.content}}</p>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>Cet email a été transmis le {{flushedEmail.sentAt|date('d/m/Y')}}.</p>
+      <p>Merci pour votre confiance, et à bientôt.</p>
+      <p>L'équipe de <a href="#">NingenShoppu</a>.</p>
+    </div>
+  </div>
+</div>

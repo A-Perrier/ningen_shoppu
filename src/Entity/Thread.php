@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Thread
 {
+
+    public const STATUS_CLOSED = "CLOSE";
+    public const STATUS_OPEN = "OPEN";
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -42,6 +46,12 @@ class Thread
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getLastEmail()
+    {
+        $emails = $this->getEmails()->getValues();
+        return end($emails);
     }
 
     /**

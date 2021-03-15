@@ -11,6 +11,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ContactEmail
 {
+
+    public const CONTACT_FORM_SENT_EVENT = 'contact.form_sent';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

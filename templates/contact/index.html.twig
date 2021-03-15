@@ -14,10 +14,11 @@
 
 <h1>Nous contacter</h1>
 
+{% form_theme form 'shared/forms/_form_theme.html.twig' %}
 {{form_start(form)}}
-    {{form_row(email)}}
-    {{form_row(subject)}}
-    {{form_row(content)}}
+    {{form_row(form.email)}}
+    {{form_row(form.subject)}}
+    {{form_row(form.content)}}
     <button id="send-email" class="btn secondary" type="submit">Envoyer</button>
 {{form_end(form)}}
 {% endblock %}

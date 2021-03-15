@@ -30,7 +30,6 @@ class EmailModifySubscriber implements EventSubscriberInterface
     ];
   }
 
-
   public function flushNewEmail()
   {
     $this->em->flush();
