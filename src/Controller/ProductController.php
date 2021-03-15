@@ -67,7 +67,8 @@ class ProductController extends AbstractController
 
         return $this->render('product/show.html.twig', [
             'product' => $product,
-            'hasBought' => $this->getUser()->hasBought($product)
+            'hasBought' => $this->getUser() ? $this->getUser()->hasBought($product) : false,
+            'hasAlreadyFeedbacked' => $this->getUser() ? $this->getUser()->hasAlreadyFeedbacked($product) : false
         ]);
     }
 

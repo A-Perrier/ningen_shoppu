@@ -1,2 +1,30 @@
 @import '../components/card';
 @import '../components/rating-star';
+
+.feedback-none {
+  text-align:center;
+  font-style:italic;
+  color:#999999;
+  padding-top:.4rem;
+}
+
+.feedback-comment {
+  position: relative;
+  padding-bottom: .6rem;
+  padding-top: .6rem;
+
+  &::after {
+    position: absolute;
+    content: ' ';
+    border-bottom: 1px solid $primary;
+    bottom: 0;
+    width: 90%;
+  }
+
+  .feedback-header {
+    text-transform: uppercase;
+    font-size: .7rem;
+    color: #999999;
+    padding-bottom: .2rem;
+  }
+}

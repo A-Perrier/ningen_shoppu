@@ -741,7 +741,7 @@ textarea {
   height: 4.8rem;
   border: 1px solid #ff7c5c;
   font-size: 1rem;
-  font-family: "Nunito-Bold", sans-serif;
+  font-family: "Nunito-Light", sans-serif;
   text-indent: 1rem;
 }
 
@@ -2114,7 +2114,7 @@ footer {
 
 .rating:not(:hover) label input:checked ~ .icon,
 .rating:hover label:hover input ~ .icon {
-  color: #09f;
+  color: #ff7c5c;
 }
 
 .rating label input:focus:not(:checked) ~ .icon:last-child {
@@ -2128,6 +2128,32 @@ footer {
   padding-bottom: 0.1rem;
   font-size: 1.1rem;
   font-family: "Nunito-Light", sans-serif;
+}
+
+.feedback-none {
+  text-align: center;
+  font-style: italic;
+  color: #999999;
+  padding-top: 0.4rem;
+}
+
+.feedback-comment {
+  position: relative;
+  padding-bottom: 0.6rem;
+  padding-top: 0.6rem;
+}
+.feedback-comment::after {
+  position: absolute;
+  content: " ";
+  border-bottom: 1px solid #0087a8;
+  bottom: 0;
+  width: 90%;
+}
+.feedback-comment .feedback-header {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: #999999;
+  padding-bottom: 0.2rem;
 }
 
 .cart-container {

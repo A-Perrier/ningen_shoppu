@@ -10,17 +10,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class FeedbackController extends AbstractController
 {
   private $productService;
   private $dispatcher;
+  private $serializer;
 
-  public function __construct(ProductService $productService, EventDispatcherInterface $dispatcher)
+  public function __construct(ProductService $productService, EventDispatcherInterface $dispatcher, SerializerInterface $serializer)
   {
     $this->productService = $productService;
     $this->dispatcher = $dispatcher;
+    $this->serializer = $serializer;
   }
 
   /**
@@ -55,7 +58,9 @@ class FeedbackController extends AbstractController
 
     } else {
         $this->dispatcher->dispatch(new FeedbackSentEvent($feedback), Feedback::FEEDBACK_SENT_EVENT);
-        return $this->json("Votre avis a bien été déposé, merci beaucoup !");
+        $jsonFeedback = $this->serializer->serialize($feedback, 'json', ['groups' => 'feedback']);
+
+        return $this->json($jsonFeedback);
     }
 
     

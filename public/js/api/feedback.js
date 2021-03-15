@@ -9,22 +9,25 @@ $(':radio').change(function() {
 $(sendFeedbackBtn).click(e => {
   e.preventDefault();
   $('.form-error').remove();
-  
+
   data = {
     comment: $('#feedback_comment').val(),
     rating,
     productId
   }
 
-  console.log(data);
-
   $.ajax({
     url: "/api/product/feedback",
     method: "POST",
     data: JSON.stringify(data),
     success: (response) => {
-      successToast(response);
-      console.log(response)
+      successToast("Votre avis a été publié, merci beaucoup !");
+      let parsedResponse = JSON.parse(response);
+      let comment = getComment(parsedResponse);
+      $('.feedback-none').remove();
+      $('.feedback-container').append(comment);
+      $('.toHide').remove();
+      $('.comment').append('<p style="padding-top:.4rem;">Merci pour votre avis !<p>')
     },
     error: (response) => {
       let apiErrors = JSON.parse(response.responseText);
@@ -32,3 +35,13 @@ $(sendFeedbackBtn).click(e => {
     }
   })
 })
+
+
+/**
+ * Takes feedback data as an argument and return the HTML to inject into the card
+ * @returns String HTML comment
+ */
+const getComment = (data) => {
+  return `<article class="feedback-comment"><p class="feedback-header">${data.user.firstName} ${data.user.lastName}</p><p class="feedback-header">Maintenant</p><p class="feedback-content">${data.comment}</p>
+</article>`
+}

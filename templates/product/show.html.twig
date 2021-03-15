@@ -74,30 +74,41 @@
 
           <div class="inner-card__details-content" id="feedbacks">
             {% if product.feedback|length == 0 %}
-              <p style="text-align:center">Il n'y a pas encore d'avis sur cet article</p>
+              <p class="feedback-none">Il n'y a pas encore d'avis sur cet article</p>
             {% endif %}
             
+            <div class="feedback-container">
             {% for feedback in product.feedback %}
-              <p>{{feedback.comment}}</p>
+              <article class="feedback-comment">
+                <p class="feedback-header">{{feedback.user.firstName ~ ' ' ~ feedback.user.lastName}}</p>
+                <p class="feedback-header">{{feedback.createdAt|date('d/m/Y')}}</p>
+                <p class="feedback-content">{{feedback.comment}}</p>
+              </article>
             {% endfor %}
+            </div>
 
             <div class="comment">
-              <h2>Donner mon avis</h2>
-              
-              <form action="#">
+              <h2 class="toHide">Donner mon avis</h2>
+
+              {% if hasAlreadyFeedbacked %}
+                <p>Vous avez déjà noté ce produit</p>
+              {% else %}
+                <form class="toHide" action="#">
+                  {% if hasBought %}
+                    <label for="feedback_comment" style="padding-bottom:.4rem;">Quel est votre avis sur ce produit ?</label>
+                    <textarea name="feedback_comment" id="feedback_comment" cols="30" rows="10" placeholder="Votre avis"></textarea>
+                  {% else %}
+                    <p>Vous devez être connecté et avoir déjà acheté ce produit pour donner votre avis dessus</p>
+                  {% endif %}
+                </form>
+
                 {% if hasBought %}
-                  <label for="feedback_comment" style="padding-bottom:.4rem;">Quel est votre avis sur ce produit ?</label>
-                  <textarea name="feedback_comment" id="feedback_comment" cols="30" rows="10" placeholder="Votre avis"></textarea>
-                {% else %}
-                  <p>Vous devez être connecté et avoir déjà acheté ce produit pour donner votre avis dessus</p>
+                  {% include "shared/forms/_star_rating.html.twig" %}
+                
+                  <a href="#" id="send-feedback" class="btn secondary toHide" style="display:block;width:fit-content;margin-top:1rem;">Envoyer</a>
                 {% endif %}
-              </form>
 
-              {% if hasBought %}
-                {% include "shared/forms/_star_rating.html.twig" %}
               {% endif %}
-
-              <a href="#" id="send-feedback" class="btn secondary" style="display:block;width:fit-content;margin-top:1rem;">Envoyer</a>
             </div>
           </div>
         </section>

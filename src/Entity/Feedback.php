@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FeedbackRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
@@ -24,11 +25,13 @@ class Feedback
     private $id;
 
     /**
+     * @Groups({"feedback"})
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="feedback")
      */
     private $user;
 
     /**
+     * @Groups({"feedback"})
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Vous ne pouvez pas laisser ce champ vide")
      * @Assert\Length(min="2", minMessage="Votre commentaire doit faire au moins 2 caractères")
@@ -36,6 +39,7 @@ class Feedback
     private $comment;
 
     /**
+     * @Groups({"feedback"})
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Vous ne pouvez pas ne pas mettre de note")
      * @Assert\GreaterThanOrEqual(0)
