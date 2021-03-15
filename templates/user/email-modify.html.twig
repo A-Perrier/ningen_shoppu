@@ -1,6 +1,6 @@
 {% extends template() %}
 
-{% block title %}NingenShoppu | Modifier mon mot de passe {% endblock %}
+{% block title %}NingenShoppu | Modifier mon email {% endblock %}
 
 {% block body %}
 <div class="breadcrumb-container">
@@ -9,15 +9,15 @@
             <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
         </a>
         <a href="{{path('user_home')}}">Mon compte</a>
-        <a href="#" class="active">Modifier mon mot de passe</a>
+        <a href="#" class="active">Modifier mon email</a>
     </div>
 </div>
 
-<h1>Modifier mon mot de passe</h1>
+<h1>Modifier mon email</h1>
 
 {% form_theme form 'shared/forms/_form_theme.html.twig' %}
 {{form_start(form)}}
-  {{form_row(form.password)}}
-  <button id="password-modify" class="btn secondary" type="submit">Envoyer</button>
+  {{form_row(form.email)}}
+  <button id="email-modify" class="btn secondary" type="submit">Envoyer</button>
 {{form_end(form)}}
 {% endblock %}

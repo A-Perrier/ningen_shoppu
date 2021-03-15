@@ -3,15 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Event\User\PasswordModifyEvent;
-use App\Form\PasswordModifyType;
 use App\Service\UserService;
+use App\Form\EmailModifyType;
+use App\Form\PasswordModifyType;
+use App\Event\User\EmailModifyEvent;
+use App\Event\User\PasswordModifyEvent;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
@@ -56,6 +58,28 @@ class UserController extends AbstractController
         }
 
         return $this->render("user/password-modify.html.twig", [
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/email_modify", name="user_email_modify")
+     * @IsGranted("ROLE_USER")
+     */
+    public function email_modify(Request $request)
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(EmailModifyType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->dispatcher->dispatch(new EmailModifyEvent($form->getData()), User::EMAIL_MODIFY_EVENT);
+            $this->addFlash("success", "Félicitations ! Votre adresse a correctement été modifiée. Un email de confirmation vous a été envoyé");
+        }
+
+        return $this->render("user/email-modify.html.twig", [
             'form' => $form->createView()
         ]);
     }

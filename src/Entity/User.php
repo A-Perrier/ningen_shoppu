@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface
 {
     public const PASSWORD_MODIFY_EVENT = "user.password_modify";
+    public const EMAIL_MODIFY_EVENT = "user.email_modify";
 
     /**
      * @ORM\Id
