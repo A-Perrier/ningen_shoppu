@@ -94,11 +94,17 @@ class Product
      */
     private $deliveryItems;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Feedback::class, mappedBy="product", orphanRemoval=true)
+     */
+    private $feedback;
+
     public function __construct()
     {
         $this->productImages = new ArrayCollection();
         $this->purchaseItems = new ArrayCollection();
         $this->deliveryItems = new ArrayCollection();
+        $this->feedback = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -286,6 +292,36 @@ class Product
             // set the owning side to null (unless already changed)
             if ($deliveryItem->getProduct() === $this) {
                 $deliveryItem->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Feedback[]
+     */
+    public function getFeedback(): Collection
+    {
+        return $this->feedback;
+    }
+
+    public function addFeedback(Feedback $feedback): self
+    {
+        if (!$this->feedback->contains($feedback)) {
+            $this->feedback[] = $feedback;
+            $feedback->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeedback(Feedback $feedback): self
+    {
+        if ($this->feedback->removeElement($feedback)) {
+            // set the owning side to null (unless already changed)
+            if ($feedback->getProduct() === $this) {
+                $feedback->setProduct(null);
             }
         }
 
