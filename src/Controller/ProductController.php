@@ -59,7 +59,7 @@ class ProductController extends AbstractController
         if ($product->getSlug() !== $slug) return $this->redirectToRoute('product_show', ['id' => $id, 'slug' => $product->getSlug()]);
 
         // Empêche les non-admins de voir les produits retirés de la vente
-        if ($product && !in_array("ROLE_ADMIN", $this->getUser()->getRoles())) { 
+        if (!$product->getIsOnSale() && !in_array("ROLE_ADMIN", $this->getUser()->getRoles())) { 
             $this->addFlash("danger", $product->getWording() . " est actuellement en rupture de stock. Veuillez nous excuser pour la gêne occasionnée");
             return $this->redirectToRoute("home");
         }
