@@ -83,6 +83,6 @@ class CategoryController extends AbstractController
     $this->categoryService->remove($category);
     $this->em->flush();
 
-    return $this->json("La catégorie a correctement été supprimée, et tous les articles qu'elle contenait on été mis hors-ligne", 200);
+    return $this->json("La catégorie a correctement été supprimée, et tous les articles qu'elle contenait ont été mis hors-ligne", 200);
   }
 }

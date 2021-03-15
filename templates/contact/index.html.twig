@@ -1,0 +1,23 @@
+{% extends template() %}
+
+{% block title %}NingenShoppu | Contact{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="#" class="active">Contact</a>
+    </div>
+</div>
+
+<h1>Nous contacter</h1>
+
+{{form_start(form)}}
+    {{form_row(email)}}
+    {{form_row(subject)}}
+    {{form_row(content)}}
+    <button id="send-email" class="btn secondary" type="submit">Envoyer</button>
+{{form_end(form)}}
+{% endblock %}
