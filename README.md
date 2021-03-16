@@ -38,7 +38,7 @@ NingenShoppu est développé sur Symfony 5.2.3 (PHP 7.4.5) et avec le soutien de
   #### Commandes
   - [x] Validation du panier sécurisée (blocage des quantités en fonction du stock restant)
   - [x] Paiement par l'API de Stripe
-  - [ ] Mail de récapitulatif de commande
+  - [x] Mail de récapitulatif de commande
   - [x] Consultation des commandes passée
   - [x] Annulation de commande possible si encore impayée
   #### Contact

@@ -4,19 +4,24 @@ namespace App\Subscriber\Purchase;
 use App\Entity\Product;
 use App\Entity\Purchase;
 use App\Service\CartService;
+use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Event\PurchasePaymentSucceedEvent;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PurchasePaymentSucceedSubscriber implements EventSubscriberInterface
 {
   private $em;
   private $cartService;
+  private $mailer;
 
-  public function __construct(EntityManagerInterface $em, CartService $cartService)
+  public function __construct(EntityManagerInterface $em, CartService $cartService, MailerInterface $mailer)
   {
     $this->em = $em;
     $this->cartService = $cartService;
+    $this->mailer = $mailer;
   }
 
   public static function getSubscribedEvents()
@@ -25,7 +30,8 @@ class PurchasePaymentSucceedSubscriber implements EventSubscriberInterface
       Purchase::PAYMENT_SUCCEED_EVENT => [
         ["setPaid", 10],
         ["emptyCart", 9],
-        ["decreaseStock", 8]
+        ["decreaseStock", 8],
+        ["sendEmail", 7]
       ]
     ];
   }
@@ -58,5 +64,25 @@ class PurchasePaymentSucceedSubscriber implements EventSubscriberInterface
     }
 
     $this->em->flush();
+  }
+
+  public function sendEmail(PurchasePaymentSucceedEvent $event)
+  {
+    $purchase = $event->getPurchase();
+    $user = $purchase->getUser();
+
+    $email = new TemplatedEmail();
+    $email->from(new Address("no-reply@ningenshoppu.com"))
+          ->to(new Address($user->getEmail()))
+          ->subject("Validation de votre commande !")
+          ->htmlTemplate('emails/purchase/validation.html.twig')
+          ->context([
+            'purchase' => $purchase,
+            'shippingFee' => Purchase::SHIPPING_FEE,
+            'user' => $user
+          ])
+    ;
+
+    $this->mailer->send($email);
   }
 }
