@@ -80,13 +80,25 @@ class User implements UserInterface
         $this->feedback = new ArrayCollection();
     }
 
+
+    /**
+     * Checks all the current user purchases to find if he bought a product (Purchase::STATUS_PAID || Purchase::STATUS_SENT)
+     *
+     * @param Product $product
+     * @return boolean
+     */
     public function hasBought(Product $product): bool
     {
         $hasBought = false;
 
         foreach ($this->getPurchases()->getValues() as $purchase) {
             foreach ($purchase->getPurchaseItems()->getValues() as $purchaseItem) {
-                if ($purchaseItem->getProduct() === $product) $hasBought = true;
+                if ($purchaseItem->getProduct() === $product) {
+                    if ($purchase->getStatus() !== Purchase::STATUS_CANCELLED 
+                     && $purchase->getStatus() !== Purchase::STATUS_PENDING) {
+                         $hasBought = true;
+                    }
+                }
             }
         }
 

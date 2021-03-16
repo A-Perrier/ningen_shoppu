@@ -38,7 +38,7 @@
         <p class="card__price">{{product.price|amount}}</p>
         <p class="card__rating">
             <img class="card__star" src="{{asset('img/icons/star.svg')}}" alt="">
-            4,7/5 (47 votes)
+            {{product.rating['rating']}}/5 ({{product.rating['votes']}} vote{% if product.rating['votes'] > 1 %}s{% endif %})
         </p>
       </div>
       <div class="card__cart-box">
@@ -134,7 +134,6 @@ $(function() {
       $('.inner-card__details-content[id=' + forAttr + ']').fadeIn(200);
     });
   })
-
 
 });
 </script>

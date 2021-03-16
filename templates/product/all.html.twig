@@ -25,7 +25,7 @@
                         <p class="list-card__price">{{product.price|amount}}</p>
                         <p class="list-card__rating">
                             <img class="list-card__star" src="{{asset('img/icons/star.svg')}}" alt="">
-                            4,7/5 (47 votes)
+                            {{product.rating['rating']}}/5 ({{product.rating['votes']}} vote{% if product.rating['votes'] > 1 %}s{% endif %})
                         </p>
                         {# <p>{{product.rating}}</p> ON DEVRA AFFICHER PLUTÔT LE RESULTAT D'UNE FONCTION QUI CALCULE LES NOTES #} 
                     </div>

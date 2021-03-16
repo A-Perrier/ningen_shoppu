@@ -47,11 +47,6 @@ class Product
     private $description;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
-     */
-    private $rating = [];
-
-    /**
      * @MaxDepth(2)
      * @Groups("delivery")
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
@@ -107,6 +102,20 @@ class Product
         $this->feedback = new ArrayCollection();
     }
 
+    public function getRating(): ?array
+    {
+        $totalRating = 0;
+        $count = count($this->getFeedback()->getValues()) ?? 0;
+
+        foreach ($this->getFeedback()->getValues() as $feedback) {
+            $totalRating += $feedback->getRating();
+        }
+
+        if ($count > 0) $rating = $totalRating / $count;
+        
+        return ['rating' => $rating ?? 0, 'votes' => $count];
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -144,18 +153,6 @@ class Product
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getRating(): ?array
-    {
-        return $this->rating;
-    }
-
-    public function setRating(?array $rating): self
-    {
-        $this->rating = $rating;
 
         return $this;
     }
