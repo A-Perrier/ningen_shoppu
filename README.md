@@ -71,4 +71,4 @@ NingenShoppu est développé sur Symfony 5.2.3 (PHP 7.4.5) et avec le soutien de
 - [x] Les requêtes HTTP indésirables sont bloquées côté serveur
 
 ### Infrastructure
-- [ ] Sitemap
+- [x] Sitemap
