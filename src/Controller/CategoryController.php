@@ -27,6 +27,17 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * @Route("/categories", name="categories_all")
+     */
+    public function all(): Response
+    {
+        return $this->render('category/all.html.twig', [
+            'categories' => $this->categoryService->findAll()
+        ]);
+    }
+
+
+    /**
      * @Route("/category/{id<\d+>}-{slug}", name="category_index")
      */
     public function index($id, $slug): Response

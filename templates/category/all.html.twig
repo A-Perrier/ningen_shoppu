@@ -1,0 +1,29 @@
+{% extends template() %}
+
+{% block title %}NingenShoppu | Toutes les catégories{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+  <div class="breadcrumb flat">
+      <a href="{{path('home')}}">
+          <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+      </a>
+      <a href="#" class="active">Toutes les catégories</a>
+  </div>
+</div>
+
+<h1>Toutes les catégories</h1>
+
+<section id="categories-container">
+  <ul id="category-list">
+    {% for category in categories %}
+      <li class="category-item">
+        <a href="{{path('category_index', {'id':category.id, 'slug':category.slug})}}">
+          {{category.title}}  
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}

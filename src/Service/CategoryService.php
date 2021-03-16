@@ -25,6 +25,11 @@ class CategoryService
     return $this->categoryRepository->find($id);
   }
 
+  public function findAll()
+  {
+    return $this->findBy([], ['title' => "ASC"]);
+  }
+
   public function findBy(array $criteria = [], ?array $orderBy = null, ?int $limit = null, ?int $offset = null)
   {
     return $this->categoryRepository->findBy($criteria, $orderBy, $limit, $offset);

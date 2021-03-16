@@ -2156,6 +2156,16 @@ footer {
   padding-bottom: 0.2rem;
 }
 
+.category-item {
+  text-align: center;
+}
+.category-item a {
+  transition: 0.3s;
+}
+.category-item a:hover {
+  color: #ff7c5c;
+}
+
 .cart-container {
   width: 90%;
   margin: auto;

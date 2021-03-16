@@ -1,0 +1,10 @@
+.category-item {
+  text-align: center;
+
+  & a {
+  transition: .3s;
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
