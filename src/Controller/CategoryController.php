@@ -104,7 +104,7 @@ class CategoryController extends AbstractController
 
             $this->em->flush();
 
-            $this->addFlash("success", "La catégorie a correctement été créée !");
+            $this->addFlash("success", "La catégorie a correctement été modifiée !");
             return $this->redirectToRoute("category_index", [
                 'id' => $id,
                 'slug' => $category->getSlug()
