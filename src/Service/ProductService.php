@@ -70,6 +70,16 @@ class ProductService
     return $this->productRepository->findLastsOnSale($nb); 
   }
 
+  public function findAllQuery()
+  {
+    return $this->productRepository->findAllQuery();
+  }
+
+  public function findSortedQuery($sortBy, $direction)
+  {
+    return $this->productRepository->findSortedQuery($sortBy, $direction);
+  }
+
   public function manageImageOnProductEdition(Product $product)
   {
     foreach ($product->getProductImages() as $key => $image) {

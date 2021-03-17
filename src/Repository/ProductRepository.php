@@ -19,6 +19,42 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    /**
+     * Returns only the query (for KNP Paginator sorting)
+     *
+     * @return QueryBuilder
+     */
+    public function findAllQuery()
+    {
+        $qb = $this->createQueryBuilder('p');
+        return $qb
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ;
+    }
+
+
+    /**
+     * Returns only the query (for KNP Paginator sorting)
+     *
+     * @param string $sortBy
+     * @param string $direction
+     * @return QueryBuilder
+     */
+    public function findSortedQuery($sortBy, $direction)
+    {
+        $qb = $this->createQueryBuilder('p');
+        if ($sortBy === "none" && $direction === "none") {
+            return $this->findAllQuery();
+        } else {
+            return $qb
+                ->orderBy($sortBy, $direction)
+                ->getQuery()
+                ;
+        }
+
+    }
+
     public function findAllOnSale()
     {
         $qb = $this->createQueryBuilder('p');

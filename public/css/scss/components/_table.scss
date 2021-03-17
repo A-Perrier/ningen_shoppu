@@ -24,6 +24,27 @@ table {
     height: 2rem;
     border: 1px solid $primary;
     vertical-align: middle;
+
+    & a {
+      color: white;
+      transition: .3s;
+
+      &.asc, &.desc {
+        color: $secondary;
+      }
+
+      &.asc::after {
+        content: "▼";
+      }
+
+      &.desc::after {
+        content: "▲";
+      }
+
+      &:hover {
+        color: $secondary;
+      }
+    }
   }
 
   & .btn {

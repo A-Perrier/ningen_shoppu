@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ProductRepository;
 use App\Service\ProductService;
 use App\Service\DeliveryService;
 use Knp\Component\Pager\PaginatorInterface;
@@ -32,7 +33,7 @@ class DeliveryController extends AbstractController
     {
         $data = $this->productService->findAll();
         $products = $paginator->paginate(
-            $data,
+            $this->productService->findAllQuery(),
             $request->query->getInt('page', 1),
             self::PER_PAGE
         );

@@ -19,11 +19,11 @@
 <table>
 <thead>
     <tr>
-    <th>ID</th>
-    <th>Libellé</th>
+    <th>{{ knp_pagination_sortable(products, 'ID', 'p.id') }}</th>
+    <th>{{ knp_pagination_sortable(products, 'Libellé', 'p.wording') }}</th>
     <th>Catégorie</th>
-    <th>Prix</th>
-    <th>Stock</th>
+    <th>{{ knp_pagination_sortable(products, 'Prix', 'p.price') }}</th>
+    <th>{{ knp_pagination_sortable(products, 'Stock', 'p.quantityInStock') }}</th>
     <th colspan="2">Quantité reçue</th>
     </tr>
 </thead>
@@ -82,10 +82,17 @@
 
         $('.page-link').click(e => {
             e.preventDefault();
+
+            let url = new URL(document.location.href);
+            let params = new URLSearchParams(url.search);
+
+            let sortBy = params.get('sort') ?? 'none';
+            let direction = params.get('direction') ?? 'none';
+
             page = parseInt($(e.currentTarget).text());
 
             $.ajax({
-                url: "/api/product/getPaginated/" + page,
+                url: "/api/product/getPaginated/" + page + "/" + sortBy + "/" + direction,
                 method: "GET",
                 success: (result) => {
                     $('li.active').removeClass('active');

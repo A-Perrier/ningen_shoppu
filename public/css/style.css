@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*!
  * Generated using the Bootstrap Customizer (https://getbootstrap.com/docs/3.4/customize/)
  */
@@ -1023,6 +1024,22 @@ table th {
   height: 2rem;
   border: 1px solid #0087a8;
   vertical-align: middle;
+}
+table th a {
+  color: white;
+  transition: 0.3s;
+}
+table th a.asc, table th a.desc {
+  color: #ff7c5c;
+}
+table th a.asc::after {
+  content: "▼";
+}
+table th a.desc::after {
+  content: "▲";
+}
+table th a:hover {
+  color: #ff7c5c;
 }
 table .btn {
   padding: 0.2rem 0.8rem;

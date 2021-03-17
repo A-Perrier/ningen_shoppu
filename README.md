@@ -63,6 +63,7 @@ NingenShoppu est développé sur Symfony 5.2.3 (PHP 7.4.5) et avec le soutien de
   - [x] Intégration d'une livraison
       * A l'aide de la liste de tous les produits, on dispose de boutons permettant de modifier la quantité de produits reçus (par exemple repris d'un bordereau de livraison). Un récapitulatif des produits rentrés est injecté en temps réel en bas de la page. On peut alors soumettre cette liste et les stocks seront incrémentés d'autant
   - [x] Historique des livraisons
+  - [x] Champs triables
   - [ ] Barre de recherche spécifique aux livraisons
 
 ### Securité
