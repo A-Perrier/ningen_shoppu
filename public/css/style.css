@@ -2400,6 +2400,13 @@ footer {
   margin-bottom: 0.2rem;
 }
 
+#delivery-searchbar {
+  width: 50%;
+  margin: 0 auto 1rem auto;
+  border-radius: 3px;
+  font-family: "Nunito-Light", sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }

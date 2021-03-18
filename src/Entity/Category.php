@@ -22,7 +22,7 @@ class Category
     private $id;
 
     /**
-     * @Groups("delivery")
+     * @Groups({"delivery", "products:all"})
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Le titre ne peut pas être nul")
      * @Assert\Length(min="2", max="255", 

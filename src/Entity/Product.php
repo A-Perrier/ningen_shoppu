@@ -48,7 +48,7 @@ class Product
 
     /**
      * @MaxDepth(2)
-     * @Groups("delivery")
+     * @Groups({"delivery", "products:all"})
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      * @ORM\JoinColumn(onDelete="SET NULL")
      * @Assert\NotBlank(message="Votre produit doit avoir une catégorie")
@@ -56,7 +56,7 @@ class Product
     private $category;
 
     /**
-     * @Groups("delivery")
+     * @Groups({"delivery", "products:all"})
      * @ORM\Column(type="integer")
      * @Assert\NotNull(message="Le prix doit être présent")
      * @Assert\Positive(message="Le prix doit être supérieur à 0")
@@ -79,7 +79,7 @@ class Product
     private $purchaseItems;
 
     /**
-     * @Groups("delivery")
+     * @Groups({"delivery", "products:all"})
      * @ORM\Column(type="integer")
      */
     private $quantityInStock;

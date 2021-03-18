@@ -53,6 +53,8 @@ let listDecrement = (event, resumeItems) => {
 }
 
 
+
+
 // =========================================== GESTION DE L'ENVOI DE LA LIVRAISON EN AJAX =========================================== //
 
 let handleSubmit = (event, resumeItems) => {

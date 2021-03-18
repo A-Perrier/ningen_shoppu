@@ -147,15 +147,16 @@ class ProductController extends AbstractController
   }
 
   /**
-   * @Route("/api/product/getPaginated/{id}/{sortBy}/{direction}", name="api/product_paginated")
+   * @Route("/api/product/getPaginated/{id}", name="api/product_paginated")
    * @IsGranted("ROLE_ADMIN")
    */
-  public function getPaginated(Request $request, PaginatorInterface $paginator, $id, $sortBy, $direction, SerializerInterface $serializer)
+  public function getPaginated(Request $request, PaginatorInterface $paginator, $id, SerializerInterface $serializer)
   {
     if (!$request->isXmlHttpRequest()) throw new Exception("Une erreur s'est produite", 400);
-
+    
+    $data = $this->productService->findAll();
     $products = $paginator->paginate(
-      $this->productService->findSortedQuery($sortBy, $direction),
+      $data,
       $request->query->getInt('page', $id),
       \App\Controller\ProductController::PER_PAGE
     );

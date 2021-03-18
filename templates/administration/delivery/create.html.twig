@@ -19,11 +19,11 @@
 <table>
 <thead>
     <tr>
-    <th>{{ knp_pagination_sortable(products, 'ID', 'p.id') }}</th>
-    <th>{{ knp_pagination_sortable(products, 'Libellé', 'p.wording') }}</th>
+    <th>ID</th>
+    <th>Libellé</th>
     <th>Catégorie</th>
-    <th>{{ knp_pagination_sortable(products, 'Prix', 'p.price') }}</th>
-    <th>{{ knp_pagination_sortable(products, 'Stock', 'p.quantityInStock') }}</th>
+    <th>Prix</th>
+    <th>Stock</th>
     <th colspan="2">Quantité reçue</th>
     </tr>
 </thead>
@@ -75,6 +75,7 @@
     <a href="#" id="delivery-submit" class="btn primary">Valider la livraison</a>
 </section>
 
+<script src="{{asset('js/config.js')}}"></script>
 <script src="{{asset('js/api/delivery.js')}}"></script>
 <script>
     $(function() {
@@ -83,16 +84,10 @@
         $('.page-link').click(e => {
             e.preventDefault();
 
-            let url = new URL(document.location.href);
-            let params = new URLSearchParams(url.search);
-
-            let sortBy = params.get('sort') ?? 'none';
-            let direction = params.get('direction') ?? 'none';
-
-            page = parseInt($(e.currentTarget).text());
+            let page = parseInt($(e.currentTarget).text());
 
             $.ajax({
-                url: "/api/product/getPaginated/" + page + "/" + sortBy + "/" + direction,
+                url: "/api/product/getPaginated/" + page,
                 method: "GET",
                 success: (result) => {
                     $('li.active').removeClass('active');
@@ -157,6 +152,7 @@
             e.preventDefault();
             handleSubmit(e, resumeItems);
         })
+
     });
 </script>
 {% endblock %}
