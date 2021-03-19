@@ -1026,7 +1026,6 @@ table th {
   vertical-align: middle;
 }
 table th a {
-  color: white;
   transition: 0.3s;
 }
 table th a.asc, table th a.desc {
@@ -2405,6 +2404,36 @@ footer {
   margin: 0 auto 1rem auto;
   border-radius: 3px;
   font-family: "Nunito-Light", sans-serif;
+}
+
+.label-container {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 2rem;
+}
+
+.label {
+  width: fit-content;
+  position: relative;
+}
+.label #delete-btn {
+  position: absolute;
+  top: 0;
+  right: -0.65rem;
+  transform: translateY(2px);
+}
+.label #delete-btn img {
+  width: 60%;
+}
+.label #edit-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.label #edit-btn img {
+  width: 209%;
 }
 
 * {

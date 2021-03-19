@@ -80,6 +80,18 @@ class ProductService
     return $this->productRepository->findSortedQuery($sortBy, $direction);
   }
 
+
+  public function manageLabels(Product $product) 
+  {
+    foreach ($product->getLabels()->getValues() as $label) {
+      $label->addProduct($product);
+      $product->addLabel($label);
+    }
+
+    $this->em->flush();
+  }
+
+
   public function manageImageOnProductEdition(Product $product)
   {
     foreach ($product->getProductImages() as $key => $image) {

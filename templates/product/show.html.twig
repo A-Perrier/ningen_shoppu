@@ -69,7 +69,9 @@
           </div>
 
           <div class="inner-card__details-content" id="labels">
-            <p>Ici les labels.</p>
+            {% for label in product.labels %}
+              <img src="{{getImage(label.imageName, 100, 100, true)}}" alt="{{label.name}}">
+            {% endfor %}
           </div>
 
           <div class="inner-card__details-content" id="feedbacks">

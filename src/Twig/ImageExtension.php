@@ -49,8 +49,9 @@ class ImageExtension extends AbstractExtension
    * @param integer $height
    * @return string
    */
-  public function getImage(?string $filename = null, int $width, int $height) 
+  public function getImage(?string $filename = null, int $width, int $height, $isLabel = false) 
   {
+    if ($isLabel) return $this->imagePathGenerator->generateLabel($filename, $width, $height);
     if (!$filename) return $this->imagePathGenerator->generateAsset("default-placeholder.png", $width, $height);
     
     return $this->imagePathGenerator->generate($filename, $width, $height);

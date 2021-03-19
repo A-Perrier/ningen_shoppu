@@ -3,12 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Category;
+use App\Entity\Label;
 use App\Entity\Product;
 use App\Repository\CategoryRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -52,6 +54,14 @@ class ProductType extends AbstractType
                 'attr' => [
                     'class' => 'onSale' 
                 ]
+            ])
+            ->add('labels', EntityType::class, [
+                'label' => "Labels du produit",
+                'class' => Label::class,
+                'choice_label' => 'name',
+                'expanded' => true,
+                'multiple' => true
+                
             ])
             ->add('product_images', CollectionType::class, [
                 'label' => "Photos du produit",

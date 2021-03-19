@@ -52,14 +52,20 @@ createButton.click((e) => {
     })
   }
 
-  
+  let labels = [];
+  $.map($('input[id*=product_label]:checked'), (input, index) => {
+    labels[index] = $(input).val();
+  })
+
+
   let data = {
     wording: $('#product_wording').val(),
     description: $('#product_description').val(),
     price: parseInt($('#product_price').val() * 100), // Corrige le bug qui fait que le divisor du MoneyType ne s'applique que lors de l'edit
     category: parseInt($('#product_category').val()),
     isOnSale: $('#product_isOnSale').is(':checked'),
-    quantityInStock: parseInt($('#product_quantityInStock').val())
+    quantityInStock: parseInt($('#product_quantityInStock').val()),
+    labels: JSON.stringify(labels)
   }
 
   $.ajax({

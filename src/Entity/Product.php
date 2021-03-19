@@ -94,12 +94,18 @@ class Product
      */
     private $feedback;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Label::class, mappedBy="product")
+     */
+    private $labels;
+
     public function __construct()
     {
         $this->productImages = new ArrayCollection();
         $this->purchaseItems = new ArrayCollection();
         $this->deliveryItems = new ArrayCollection();
         $this->feedback = new ArrayCollection();
+        $this->labels = new ArrayCollection();
     }
 
     public function getRating(): ?array
@@ -320,6 +326,33 @@ class Product
             if ($feedback->getProduct() === $this) {
                 $feedback->setProduct(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Label[]
+     */
+    public function getLabels(): Collection
+    {
+        return $this->labels;
+    }
+
+    public function addLabel(Label $label): self
+    {
+        if (!$this->labels->contains($label)) {
+            $this->labels[] = $label;
+            $label->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLabel(Label $label): self
+    {
+        if ($this->labels->removeElement($label)) {
+            $label->removeProduct($this);
         }
 
         return $this;

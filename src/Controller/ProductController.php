@@ -116,6 +116,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $product->setSlug($this->slugger->slugify($product->getWording()));
             
+            $this->productService->manageLabels($product);    
             $this->productService->manageImageOnProductEdition($product);
 
             // This redirection avoid fields to render wrongly

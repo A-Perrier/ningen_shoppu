@@ -55,7 +55,7 @@ NingenShoppu est développé sur Symfony 5.2.3 (PHP 7.4.5) et avec le soutien de
   - [x] Gestion de la mise en ligne ou non des produits
   - [x] Visibilité accrue pour les produits dont la quantité en stock est faible
   - [x] Panneau d'accès rapide aux produits retirés de la vente
-  - [ ] Intégration d'un système de labels certifiants
+  - [x] Intégration d'un système de labels certifiants
   #### Catégories
   - [x] Gestion du CRUD des catégories
   - [x] Retrait de la vente des produits dont la catégorie est supprimée, avec alerte à l'administration

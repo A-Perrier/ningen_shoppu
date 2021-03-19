@@ -49,7 +49,7 @@ class ImageController extends AbstractController
   }
 
 
-    /**
+  /**
    * @Route("/assets/{path}")
    */
   public function showAsset(Request $request, $path, ParameterBagInterface $parameterBagInterface): Response
@@ -59,6 +59,33 @@ class ImageController extends AbstractController
       'cache' => $parameterBagInterface->get('kernel.project_dir').'/var/assets',
       'source' => $parameterBagInterface->get('kernel.project_dir').'/public/img/icons',
       'base_url' => 'assets',
+      'defaults' => [
+        'q' => 50
+      ]
+    ]);
+    [$url] = explode('?', $request->getRequestUri());
+
+    try {
+        SignatureFactory::create($this->glideKey)->validateRequest($url, $_GET);
+        
+        return $server->getImageResponse($path, $request->query->all());
+    } catch (SignatureException $e) {
+        throw new HttpException(403, "Signature invalide");
+    }
+
+  }
+
+
+  /**
+   * @Route("/labels/{path}")
+   */
+  public function showLabel(Request $request, $path, ParameterBagInterface $parameterBagInterface): Response
+  {
+    $server = ServerFactory::create([
+      'response' => new SymfonyResponseFactory($request),
+      'cache' => $parameterBagInterface->get('kernel.project_dir').'/var/labels',
+      'source' => $parameterBagInterface->get('kernel.project_dir').'/public/img/labels',
+      'base_url' => 'labels',
       'defaults' => [
         'q' => 50
       ]

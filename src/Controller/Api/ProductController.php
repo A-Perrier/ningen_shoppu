@@ -7,6 +7,7 @@ use App\Entity\ProductImage;
 use App\Service\ProductService;
 use App\Service\SluggerService;
 use App\Service\CategoryService;
+use App\Service\LabelService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,13 +23,15 @@ class ProductController extends AbstractController
 {
   private $productService;
   private $categoryService;
+  private $labelService;
   private $em;
   private $slugger;
 
-  public function __construct(ProductService $productService, CategoryService $categoryService, SluggerService $slugger, EntityManagerInterface $em)
+  public function __construct(ProductService $productService, CategoryService $categoryService, LabelService $labelService, SluggerService $slugger, EntityManagerInterface $em)
   {
     $this->productService = $productService;
     $this->categoryService = $categoryService;
+    $this->labelService = $labelService;
     $this->slugger = $slugger;
     $this->em = $em;
   }
@@ -61,7 +64,8 @@ class ProductController extends AbstractController
     }
 
     $data = json_decode($request->getContent());
-
+    $labels = json_decode($data->labels);
+    
     $data->category = $this->categoryService->find($data->category);
    
     $product = new Product();
@@ -70,10 +74,17 @@ class ProductController extends AbstractController
             ->setDescription($data->description)
             ->setPrice($data->price ?? 0)
             ->setCategory($data->category)
-            ->setRating([])
             ->setIsOnSale($data->isOnSale == 1 ? true : false)
             ->setQuantityInStock($data->quantityInStock)
     ;
+
+    foreach ($labels as $labelId) {
+      $labelId = intval($labelId);
+      $label = $this->labelService->find($labelId);
+      $product->addLabel($label);
+      $label->addProduct($product);
+    }
+    
     if ($product->getQuantityInStock() == 0) $product->setIsOnSale(false);
 
 
