@@ -2,20 +2,20 @@
   width: fit-content;
   margin: auto;
   display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .advantages {
   background-color: $primary-dark;
   height: 8rem;
-  padding-top: 2rem;
-  padding-bottom: .9rem;
 
   & section { position: relative; }
 
   & img {
     text-align: center;
     position: relative;
-    right: -25%;
+    right: -41%;
   }
 
   & p {
@@ -24,6 +24,7 @@
     max-width: 70%;
     text-align: center;
     padding-top: .5rem;
+    margin: auto;
   }
 }
 
@@ -36,10 +37,9 @@
 
   .advantages {
     height: 6rem;
-    padding-top: 1rem;
 
     & img {
-      right: -20%;
+      width: 20px;
     }
 
     & p {

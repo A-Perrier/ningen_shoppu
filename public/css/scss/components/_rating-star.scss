@@ -71,3 +71,10 @@
   font-size: 1.1rem;
   font-family: $text-light;
 }
+
+@media only screen and (min-width: $desktop-breakpoint) {
+  .rating {
+    line-height: 30px;
+    font-size: 25px;
+  }
+}

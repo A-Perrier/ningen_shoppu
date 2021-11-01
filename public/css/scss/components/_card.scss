@@ -1,5 +1,5 @@
 .card-container {
-  width: 70%;
+  width: 90%;
   margin: auto;
 }
 
@@ -43,11 +43,11 @@
     padding-bottom: 1rem;
     padding-left: 1rem;
     display: flex;
+    justify-content: space-evenly;
   }
 
   &__rating {
-    margin-left: auto;
-    transform: translate(-1rem, -20%);
+    transform: translateY(-20%);
   }
 
   &__star {
@@ -146,10 +146,14 @@
 
 @media only screen and (min-width: $desktop-breakpoint) {
   .card-container {
-    width: 55%;
+    width: 65%;
   }
 
   .card {
+
+    #add-cart {
+      display: block;
+    }
 
     &__wording {
       font-size: 1rem;

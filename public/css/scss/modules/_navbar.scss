@@ -42,6 +42,8 @@
       margin-right: 1rem;
     }
   }
+
+  li { text-transform: uppercase; }
 }
 
 // Navbar admin
@@ -54,7 +56,12 @@
 
     & span {
       position: absolute;
-      transform: translate(-27%, 50%);
+      transform: translate(2%, -20%);
+      font-size: .5rem;
+      background-color: $secondary;
+      padding: .1rem .2rem;
+      border-radius: 3px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
   }
 
@@ -75,7 +82,7 @@
       font-size: 0.6rem;
       height: .8rem;
       width: .8rem;
-      line-height: .8rem;
+      line-height: .9rem;
       transform: translate(-47%, 50%);
     }
 
@@ -98,7 +105,7 @@
       }
 
       & img {
-        width: 30%;
+        width: 20%;
       }
     }
 

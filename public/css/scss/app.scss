@@ -48,16 +48,11 @@ body {
   min-height: 100%;
   background: $background;
   position: relative;
-  padding-bottom: 24rem; // Hauteur du footer : 23rem
 }
 
 @media only screen and (min-width: $desktop-breakpoint) {
   :root {
-    font-size: 24px;
-  }
-
-  body {
-    padding-bottom: 55rem;
+    font-size: 18px;
   }
 }
 

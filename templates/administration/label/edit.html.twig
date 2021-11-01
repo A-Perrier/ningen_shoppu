@@ -1,0 +1,31 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}NingenShoppu | Modifier {{label.name}}{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('administration')}}">Administration</a>
+        <a href="{{path('label_all')}}">Labels</a>
+        <a href="#" class="active">{{label.name}}</a>
+    </div>
+</div>
+
+<main>
+  <h1>Modifier {{label.name}}</h1>
+
+  {% form_theme form 'shared/forms/_form_theme.html.twig' %}
+  {{form_start(form)}}
+      {{form_row(form.imageFile)}}
+      {{form_row(form.name)}}
+      {{form_row(form.description)}}
+
+      <button class="btn secondary" type="submit">Envoyer</button>
+  {{form_end(form)}}
+</main>
+
+<script src="{{asset('js/helpers/imageUploadWidget.js')}}"></script>
+{% endblock %}

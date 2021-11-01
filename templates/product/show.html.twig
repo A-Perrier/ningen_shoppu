@@ -65,7 +65,7 @@
         
         <section>
           <div class="inner-card__details-content" id="description">
-            <p>{{product.description}}</p>
+            <p>{{product.description|nl2br}}</p>
           </div>
 
           <div class="inner-card__details-content" id="labels">
@@ -84,7 +84,7 @@
               <article class="feedback-comment">
                 <p class="feedback-header">{{feedback.user.firstName ~ ' ' ~ feedback.user.lastName}}</p>
                 <p class="feedback-header">{{feedback.createdAt|date('d/m/Y')}}</p>
-                <p class="feedback-content">{{feedback.comment}}</p>
+                <p class="feedback-content">{{feedback.comment|nl2br}}</p>
               </article>
             {% endfor %}
             </div>

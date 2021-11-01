@@ -30,7 +30,7 @@ class CartController extends AbstractController
     }
 
     $data = json_decode($request->getContent());
-
+    
     $product = $this->productService->find($data->productId);
     if (!$product) {
       return $this->json("Une erreur est survenue", 400);

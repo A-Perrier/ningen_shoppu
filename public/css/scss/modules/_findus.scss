@@ -1,6 +1,5 @@
 #address-container {
-  padding-bottom: 4rem;
-  height: 9rem;
+  min-height: 9rem;
 }
 
 .spacer {
@@ -13,44 +12,43 @@
 }
 
 #findus {
-  padding: 0 1rem 0 1rem;
+  padding: 2rem 1rem 2rem 1rem;
   background-color: $primary;
   position: relative;
-
-  h2, p:not(.copyright) {
-    transform: translateY(100%);
-  }
-
+  
+  
   h2 {
     color: white;
-    font-size: 1.5rem;
     font-family: $text-heavy;
     margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    text-align: center;
   }
 
   p {
     color: white;
     font-family: $text;
-    font-size: .8rem;
+    font-size: 1rem;
 
     &:not(.copyright) {
-      letter-spacing: .1rem;
+      letter-spacing: -0.2px;
     }
 
     &.copyright {
-      position: absolute;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
+      text-align: center;
     }
   }
 
   img {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-67%);
-    width: 45%;
+    width: 90%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .address {
+    margin-bottom: 2rem;
   }
 }
 
@@ -63,9 +61,8 @@
       height: auto;  
     }
 
-    & h2 {
-      transform: initial;
-      text-align: center;
+    & h2 {      
+      font-size: 1rem;
     }
 
     & .address {
@@ -76,14 +73,20 @@
     
     & img {
       position: initial;
-      transform: translateX(6%);
-      width: 90%;
+      transform: initial;
+      height: 300px;
+      width: auto;
+      display: block;
       margin: auto;
-      padding-top: 3rem;
+      padding: 2rem 0;
     }
 
     & .spacer {
       padding: 0;
+    }
+
+    .copyright {
+      font-size: .6rem;
     }
   }
 

@@ -1,0 +1,35 @@
+{% extends "admin.html.twig" %}
+
+{% block title %}NingenShoppu | Tous les labels{% endblock %}
+
+{% block body %}
+<div class="breadcrumb-container">
+    <div class="breadcrumb flat">
+        <a href="{{path('home')}}">
+            <img src="{{asset('img/icons/home.svg')}}" alt="Accueil">
+        </a>
+        <a href="{{path('administration')}}">Administration</a>
+        <a href="#" class="active">Labels</a>
+    </div>
+</div>
+
+<main>
+  <h1>Tous les labels</h1>
+
+  <div class="label-container">
+    {% for label in labels %}
+      <article class="label">
+        <img src="{{getImage(label.imageName, 100, 100, true)}}" alt="{{label.description}}">
+        <a href="{{path('label_delete', {'id':label.id})}}" id="delete-btn">
+          <img src="{{asset('img/icons/cross-danger.svg')}}" alt="Supprimer">
+        </a>
+        <a href="{{path('label_edit', {'id':label.id})}}" id="edit-btn">
+          <img src="{{asset('img/icons/edit.svg')}}" alt="Editer">
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+
+  <a href="{{path('label_create')}}" class="btn primary" style="margin-left:2rem;">Importer un label</a>
+</main>
+{% endblock %}

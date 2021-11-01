@@ -1,14 +1,16 @@
 form div {
   width: 80%;
-  margin: 2rem auto 0 auto;
+  margin: 1rem auto 0 auto;
   position: relative;
 }
 
 form label {
   display: block;
-  padding-bottom: .5rem;
+  padding-bottom: .2rem;
   color: $neutral;
   font-family: $text-light;
+  font-size: .6rem;
+  text-transform: uppercase;
 }
 
 input, select {
@@ -16,10 +18,15 @@ input, select {
   display: block;
   padding-top: 3px;
   height: 1.6rem;
-  border: 1px solid $secondary;
+  outline: none;
+  border: 1px solid $primary;
+  &:focus {
+    border: 1px solid $secondary;
+  }
   font-size: 1rem;
   font-family: $text-heavy;
   text-indent: 1rem;
+  border-radius: 3px;
 }
 
 input[type=number] {
@@ -119,8 +126,9 @@ div[id^=product_product_images] > div {
 
 .currency {
   position: absolute;
-  transform: translate(2%, 100%);
+  transform: translate(2%, 56%);
   padding: .265rem .5rem;
+  border-radius: 3px 0 0 3px;
   background: hsl(210,15.8%,92.5%);
   color: hsl(208.2,7.3%,45.7%);
 }
@@ -258,5 +266,12 @@ form#payment-form {
     transform-origin: 0px 10.2px;
     -webkit-animation: loading 2s infinite ease;
     animation: loading 2s infinite ease;
+  }
+}
+
+@media screen and (min-width: $desktop-breakpoint) {
+  form {
+    max-width: 50%;
+    margin: auto;
   }
 }

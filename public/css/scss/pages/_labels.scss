@@ -1,0 +1,34 @@
+.label-container {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 2rem;
+}
+
+.label {
+  width: fit-content;
+  position: relative;
+
+  & #delete-btn {
+    position: absolute;
+    top: 0;
+    right: -.65rem;
+    transform: translateY(2px);
+    & img {
+     width: 60%;
+    }
+    
+  }
+
+  & #edit-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    & img {
+      width: 209%;
+    }
+    
+  }
+}
+
